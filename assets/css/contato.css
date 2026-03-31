@@ -1,0 +1,92 @@
+.contato-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 9999;
+}
+
+.contato-modal.ativo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contato-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.contato-modal-box {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 560px;
+  margin: 20px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.contato-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  border: none;
+  background: transparent;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.contato-modal-title {
+  margin: 0 0 8px;
+  font-size: 1.8rem;
+}
+
+.contato-modal-text {
+  margin: 0 0 24px;
+  color: #555;
+}
+
+.contato-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contato-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contato-form-group input,
+.contato-form-group select,
+.contato-form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.contato-form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contato-form-button {
+  border: none;
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+body.modal-aberto {
+  overflow: hidden;
+}
