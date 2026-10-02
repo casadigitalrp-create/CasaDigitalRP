@@ -46,4 +46,14 @@ Fontes oficiais: [Registro.br](https://registro.br/ajuda/tutoriais-administrativ
 - Validar no domínio publicado as URLs canônicas e o sitemap; criar uma imagem de compartilhamento da marca quando houver um visual aprovado.
 - Definir informações necessárias para um aviso de privacidade completo, caso a operação passe a coletar ou armazenar dados no próprio site.
 
-Nenhum deploy público foi realizado até o momento.
+Registro histórico anterior à publicação de 02/10/2026: nenhum deploy público havia sido realizado.
+
+## Publicação verificada em 02/10/2026
+
+O site está publicado em [casadigitalrp.pages.dev](https://casadigitalrp.pages.dev). As cinco páginas, os arquivos CSS e JavaScript, a logo, o `robots.txt` e o `sitemap.xml` responderam com HTTP 200 na verificação pública.
+
+O repositório usado pela Cloudflare é [casadigitalrp-create/CasaDigitalRP](https://github.com/casadigitalrp-create/CasaDigitalRP). O projeto Pages `casadigitalrp` está configurado para publicar automaticamente os novos commits da branch `main`, usando `node scripts/build.mjs` e o diretório de saída `dist`.
+
+A conexão funcionou após alinhar o repositório com a conta GitHub onde o aplicativo Cloudflare Workers and Pages está instalado. O repositório anterior em `Guga-Nascimento/CasaDigitalRP` foi preservado; o remoto `origin` deste projeto local agora aponta para a conta da empresa.
+
+O domínio `casadigitalrp.com.br` ainda depende da ativação dos servidores DNS da Cloudflare no Registro.br. A publicação no endereço `pages.dev` já pode ser acessada durante essa configuração.
