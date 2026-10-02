@@ -1,579 +1,113 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CasaDigitalRP | Sites profissionais para empresas</title>
-  <title>CasaDigitalRP | Sites profissionais para empresas e negócios locais</title>
-
-  <meta name="description"
-    content="A CasaDigitalRP desenvolve sites profissionais, modernos e responsivos para empresas, autônomos e pequenos negócios fortalecerem sua presença digital.">
-  <meta name="keywords"
-    content="criação de sites, sites profissionais, desenvolvimento web, landing pages, sites para empresas, sites para autônomos, presença digital, Ribeirão Preto">
-  <meta name="author" content="CasaDigitalRP">
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#0b1020">
-  <meta property="og:title" content="CasaDigitalRP | Sites profissionais para empresas e negócios locais">
-  <meta property="og:description"
-    content="Sites modernos, responsivos e profissionais para empresas, autônomos e pequenos negócios.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="A CasaDigitalRP desenvolve soluções digitais, sites e sistemas, integra plataformas, automatiza processos com n8n e aplica IA a desafios de negócios.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://casadigitalrp.com.br/">
-  <meta property="og:image" content="https://casadigitalrp.com.br/assets/img/og/preview-home.jpg">
   <meta property="og:locale" content="pt_BR">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="CasaDigitalRP | Sites profissionais para empresas e negócios locais">
-  <meta name="twitter:description"
-    content="Sites modernos, responsivos e profissionais para empresas, autônomos e pequenos negócios.">
-  <meta name="twitter:image" content="https://casadigitalrp.com.br/assets/img/og/preview-home.jpg">
-
-
-  <link rel="stylesheet" href="assets/css/global.css">
-  <link rel="stylesheet" href="assets/css/header.css">
-  <link rel="stylesheet" href="assets/css/home.css">
-  <link rel="stylesheet" href="assets/css/footer.css">
-  <link rel="stylesheet" href="assets/css/contato.css">
-  <link rel="stylesheet" href="assets/css/responsive.css">
+  <meta property="og:title" content="CasaDigitalRP | Tecnologia que acompanha seu negócio">
+  <meta property="og:description" content="Desenvolvimento de software, sites, integrações, automação com n8n e IA aplicada.">
+  <meta property="og:url" content="https://casadigitalrp.com.br/">
+  <title>CasaDigitalRP | Desenvolvimento, integrações e automação</title>
+  <link rel="canonical" href="https://casadigitalrp.com.br/">
+  <link rel="icon" type="image/png" href="assets/img/logo/logo-principal.png">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script src="assets/js/site.js" defer></script>
 </head>
-
 <body>
-
-  <header class="header">
-    <div class="container header-container">
-      <a href="index.html" class="logo">
-        <img src="assets/img/logo/logo-principal.png" alt="Logo CasaDigitalRP">
-      </a>
-
-      <nav class="nav" id="nav">
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="CasaDigitalRP, início"><span class="brand-mark" aria-hidden="true">⌂</span><span class="brand-name">Casa<span>Digital</span>RP</span></a>
+      <button class="menu-toggle" type="button" data-menu-toggle aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir menu">☰</button>
+      <nav class="nav" data-nav aria-label="Menu principal" id="menu-principal">
         <ul class="nav-list">
-          <li><a href="index.html" class="nav-link active">Início</a></li>
-          <li><a href="sobre.html" class="nav-link">Sobre</a></li>
-
-          <li class="nav-item-dropdown">
-            <button class="nav-link nav-dropdown-toggle" id="servicesToggle" type="button" aria-expanded="false">
-              Serviços
-              <span class="arrow">+</span>
-            </button>
-
-            <ul class="dropdown-menu" id="servicesMenu">
-              <li><a href="servicos.html#criacao-sites">Criação de Sites</a></li>
-              <li><a href="servicos.html#landing-pages">Landing Pages</a></li>
-              <li><a href="servicos.html#portfolio-profissional">Portfólio Profissional</a></li>
-              <li><a href="servicos.html#sites-negocios-locais">Sites para Negócios Locais</a></li>
-              <li><a href="servicos.html#manutencao">Manutenção</a></li>
-              <li><a href="servicos.html#suporte">Suporte</a></li>
-            </ul>
-          </li>
-
-          <li><a href="portfolio.html" class="nav-link">Portfólio</a></li>
-          <li>
-            <a href="#" class="nav-link abrir-contato-modal">Contato</a>
-          </li>
+          <li><a href="index.html" aria-current="page">Início</a></li>
+          <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="portfolio.html">Projetos</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="contato.html">Contato</a></li>
         </ul>
       </nav>
-
-      <a href="https://wa.me/5516991904702?text=Ol%C3%A1%2C%20quero%20solicitar%20um%20or%C3%A7amento."
-        class="btn-whatsapp btn-whatsapp-header" target="_blank" rel="noopener noreferrer">
-        <img src="assets/img/icons/whatsapp.svg" class="btn-whatsapp-icon" alt="" aria-hidden="true">
-        <span class="btn-whatsapp-label">Falar no WhatsApp</span>
-      </a>
-
-      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <a class="btn btn-primary header-cta" href="contato.html">Vamos conversar <span aria-hidden="true">↗</span></a>
     </div>
   </header>
 
-  <main>
+  <main id="conteudo">
     <section class="hero">
-      <div class="container hero-container">
-        <div class="hero-content">
-          <p class="hero-tag">CasaDigitalRP, sempre com você</p>
-
-          <h2 class="hero-title">Sites profissionais para quem quer crescer no digital</h2>
-
-          <p class="hero-text">
-            Criamos sites modernos, responsivos e pensados para fortalecer a presença
-            online de empresas, autônomos e pequenos negócios.
-          </p>
-
-          <div class="hero-buttons">
-            <a href="https://wa.me/5516991904702?text=Olá,%20quero%20solicitar%20um%20orçamento." class="btn-primary"
-              target="_blank" rel="noopener noreferrer">
-              Solicitar orçamento
-            </a>
-
-            <a href="portfolio.html" class="btn-secondary">Ver portfólio</a>
+      <div class="container hero-layout">
+        <div>
+          <span class="eyebrow">CasaDigitalRP · sempre com você</span>
+          <h1>Tecnologia que faz seu negócio <em>funcionar melhor.</em></h1>
+          <p class="lead">Desenvolvemos sites, sistemas e soluções digitais sob medida. Conectamos plataformas, automatizamos processos com n8n e aplicamos análise de negócios e IA quando ajudam a resolver um desafio real.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="contato.html">Conte seu desafio <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-secondary" href="servicos.html">Conheça as soluções</a>
           </div>
-          <div class="hero-slider-wrapper">
-            <div class="hero-slider">
-              <button class="hero-arrow hero-arrow-left" type="button" aria-label="Slide anterior">
-                <svg viewBox="0 0 24 24" class="hero-arrow-icon" aria-hidden="true">
-                  <path d="M15 18l-6-6 6-6" />
-                </svg>
-              </button>
-              <div class="hero-slider-track">
-                <article class="hero-slide">
-                  <span>Nossos serviços</span>
-                  <h2>Criação de sites profissionais</h2>
-                  <p>
-                    Desenvolvemos sites modernos, organizados e pensados para transmitir
-                    credibilidade ao seu negócio.
-                  </p>
-                </article>
-
-                <article class="hero-slide">
-                  <span>Nossos serviços</span>
-                  <h2>Landing pages para conversão</h2>
-                  <p>
-                    Páginas estratégicas para divulgar serviços, captar contatos e aumentar
-                    suas oportunidades de venda.
-                  </p>
-                </article>
-
-                <article class="hero-slide">
-                  <span>Nossos serviços</span>
-                  <h2>Sites responsivos</h2>
-                  <p>
-                    Seu site funcionando bem no celular, tablet e computador, com boa
-                    navegação em qualquer tela.
-                  </p>
-                </article>
-
-                <article class="hero-slide">
-                  <span>Nossos serviços</span>
-                  <h2>Presença digital para pequenos negócios</h2>
-                  <p>
-                    Soluções visuais e funcionais para destacar sua empresa e fortalecer sua
-                    marca na internet.
-                  </p>
-                </article>
-              </div>
-              <button class="hero-arrow hero-arrow-right" type="button" aria-label="Próximo slide">
-                <svg viewBox="0 0 24 24" class="hero-arrow-icon" aria-hidden="true">
-                  <path d="M9 6l6 6-6 6" />
-                </svg>
-              </button>
-            </div>
-
-            <div class="hero-slider-dots">
-              <button class="hero-dot active" type="button"></button>
-              <button class="hero-dot" type="button"></button>
-              <button class="hero-dot" type="button"></button>
-              <button class="hero-dot" type="button"></button>
-            </div>
-          </div>
+          <p class="hero-note">Atendimento próximo, escopo claro e tecnologia adequada ao contexto.</p>
+        </div>
+        <div class="flow-visual surface" aria-label="Exemplo de jornada: entender o negócio, integrar sistemas, automatizar etapas e acompanhar resultados">
+          <div class="flow-visual-header"><span>Do problema à solução</span><small>Uma jornada conectada</small></div>
+          <div class="flow-step"><div class="flow-icon" aria-hidden="true">01</div><div><strong>Entender</strong><span>Objetivos, dados, pessoas e gargalos</span></div></div>
+          <div class="flow-step"><div class="flow-icon" aria-hidden="true">02</div><div><strong>Conectar</strong><span>Sistemas e informações com propósito</span></div></div>
+          <div class="flow-step"><div class="flow-icon" aria-hidden="true">03</div><div><strong>Automatizar</strong><span>Rotinas repetitivas com controle</span></div></div>
+          <div class="flow-step"><div class="flow-icon" aria-hidden="true">04</div><div><strong>Aprender</strong><span>Medir, revisar e melhorar decisões</span></div></div>
+          <div class="flow-outcome">Mais clareza para decidir. Mais tempo para crescer.</div>
         </div>
       </div>
     </section>
 
-    <section class="services-home">
+    <div class="metric-strip" aria-label="Áreas de atuação">
+      <div class="container metric-grid">
+        <div><b aria-hidden="true">↗</b> Desenvolvimento para sua operação</div>
+        <div><b aria-hidden="true">∞</b> Sistemas e processos conectados</div>
+        <div><b aria-hidden="true">✦</b> Decisões apoiadas por dados</div>
+      </div>
+    </div>
+
+    <section class="section" aria-labelledby="solucoes-titulo">
       <div class="container">
-        <div class="services-home-header">
-          <p class="services-home-tag">Nossos serviços</p>
-          <h2 class="services-home-title">Soluções para fortalecer sua presença digital</h2>
-          <p class="services-home-text">
-            Criamos páginas modernas, organizadas e funcionais para ajudar empresas,
-            autônomos e pequenos negócios a se destacarem na internet.
-          </p>
-        </div>
-
-        <div class="services-home-grid">
-          <article class="service-card">
-            <div class="service-card-header">
-              <div class="service-card-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="service-icon">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-                  <path d="M2 12h20" />
-                </svg>
-              </div>
-
-              <h3>Criação de sites profissionais</h3>
-            </div>
-
-            <p>
-              Desenvolvemos sites institucionais com visual moderno, navegação clara
-              e estrutura pensada para transmitir credibilidade.
-            </p>
-          </article>
-
-          <article class="service-card">
-            <div class="service-card-header">
-              <div class="service-card-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="service-icon">
-                  <path d="M8 2v4" />
-                  <path d="M12 2v4" />
-                  <path d="M16 2v4" />
-                  <path d="M16 4h2a2 2 0 0 1 2 2v2" />
-                  <path d="M20 12v2" />
-                  <path d="M20 18v2a2 2 0 0 1-2 2h-1" />
-                  <path d="M13 22h-2" />
-                  <path d="M7 22H6a2 2 0 0 1-2-2v-2" />
-                  <path d="M4 14v-2" />
-                  <path d="M4 8V6a2 2 0 0 1 2-2h2" />
-                  <path d="M8 10h6" />
-                  <path d="M8 14h8" />
-                  <path d="M8 18h5" />
-                </svg>
-              </div>
-
-              <h3>Landing pages para conversão</h3>
-            </div>
-            <p>
-              Páginas estratégicas para apresentar serviços, captar contatos e aumentar
-              as chances de transformar visitas em oportunidades.
-            </p>
-          </article>
-
-          <article class="service-card">
-            <div class="service-card-header">
-              <div class="service-card-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="service-icon">
-                  <path d="M18 8V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h8" />
-                  <path d="M10 19v-3.96 3.15" />
-                  <path d="M7 19h5" />
-                  <rect width="6" height="10" x="16" y="12" rx="2" />
-                </svg>
-              </div>
-
-              <h3>Sites responsivos</h3>
-            </div>
-            <p>
-              Seu site funcionando bem no celular, tablet e computador, com boa
-              experiência em qualquer tamanho de tela.
-            </p>
-          </article>
-
-          <article class="service-card">
-            <div class="service-card-header">
-              <div class="service-card-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="service-icon">
-                  <path
-                    d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z" />
-                </svg>
-              </div>
-
-              <h3>Manutenção e suporte</h3>
-            </div>
-            <p>
-              Atualizações, ajustes e melhorias para manter seu site organizado,
-              seguro e sempre pronto para atender seu público.
-            </p>
-          </article>
+        <div class="section-head"><span class="eyebrow">O que fazemos</span><h2 id="solucoes-titulo">Desenvolvimento com especialização em processos e integração</h2><p>Atendemos projetos de software em geral, com foco especial em integrações, automação com n8n, análise de negócios e IA aplicada.</p></div>
+        <div class="grid-2">
+          <article class="card surface"><span class="card-number">01 / DESENVOLVIMENTO</span><h3>Software para o que seu negócio precisa</h3><p>Sites, páginas, sistemas e aplicações com fluxo claro, boa experiência de uso e espaço para evoluir.</p><a class="btn-text" href="servicos.html#desenvolvimento">Ver desenvolvimento</a></article>
+          <article class="card surface"><span class="card-number">02 / INTEGRAÇÕES</span><h3>Informação no lugar certo</h3><p>Conexão entre APIs, plataformas e ferramentas para reduzir retrabalho e dar continuidade ao fluxo de dados do seu negócio.</p><a class="btn-text" href="servicos.html#integracoes">Ver integrações</a></article>
+          <article class="card surface"><span class="card-number">03 / AUTOMAÇÃO</span><h3>Processos que andam com menos esforço manual</h3><p>Automações com n8n para tarefas repetitivas, com regras, tratamento de falhas e acompanhamento do que foi executado.</p><a class="btn-text" href="servicos.html#automacao">Ver automação com n8n</a></article>
+          <article class="card surface"><span class="card-number">04 / ANÁLISE & IA</span><h3>IA aplicada a uma necessidade real</h3><p>Análise de processos e oportunidades para usar dados e inteligência artificial com objetivos definidos, revisão humana e critérios de resultado.</p><a class="btn-text" href="servicos.html#ia-negocios">Ver IA e análise de negócios</a></article>
         </div>
       </div>
     </section>
 
-    <section class="cta-divider">
-      <div class="container cta-divider-container">
-        <div class="cta-divider-content">
-          <p class="cta-divider-tag">Solicite um orçamento</p>
-          <h2 class="cta-divider-title">Seu negócio merece uma presença digital profissional</h2>
-          <p class="cta-divider-text">
-            Fale conosco e descubra como um site moderno pode fortalecer sua marca
-            e gerar mais oportunidades.
-          </p>
-        </div>
-
-        <a href="https://wa.me/5516991904702?text=Olá,%20quero%20solicitar%20um%20orçamento." class="btn-divider"
-          target="_blank" rel="noopener noreferrer">
-          Solicitar orçamento
-        </a>
-      </div>
-    </section>
-
-    <section class="testimonials-home">
+    <section class="section light-section" aria-labelledby="metodo-titulo">
       <div class="container">
-        <div class="testimonials-header">
-          <p class="testimonials-tag">Depoimentos</p>
-          <h2 class="testimonials-title">O que comentam sobre nosso trabalho</h2>
-          <p class="testimonials-text">
-            Cada projeto é desenvolvido com atenção ao visual, à organização e à
-            experiência do cliente.
-          </p>
-        </div>
-
-        <div class="testimonials-grid">
-          <article class="testimonial-card">
-            <div class="testimonial-stars" aria-label="5 de 5 estrelas">
-              <span>★</span>
-              <span>★</span>
-              <span>★</span>
-              <span>★</span>
-              <span>★</span>
-            </div>
-
-            <p class="testimonial-message">
-              “O atendimento foi claro desde o início e o resultado ficou muito mais
-              profissional do que eu imaginava.”
-            </p>
-
-            <div class="testimonial-divider"></div>
-
-            <h3 class="testimonial-name">Cliente de negócio local</h3>
-            <span class="testimonial-role">Site institucional</span>
-          </article>
-
-          <article class="testimonial-card">
-            <div class="testimonial-stars" aria-label="5 de 5 estrelas">
-              <span>★</span>
-              <span>★</span>
-              <span>★</span>
-              <span>★</span>
-              <span>★</span>
-            </div>
-
-            <p class="testimonial-message">
-              “Gostei da organização, da comunicação e da preocupação em criar algo
-              bonito e fácil de usar.”
-            </p>
-
-            <div class="testimonial-divider"></div>
-
-            <h3 class="testimonial-name">Profissional autônomo</h3>
-            <span class="testimonial-role">Página de apresentação</span>
-          </article>
-
-          <article class="testimonial-card">
-            <div class="testimonial-stars" aria-label="5 de 5 estrelas">
-              <span>★</span>
-              <span>★</span>
-              <span>★</span>
-              <span>★</span>
-              <span>★</span>
-            </div>
-
-            <p class="testimonial-message">
-              “O site ficou moderno, responsivo e transmitiu mais credibilidade para
-              apresentar meu trabalho na internet.”
-            </p>
-
-            <div class="testimonial-divider"></div>
-
-            <h3 class="testimonial-name">Pequena empresa</h3>
-            <span class="testimonial-role">Presença digital</span>
-          </article>
+        <div class="section-head"><span class="eyebrow">Como trabalhamos</span><h2 id="metodo-titulo">Da conversa inicial à evolução da solução</h2><p>Um processo simples para tornar visíveis as decisões, o escopo e os próximos passos.</p></div>
+        <div class="process-list">
+          <article class="process-item"><h3>Diagnóstico</h3><p>Entendemos a rotina, o objetivo e o que já existe.</p></article>
+          <article class="process-item"><h3>Proposta</h3><p>Definimos a solução, os limites e como avaliar o resultado.</p></article>
+          <article class="process-item"><h3>Construção</h3><p>Implementamos em etapas e validamos os pontos críticos.</p></article>
+          <article class="process-item"><h3>Entrega</h3><p>Documentamos o uso e combinamos a evolução necessária.</p></article>
         </div>
       </div>
     </section>
 
+    <section class="section" aria-labelledby="exemplos-titulo">
+      <div class="container grid-2" style="align-items:center">
+        <div class="section-head" style="margin-bottom:0"><span class="eyebrow">Aplicação prática</span><h2 id="exemplos-titulo">Uma presença digital pode ser o começo</h2><p>Imagine o contato chegando pelo site, seguindo para um processo organizado e virando informação útil para o atendimento. Sites, integrações e automação fazem mais sentido quando trabalham juntos.</p><div class="actions"><a class="btn btn-secondary" href="portfolio.html">Ver projetos e exemplos</a></div></div>
+        <div class="feature-panel surface"><span class="pill">Exemplo de aplicação</span><h3 style="margin-top:20px">Do primeiro contato ao acompanhamento</h3><ul class="check-list"><li>Formulário ou canal de contato claro</li><li>Dados organizados e enviados ao sistema adequado</li><li>Automação das próximas etapas, quando fizer sentido</li><li>Visão do andamento para apoiar decisões</li></ul><p style="margin-top:19px;font-size:.88rem">Exemplo conceitual; a solução depende dos sistemas e regras de cada negócio.</p></div>
+      </div>
+    </section>
+
+    <section class="section-tight"><div class="container callout surface"><div><span class="eyebrow">Próximo passo</span><h2>Qual processo está tomando tempo ou impedindo seu crescimento?</h2><p>Conte o cenário. Podemos começar por uma conversa objetiva.</p></div><a class="btn btn-primary" href="contato.html">Conversar sobre meu projeto <span aria-hidden="true">↗</span></a></div></section>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-container">
-
-      <div class="footer-brand">
-        <h2 class="footer-logo">
-          <span class="footer-logo-light">Casa</span>
-          <span class="footer-logo-highlight">Digital</span>
-          <span class="footer-logo-light">RP</span>
-        </h2>
-
-        <p class="footer-text">
-          Sites profissionais, modernos e responsivos para empresas,
-          autônomos e pequenos negócios.
-        </p>
-      </div>
-
-      <div class="footer-links">
-        <h3 class="footer-title">Navegação</h3>
-        <ul class="footer-list">
-          <li><a href="#">Início</a></li>
-          <li><a href="#">Serviços</a></li>
-          <li><a href="#">Sobre</a></li>
-          <li>
-            <a href="#" class="abrir-contato-modal">Contato</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="footer-contact">
-        <h3 class="footer-title">Contato</h3>
-        <ul class="footer-list">
-          <li>
-            <a href="mailto:casadigitalrp@gmail.com">casadigitalrp@gmail.com</a>
-          </li>
-          <li><span>Ribeirão Preto - SP</span></li>
-        </ul>
-      </div>
-
-      <div class="footer-social">
-        <h3 class="footer-title">Redes sociais</h3>
-
-        <div class="footer-social-icons">
-          <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-            <img src="assets/img/icons/instagram.svg" alt="Instagram">
-          </a>
-
-          <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-            <img src="assets/img/icons/facebook.svg" alt="Facebook">
-          </a>
-
-          <a href="https://www.youtube.com/@CasaDigitalRP" aria-label="YouTube" target="_blank"
-            rel="noopener noreferrer">
-            <img src="assets/img/icons/youtube.svg" alt="YouTube">
-          </a>
-        </div>
-      </div>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">⌂</span><span class="brand-name">Casa<span>Digital</span>RP</span></a><p style="margin-top:17px">Tecnologia para aproximar pessoas, sistemas e oportunidades. Sempre com você.</p></div>
+      <div><h2>Explore</h2><ul class="footer-links"><li><a href="servicos.html">Serviços</a></li><li><a href="portfolio.html">Projetos</a></li><li><a href="sobre.html">Sobre</a></li><li><a href="contato.html">Contato</a></li></ul></div>
+      <div><h2>Vamos conversar?</h2><p>Um bom projeto começa entendendo o seu contexto.</p><a class="btn-text" href="contato.html">Abrir contato</a></div>
     </div>
-
-    <div class="container footer-cta">
-      <div class="footer-cta-content">
-        <h3 class="footer-cta-title">Vamos tirar seu projeto do papel?</h3>
-        <p class="footer-cta-text">
-          Fale comigo no WhatsApp e solicite um orçamento para o seu site.
-        </p>
-      </div>
-
-      <a href="https://wa.me/5516991904702?text=Ol%C3%A1%2C%20quero%20solicitar%20um%20or%C3%A7amento."
-        class="btn-whatsapp btn-whatsapp-footer" target="_blank" rel="noopener noreferrer">
-        <span class="btn-whatsapp-label">Falar no WhatsApp</span>
-        <img src="assets/img/icons/whatsapp.svg" class="btn-whatsapp-icon" alt="" aria-hidden="true">
-      </a>
-    </div>
-
-    <div class="footer-bottom">
-      <p>© 2026 CasaDigitalRP. Todos os direitos reservados.</p>
-    </div>
+    <div class="container footer-bottom"><p>© 2026 CasaDigitalRP.</p><p>Ribeirão Preto, SP · Atendimento online</p></div>
   </footer>
- <!-- Modal de Contato -->
-<div class="contato-modal" id="contatoModal" aria-hidden="true">
-  <div class="contato-modal-overlay" id="contatoModalOverlay"></div>
-
-  <div
-    class="contato-modal-box"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="contatoModalTitulo"
-  >
-    <button
-      class="contato-modal-close"
-      id="fecharContatoModal"
-      aria-label="Fechar formulário"
-      type="button"
-    >
-      &times;
-    </button>
-
-    <div class="contato-modal-header">
-      <span class="contato-modal-tag">Fale com a CasaDigitalRP</span>
-      <h2 class="contato-modal-title" id="contatoModalTitulo">
-        Solicite seu orçamento
-      </h2>
-      <p class="contato-modal-text">
-        Preencha os dados abaixo e conte rapidamente o que você precisa.
-        Retornarei pelo e-mail ou WhatsApp.
-      </p>
-    </div>
-
-    <form
-      class="contato-form"
-      id="contatoForm"
-      action="https://formsubmit.co/casadigitalrp@gmail.com"
-      method="POST"
-    >
-      <input
-        type="hidden"
-        name="_subject"
-        value="Novo contato pelo site CasaDigitalRP"
-      >
-      <input
-        type="hidden"
-        name="_template"
-        value="table"
-      >
-      <input
-        type="hidden"
-        name="_captcha"
-        value="false"
-      >
-      <input
-        type="hidden"
-        name="_next"
-        value="http://127.0.0.1:5500/index.html?enviado=1"
-      >
-
-      <div class="contato-form-group">
-        <label for="nome">Nome</label>
-        <input
-          type="text"
-          id="nome"
-          name="nome"
-          placeholder="Digite seu nome"
-          required
-        >
-      </div>
-
-      <div class="contato-form-group">
-        <label for="email">E-mail</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Digite seu e-mail"
-          required
-        >
-      </div>
-
-      <div class="contato-form-group">
-        <label for="whatsapp">WhatsApp</label>
-        <input
-          type="tel"
-          id="whatsapp"
-          name="whatsapp"
-          placeholder="(16) 99999-9999"
-        >
-      </div>
-
-      <div class="contato-form-group">
-        <label for="servico">Tipo de serviço</label>
-        <select id="servico" name="servico" required>
-          <option value="">Selecione um serviço</option>
-          <option value="site-institucional">Site institucional</option>
-          <option value="landing-page">Landing page</option>
-          <option value="loja-virtual">Loja virtual</option>
-          <option value="manutencao">Manutenção de site</option>
-          <option value="outro">Outro</option>
-        </select>
-      </div>
-
-      <div class="contato-form-group">
-        <label for="mensagem">Mensagem</label>
-        <textarea
-          id="mensagem"
-          name="mensagem"
-          rows="5"
-          placeholder="Descreva rapidamente o que você precisa"
-          required
-        ></textarea>
-      </div>
-
-      <button type="submit" class="contato-form-button">
-        Enviar solicitação
-      </button>
-    </form>
-  </div>
-</div>
-
-<!-- Mensagem de sucesso -->
-<div class="contato-sucesso" id="contatoSucesso" aria-live="polite">
-  Solicitação enviada com sucesso. Retornarei em breve.
-</div>
-
-  <script src="assets/js/header.js"></script>
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/form-contato.js"></script>
 </body>
-
 </html>
