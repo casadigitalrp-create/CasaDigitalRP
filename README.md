@@ -56,4 +56,4 @@ O repositório usado pela Cloudflare é [casadigitalrp-create/CasaDigitalRP](htt
 
 A conexão funcionou após alinhar o repositório com a conta GitHub onde o aplicativo Cloudflare Workers and Pages está instalado. O repositório anterior em `Guga-Nascimento/CasaDigitalRP` foi preservado; o remoto `origin` deste projeto local agora aponta para a conta da empresa.
 
-O domínio `casadigitalrp.com.br` ainda depende da ativação dos servidores DNS da Cloudflare no Registro.br. A publicação no endereço `pages.dev` já pode ser acessada durante essa configuração.
+Atualização verificada em 03/10/2026: tanto `https://casadigitalrp.pages.dev` quanto `https://casadigitalrp.com.br` responderam com HTTP 200. O domínio personalizado está ativo e servindo o site publicado pela Cloudflare.
