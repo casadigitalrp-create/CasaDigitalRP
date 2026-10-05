@@ -1,0 +1,198 @@
+---
+import Cta from "../components/Cta.astro";
+import PageHeader from "../components/PageHeader.astro";
+import { site } from "../data/site";
+import Base from "../layouts/Base.astro";
+
+// História confirmada pela empresa: desde 2020 com sistemas, integrações e criação de sites.
+const trajetoria = [
+  {
+    marco: "2020",
+    titulo: "O começo: sistemas",
+    texto:
+      "Desenvolvimento de sistemas e integrações entre plataformas, feitos para funcionar de verdade no dia a dia de quem depende deles.",
+  },
+  {
+    marco: "Pelo caminho",
+    titulo: "Os sites",
+    texto:
+      "A criação de sites entrou para a rotina, levando para a web o mesmo cuidado e a mesma solidez dos sistemas.",
+  },
+  {
+    marco: "Hoje",
+    titulo: site.name,
+    texto:
+      "Sites profissionais para pequenos negócios e profissionais, com proximidade do primeiro contato às atualizações.",
+  },
+];
+
+const valores = [
+  {
+    titulo: "Transparência",
+    texto: "Explicamos cada escolha em linguagem simples, para você decidir com segurança.",
+    icone: "M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12ZM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z",
+    provisorio: false,
+  },
+  {
+    titulo: "Você aprova cada etapa",
+    texto: "Proposta, prévia e ajustes combinados antes de qualquer publicação.",
+    icone: "M5 12.5l4.5 4.5L19 7.5",
+    provisorio: false,
+  },
+  {
+    titulo: "Entrega documentada",
+    texto:
+      "O escopo, os acessos e as condições de entrega ficam definidos na proposta e no contrato.",
+    icone: "M7 11V7a5 5 0 0 1 10 0M5 11h14v10H5zM12 15v2",
+    provisorio: true,
+  },
+  {
+    titulo: "Parceria contínua",
+    texto:
+      "Com os créditos de atualização, o seu site acompanha o seu negócio depois de publicado.",
+    icone:
+      "M12 21s-7-4.4-9.3-8.7C1 9 2.7 5 6.5 5c2.2 0 3.5 1.3 5.5 3.5C14 6.3 15.3 5 17.5 5c3.8 0 5.5 4 3.8 7.3C19 16.6 12 21 12 21Z",
+    provisorio: false,
+  },
+];
+
+const eyebrow = "text-sm font-bold tracking-[0.18em] uppercase";
+const h2 = "mt-3 text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl";
+---
+
+<Base
+  title="Sobre"
+  description="Conheça a CasaDigitalRP: desde 2020 desenvolvendo sistemas, integrações e sites, agora com dedicação total a pequenos negócios e profissionais."
+>
+  <PageHeader
+    eyebrow="Sobre"
+    title="Desde 2020, construindo com código e com carinho"
+    text={`A ${site.name} nasceu de anos desenvolvendo sistemas e integrações. Hoje, essa experiência está a serviço de pequenos negócios e profissionais que querem uma presença digital à altura do que fazem.`}
+  />
+
+  <!-- História -->
+  <section aria-labelledby="historia-titulo" class="bg-white text-marinho">
+    <div class="mx-auto grid max-w-6xl gap-12 px-4 py-20 sm:px-6 sm:py-24 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+      <div>
+        <p class:list={[eyebrow, "text-azul-texto"]}>Nossa história</p>
+        <h2 id="historia-titulo" class={h2}>Tudo começou com sistemas</h2>
+        <p class="mt-8 text-[6.5rem] leading-none font-extrabold tracking-tighter text-marinho sm:text-[8rem]" aria-hidden="true">
+          20<span class="text-azul-medio">20</span>
+        </p>
+        <div class="mt-4 h-1 w-24 rounded-full bg-dourado" aria-hidden="true"></div>
+      </div>
+
+      <div class="space-y-6 text-lg leading-relaxed text-marinho/80">
+        <p>
+          Em 2020, o trabalho era desenvolver sistemas: programas que precisavam funcionar de
+          verdade, no dia a dia de quem dependia deles, e integrações que faziam ferramentas
+          diferentes conversarem entre si. Foi ali que aprendemos o que separa um projeto que
+          impressiona de um projeto que resolve: atenção aos detalhes, cuidado com quem vai usar e
+          responsabilidade com o que foi combinado.
+        </p>
+        <p>
+          Com o tempo, vieram os sites. E com eles, uma descoberta: para muitos negócios, o site é a
+          porta de entrada. É ali que o cliente chega, conhece, compara e decide se vai chamar.
+        </p>
+        <p class="border-l-4 border-dourado pl-5 text-xl font-bold text-marinho sm:text-2xl">
+          Um bom site não é só bonito. Ele funciona, é rápido e aproxima o cliente de você.
+        </p>
+        <p>
+          A {site.name} nasceu para juntar essas duas coisas: a solidez de quem constrói sistemas e o
+          cuidado de quem cria a vitrine de um negócio. Tudo feito com dedicação, carinho e uma paixão
+          que começou lá atrás e só cresceu: a paixão por desenvolver.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trajetória -->
+  <section aria-labelledby="trajetoria-titulo" class="relative overflow-hidden bg-marinho text-white">
+    <div class="absolute -bottom-40 -left-40 h-[28rem] w-[28rem] rounded-full bg-azul-medio/20 blur-3xl" aria-hidden="true"></div>
+    <div class="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+      <p class:list={[eyebrow, "text-azul"]}>Trajetória</p>
+      <h2 id="trajetoria-titulo" class={h2}>Do código dos sistemas à vitrine do seu negócio</h2>
+
+      <div class="relative mt-14">
+        <div class="absolute top-8 right-[calc(33.333%-2rem)] left-8 hidden h-px bg-gradient-to-r from-dourado via-azul to-dourado lg:block" aria-hidden="true"></div>
+        <ol class="relative grid gap-10 lg:grid-cols-3 lg:gap-8">
+          {
+            trajetoria.map((t, i) => (
+              <li class="relative">
+                <span
+                  class:list={[
+                    "relative inline-grid h-16 min-w-16 place-items-center rounded-full px-5 text-lg font-extrabold ring-4 ring-marinho",
+                    i === trajetoria.length - 1 ? "bg-azul text-marinho" : "bg-marinho-claro text-azul",
+                  ]}
+                >
+                  {t.marco}
+                </span>
+                <h3 class="mt-5 text-xl font-extrabold">{t.titulo}</h3>
+                <p class="mt-2 leading-relaxed text-white/75">{t.texto}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Significado da marca (manual V3: casa formada por chaves, código, janela e órbita) -->
+  <section aria-labelledby="marca-titulo" class="bg-[#f4f9fd] text-marinho">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 sm:py-24 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+      <div class="relative mx-auto w-full max-w-xs" aria-hidden="true">
+        <div class="absolute inset-6 rounded-full bg-azul/40 blur-3xl"></div>
+        <img src="/favicon.svg" alt="" width="256" height="256" loading="lazy" class="relative w-full rounded-[2rem] shadow-2xl shadow-marinho/30" />
+      </div>
+      <div>
+        <p class:list={[eyebrow, "text-azul-texto"]}>Por que “Casa”</p>
+        <h2 id="marca-titulo" class={h2}>O site é a casa do seu negócio na internet</h2>
+        <div class="mt-6 space-y-5 text-lg leading-relaxed text-marinho/80">
+          <p>
+            É o lugar onde as pessoas chegam, conhecem você e decidem entrar em contato. Por isso o
+            nosso símbolo é uma casa construída com código: as chaves formam as paredes, o código mora
+            dentro e a janela fica à vista de quem chega. Em volta, uma órbita azul com um detalhe
+            dourado, como o cuidado que acompanha cada projeto.
+          </p>
+          <p>
+            E o nosso lema resume o compromisso:{" "}
+            <strong class="font-extrabold text-marinho">{site.slogan}</strong>. O site no ar é só o
+            começo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Valores -->
+  <section aria-labelledby="valores-titulo" class="bg-white text-marinho">
+    <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+      <div class="max-w-2xl">
+        <p class:list={[eyebrow, "text-azul-texto"]}>No que acreditamos</p>
+        <h2 id="valores-titulo" class={h2}>O jeito CasaDigitalRP de trabalhar</h2>
+      </div>
+      <ul class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          valores.map((v) => (
+            <li class="rounded-2xl bg-[#f4f9fd] p-6 ring-1 ring-marinho/10">
+              <span class="grid h-12 w-12 place-items-center rounded-xl bg-marinho text-azul ring-1 ring-dourado/40">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d={v.icone} />
+                </svg>
+              </span>
+              <h3 class="mt-5 text-lg font-extrabold">{v.titulo}</h3>
+              <p class="mt-2 leading-relaxed text-marinho/75">
+                {v.texto}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <Cta
+    title="Vamos escrever juntos o próximo capítulo?"
+    text="Conte sobre o seu negócio e monte sua solicitação na vitrine, ou fale direto com a gente pelo WhatsApp."
+  />
+</Base>

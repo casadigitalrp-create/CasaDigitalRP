@@ -1,0 +1,81 @@
+---
+// Usado na Início (com link para Serviços) e em Serviços (âncora #creditos, sem o link e com detalhes no slot).
+interface Props {
+  id?: string;
+  comLink?: boolean;
+}
+
+const { id, comLink = true } = Astro.props;
+
+const regras = [
+  {
+    titulo: "Quantidade combinada",
+    texto: "Você define quantos créditos precisa já na contratação do site.",
+    icone: "M5 7h14M5 12h14M5 17h9",
+  },
+  {
+    titulo: "Não expiram",
+    texto: "Os créditos não têm prazo de validade. Use quando o seu negócio precisar.",
+    icone: "M12 7v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z",
+  },
+  {
+    titulo: "Compra adicional",
+    texto: "Precisou de mais? É possível adquirir créditos extras a qualquer momento.",
+    icone: "M12 5v14M5 12h14",
+  },
+  {
+    titulo: "Garantia à parte",
+    texto: "Correção de defeito coberta pela garantia não consome os seus créditos.",
+    icone: "M12 3 5 6v5c0 4.5 3 8.3 7 10 4-1.7 7-5.5 7-10V6l-7-3ZM9 12l2 2 4-4",
+  },
+];
+---
+
+<section id={id} aria-labelledby="creditos-titulo" class="relative scroll-mt-20 overflow-hidden bg-marinho text-white">
+  <div
+    class="absolute -top-40 -right-40 h-[28rem] w-[28rem] rounded-full bg-azul-medio/20 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+  <div class="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+      <div>
+        <p class="text-sm font-bold tracking-[0.18em] text-azul uppercase">Depois do site no ar</p>
+        <h2 id="creditos-titulo" class="mt-3 text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">
+          Seu site sempre atualizado, com créditos de atualização
+        </h2>
+        <p class="mt-4 text-lg leading-relaxed text-white/75">
+          Trocar uma foto, ajustar um texto, incluir uma novidade: em vez de orçar cada pequena
+          mudança, você conta com créditos para manter o site em dia.
+        </p>
+        {
+          comLink && (
+            <a
+              href="/servicos/#creditos"
+              class="mt-8 inline-flex items-center gap-1.5 font-bold text-azul underline decoration-azul/40 underline-offset-4 hover:text-white"
+            >
+              Entenda como funcionam <span aria-hidden="true">→</span>
+            </a>
+          )
+        }
+      </div>
+
+      <ul class="grid gap-4 sm:grid-cols-2">
+        {
+          regras.map((r) => (
+            <li class="rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur">
+              <span class="grid h-11 w-11 place-items-center rounded-xl bg-azul/15 text-azul ring-1 ring-azul/30">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d={r.icone} />
+                </svg>
+              </span>
+              <h3 class="mt-4 text-lg font-extrabold">{r.titulo}</h3>
+              <p class="mt-1.5 leading-relaxed text-white/70">{r.texto}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <slot />
+  </div>
+</section>

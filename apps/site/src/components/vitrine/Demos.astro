@@ -1,0 +1,287 @@
+---
+// Demonstrações dos componentes da vitrine. Cada <template data-demo="id"> é clonado na janela
+// de demonstração; a cor (--c) e o estilo (data-estilo) escolhidos pelo visitante são aplicados
+// ao quadro. Conteúdo é de exemplo e assim é identificado na janela.
+---
+
+<template data-demo="banner">
+  <section class="relative overflow-hidden bg-[var(--c-escuro)] px-6 py-14 text-white sm:px-10 sm:py-20">
+    <div class="absolute -top-16 -right-16 h-56 w-56 rounded-full bg-white/15" aria-hidden="true"></div>
+    <div class="absolute -bottom-20 left-1/3 h-40 w-40 rounded-full bg-black/10" aria-hidden="true"></div>
+    <p class="relative text-sm font-bold tracking-widest uppercase opacity-85">Padaria Exemplo</p>
+    <h2 class="d-titulo relative mt-3 max-w-md text-3xl leading-tight font-extrabold sm:text-4xl">Pão quentinho todos os dias, feito no bairro</h2>
+    <p class="relative mt-3 max-w-md opacity-90">Encomendas para festas e cafés da manhã. Retire na loja ou receba em casa.</p>
+    <div class="relative mt-7 flex flex-wrap gap-3">
+      <a href="#" class="d-botao bg-white px-5 py-3 font-bold text-[var(--c-escuro)]" data-sem-acao>Fazer encomenda</a>
+      <a href="#" class="d-botao border border-white/60 px-5 py-3 font-bold" data-sem-acao>Ver cardápio</a>
+    </div>
+  </section>
+</template>
+
+<template data-demo="faq">
+  <section class="px-6 py-10 sm:px-10">
+    <h2 class="d-titulo text-2xl font-extrabold text-slate-900">Perguntas frequentes</h2>
+    <div class="mt-6 space-y-3">
+      <details class="d-cartao border border-slate-200 bg-white p-4" open>
+        <summary class="cursor-pointer font-bold text-slate-900 marker:text-[var(--c-escuro)]">Vocês fazem entrega?</summary>
+        <p class="mt-2 text-slate-600">Sim, entregamos no bairro de segunda a sábado, das 8h às 18h.</p>
+      </details>
+      <details class="d-cartao border border-slate-200 bg-white p-4">
+        <summary class="cursor-pointer font-bold text-slate-900 marker:text-[var(--c-escuro)]">Aceitam encomendas para festas?</summary>
+        <p class="mt-2 text-slate-600">Aceitamos, com pelo menos dois dias de antecedência.</p>
+      </details>
+      <details class="d-cartao border border-slate-200 bg-white p-4">
+        <summary class="cursor-pointer font-bold text-slate-900 marker:text-[var(--c-escuro)]">Quais formas de pagamento?</summary>
+        <p class="mt-2 text-slate-600">Pix, cartão de crédito e débito.</p>
+      </details>
+    </div>
+  </section>
+</template>
+
+<template data-demo="antes-depois">
+  <section class="px-6 py-10 sm:px-10">
+    <h2 class="d-titulo text-2xl font-extrabold text-slate-900">Antes e depois</h2>
+    <p class="mt-1 text-slate-600">Arraste o controle para comparar.</p>
+    <div class="d-cartao antes-depois relative mt-6 aspect-[16/9] overflow-hidden select-none" style="--pos: 50%">
+      <div class="absolute inset-0 grid place-items-center bg-gradient-to-br from-slate-400 to-slate-600 text-2xl font-extrabold text-white/90">ANTES</div>
+      <div class="absolute inset-0 grid place-items-center bg-[var(--c-escuro)] text-2xl font-extrabold text-white [clip-path:inset(0_0_0_var(--pos))]">DEPOIS</div>
+      <div class="pointer-events-none absolute inset-y-0 left-[var(--pos)] w-1 -translate-x-1/2 bg-white shadow" aria-hidden="true"></div>
+      <input
+        type="range"
+        min="0"
+        max="100"
+        value="50"
+        aria-label="Comparar antes e depois"
+        class="absolute inset-0 h-full w-full cursor-ew-resize opacity-0"
+        data-antes-depois
+      />
+    </div>
+  </section>
+</template>
+
+<template data-demo="whatsapp">
+  <section class="relative min-h-72 bg-slate-50 px-6 py-10 sm:px-10">
+    <h2 class="d-titulo text-2xl font-extrabold text-slate-900">Botão de WhatsApp</h2>
+    <p class="mt-2 max-w-sm text-slate-600">
+      Fica no canto da tela em todas as páginas. Um toque abre a conversa com uma mensagem pronta.
+    </p>
+    <div class="d-cartao mt-6 max-w-xs border border-slate-200 bg-white p-4 text-sm text-slate-700 shadow-sm">
+      <p class="font-bold text-slate-900">Padaria Exemplo</p>
+      <p class="mt-1">Olá! Vim pelo site e gostaria de fazer uma encomenda.</p>
+    </div>
+    <a
+      href="#"
+      data-sem-acao
+      class="absolute right-6 bottom-6 grid h-16 w-16 place-items-center rounded-full bg-[#25D366] text-white shadow-lg ring-4 ring-white"
+      aria-label="Botão de WhatsApp de exemplo"
+    >
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z" />
+      </svg>
+    </a>
+  </section>
+</template>
+
+<template data-demo="beneficios">
+  <section class="px-6 py-10 sm:px-10">
+    <h2 class="d-titulo text-center text-2xl font-extrabold text-slate-900">Por que escolher a Padaria Exemplo</h2>
+    <ul class="mt-8 grid gap-5 sm:grid-cols-3">
+      <li class="d-cartao bg-[var(--c)]/8 p-6 text-center">
+        <span class="mx-auto grid h-14 w-14 place-items-center rounded-full bg-[var(--c-escuro)] text-white">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg>
+        </span>
+        <h3 class="mt-4 text-lg font-extrabold text-slate-900">Feito no dia</h3>
+        <p class="mt-1.5 text-slate-600">Fornadas desde as 5h da manhã, para tudo chegar fresquinho.</p>
+      </li>
+      <li class="d-cartao bg-[var(--c)]/8 p-6 text-center">
+        <span class="mx-auto grid h-14 w-14 place-items-center rounded-full bg-[var(--c-escuro)] text-white">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v5c0 4.5 3 8.3 7 10 4-1.7 7-5.5 7-10V6l-7-3ZM9 12l2 2 4-4"></path></svg>
+        </span>
+        <h3 class="mt-4 text-lg font-extrabold text-slate-900">Ingredientes selecionados</h3>
+        <p class="mt-1.5 text-slate-600">Farinha de qualidade e receitas da família.</p>
+      </li>
+      <li class="d-cartao bg-[var(--c)]/8 p-6 text-center">
+        <span class="mx-auto grid h-14 w-14 place-items-center rounded-full bg-[var(--c-escuro)] text-white">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7M7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM17 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path></svg>
+        </span>
+        <h3 class="mt-4 text-lg font-extrabold text-slate-900">Entrega no bairro</h3>
+        <p class="mt-1.5 text-slate-600">Peça pelo WhatsApp e receba em casa.</p>
+      </li>
+    </ul>
+  </section>
+</template>
+
+<template data-demo="servicos">
+  <section class="px-6 py-10 sm:px-10">
+    <h2 class="d-titulo text-2xl font-extrabold text-slate-900">Nossos serviços</h2>
+    <p class="mt-1 text-slate-600">Tudo o que você encontra na Padaria Exemplo.</p>
+    <ul class="mt-6 grid gap-4 sm:grid-cols-2">
+      <li class="d-cartao border border-slate-200 p-5">
+        <h3 class="font-extrabold text-slate-900">Pães artesanais</h3>
+        <p class="mt-1 text-slate-600">Fermentação natural, integrais e tradicionais.</p>
+        <a href="#" data-sem-acao class="mt-3 inline-block font-bold text-[var(--c-escuro)]">Saiba mais →</a>
+      </li>
+      <li class="d-cartao border border-slate-200 p-5">
+        <h3 class="font-extrabold text-slate-900">Encomendas para festas</h3>
+        <p class="mt-1 text-slate-600">Bolos, salgados e kits sob encomenda.</p>
+        <a href="#" data-sem-acao class="mt-3 inline-block font-bold text-[var(--c-escuro)]">Saiba mais →</a>
+      </li>
+      <li class="d-cartao border border-slate-200 p-5">
+        <h3 class="font-extrabold text-slate-900">Café da manhã</h3>
+        <p class="mt-1 text-slate-600">Cestas montadas para presentear ou para a equipe.</p>
+        <a href="#" data-sem-acao class="mt-3 inline-block font-bold text-[var(--c-escuro)]">Saiba mais →</a>
+      </li>
+      <li class="d-cartao border border-slate-200 p-5">
+        <h3 class="font-extrabold text-slate-900">Entrega no bairro</h3>
+        <p class="mt-1 text-slate-600">De segunda a sábado, com pedido pelo WhatsApp.</p>
+        <a href="#" data-sem-acao class="mt-3 inline-block font-bold text-[var(--c-escuro)]">Saiba mais →</a>
+      </li>
+    </ul>
+  </section>
+</template>
+
+<template data-demo="galeria">
+  <section class="relative px-6 py-10 sm:px-10" data-galeria>
+    <h2 class="d-titulo text-2xl font-extrabold text-slate-900">Nossos produtos</h2>
+    <div class="mt-5 flex flex-wrap gap-2" role="group" aria-label="Filtrar por categoria">
+      <button type="button" data-filtro="todos" aria-pressed="true" class="d-botao border border-slate-300 px-4 py-1.5 text-sm font-bold text-slate-700 aria-pressed:border-[var(--c)] aria-pressed:bg-[var(--c-escuro)] aria-pressed:text-white">Todos</button>
+      <button type="button" data-filtro="paes" aria-pressed="false" class="d-botao border border-slate-300 px-4 py-1.5 text-sm font-bold text-slate-700 aria-pressed:border-[var(--c)] aria-pressed:bg-[var(--c-escuro)] aria-pressed:text-white">Pães</button>
+      <button type="button" data-filtro="doces" aria-pressed="false" class="d-botao border border-slate-300 px-4 py-1.5 text-sm font-bold text-slate-700 aria-pressed:border-[var(--c)] aria-pressed:bg-[var(--c-escuro)] aria-pressed:text-white">Doces</button>
+      <button type="button" data-filtro="salgados" aria-pressed="false" class="d-botao border border-slate-300 px-4 py-1.5 text-sm font-bold text-slate-700 aria-pressed:border-[var(--c)] aria-pressed:bg-[var(--c-escuro)] aria-pressed:text-white">Salgados</button>
+    </div>
+    <ul class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+      <li data-categoria="paes"><button type="button" data-ampliar class="d-cartao grid aspect-square w-full place-items-end overflow-hidden bg-[color-mix(in_srgb,var(--c)_85%,black)] p-3 text-left font-bold text-white">Pão de fermentação natural</button></li>
+      <li data-categoria="doces"><button type="button" data-ampliar class="d-cartao grid aspect-square w-full place-items-end overflow-hidden bg-[color-mix(in_srgb,var(--c)_55%,white)] p-3 text-left font-bold text-slate-900">Bolo de cenoura</button></li>
+      <li data-categoria="salgados"><button type="button" data-ampliar class="d-cartao grid aspect-square w-full place-items-end overflow-hidden bg-[color-mix(in_srgb,var(--c)_35%,#334155)] p-3 text-left font-bold text-white">Coxinha de frango</button></li>
+      <li data-categoria="paes"><button type="button" data-ampliar class="d-cartao grid aspect-square w-full place-items-end overflow-hidden bg-[color-mix(in_srgb,var(--c)_70%,white)] p-3 text-left font-bold text-slate-900">Pão integral</button></li>
+      <li data-categoria="doces"><button type="button" data-ampliar class="d-cartao grid aspect-square w-full place-items-end overflow-hidden bg-[var(--c-escuro)] p-3 text-left font-bold text-white">Sonho de creme</button></li>
+      <li data-categoria="salgados"><button type="button" data-ampliar class="d-cartao grid aspect-square w-full place-items-end overflow-hidden bg-[color-mix(in_srgb,var(--c)_25%,white)] p-3 text-left font-bold text-slate-900">Pão de queijo</button></li>
+    </ul>
+    <div data-lightbox hidden class="absolute inset-0 z-10 place-items-center bg-slate-950/85 p-6 [&:not([hidden])]:grid" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+      <div class="w-full max-w-md">
+        <div data-lightbox-imagem class="d-cartao grid aspect-[4/3] place-items-end p-5 text-xl font-extrabold"></div>
+        <button type="button" data-fechar-lightbox class="d-botao mt-4 w-full bg-white px-4 py-2.5 font-bold text-slate-900">Fechar imagem</button>
+      </div>
+    </div>
+  </section>
+</template>
+
+<template data-demo="depoimentos">
+  <section class="bg-slate-50 px-6 py-10 sm:px-10">
+    <p class="inline-block rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800 uppercase">Depoimentos ilustrativos</p>
+    <h2 class="d-titulo mt-3 text-2xl font-extrabold text-slate-900">O que dizem nossos clientes</h2>
+    <p class="mt-1 text-sm text-slate-600">No site real, somente depoimentos verdadeiros e autorizados.</p>
+    <ul class="mt-6 grid gap-4 sm:grid-cols-3">
+      <li class="d-cartao bg-white p-5 shadow-sm">
+        <p class="text-[var(--c-escuro)]" role="img" aria-label="5 de 5 estrelas">★★★★★</p>
+        <blockquote class="mt-2 text-slate-700">“O pão chega quentinho todo dia. Virou rotina aqui em casa.”</blockquote>
+        <p class="mt-4 font-bold text-slate-900">Cliente A</p>
+        <p class="text-sm text-slate-500">Moradora do bairro</p>
+      </li>
+      <li class="d-cartao bg-white p-5 shadow-sm">
+        <p class="text-[var(--c-escuro)]" role="img" aria-label="5 de 5 estrelas">★★★★★</p>
+        <blockquote class="mt-2 text-slate-700">“Encomendei os salgados da festa e foi tudo pontual.”</blockquote>
+        <p class="mt-4 font-bold text-slate-900">Cliente B</p>
+        <p class="text-sm text-slate-500">Encomenda para aniversário</p>
+      </li>
+      <li class="d-cartao bg-white p-5 shadow-sm">
+        <p class="text-[var(--c-escuro)]" role="img" aria-label="5 de 5 estrelas">★★★★★</p>
+        <blockquote class="mt-2 text-slate-700">“A cesta de café da manhã fez sucesso na empresa.”</blockquote>
+        <p class="mt-4 font-bold text-slate-900">Cliente C</p>
+        <p class="text-sm text-slate-500">Pedido corporativo</p>
+      </li>
+    </ul>
+  </section>
+</template>
+
+<template data-demo="parceiros">
+  <section class="px-6 py-10 text-center sm:px-10">
+    <h2 class="d-titulo text-2xl font-extrabold text-slate-900">Quem trabalha com a gente</h2>
+    <p class="mt-1 text-sm text-slate-600">Marcas ilustrativas. No site real, somente com autorização de cada parceiro.</p>
+    <ul class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
+      <li class="d-cartao flex items-center justify-center gap-2 border border-slate-200 px-4 py-5 font-extrabold text-slate-400 transition hover:border-[var(--c)] hover:text-[var(--c-escuro)]"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle></svg>Marca A</li>
+      <li class="d-cartao flex items-center justify-center gap-2 border border-slate-200 px-4 py-5 font-extrabold text-slate-400 transition hover:border-[var(--c)] hover:text-[var(--c-escuro)]"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"></rect></svg>Marca B</li>
+      <li class="d-cartao flex items-center justify-center gap-2 border border-slate-200 px-4 py-5 font-extrabold text-slate-400 transition hover:border-[var(--c)] hover:text-[var(--c-escuro)]"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l9 17H3z"></path></svg>Marca C</li>
+      <li class="d-cartao flex items-center justify-center gap-2 border border-slate-200 px-4 py-5 font-extrabold text-slate-400 transition hover:border-[var(--c)] hover:text-[var(--c-escuro)]"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5-6.5-4.5-6.5 4.5 2-7.5L2 9h7z"></path></svg>Marca D</li>
+      <li class="d-cartao flex items-center justify-center gap-2 border border-slate-200 px-4 py-5 font-extrabold text-slate-400 transition hover:border-[var(--c)] hover:text-[var(--c-escuro)]"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l9 5v10l-9 5-9-5V7z"></path></svg>Marca E</li>
+      <li class="d-cartao flex items-center justify-center gap-2 border border-slate-200 px-4 py-5 font-extrabold text-slate-400 transition hover:border-[var(--c)] hover:text-[var(--c-escuro)]"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 12a8 8 0 0 1 16 0v8H4z"></path></svg>Marca F</li>
+    </ul>
+  </section>
+</template>
+
+<template data-demo="formulario">
+  <section class="px-6 py-10 sm:px-10">
+    <h2 class="d-titulo text-2xl font-extrabold text-slate-900">Fale com a gente</h2>
+    <p class="mt-1 text-slate-600">Responderemos pelo WhatsApp ou e-mail.</p>
+    <form data-demo-form novalidate class="mt-6 grid max-w-lg gap-4">
+      <div>
+        <label for="demo-nome" class="font-bold text-slate-900">Nome</label>
+        <input id="demo-nome" name="nome" required autocomplete="off" aria-describedby="demo-erro-nome" class="d-cartao mt-1.5 block w-full border border-slate-300 px-4 py-2.5 text-slate-900 focus:border-[var(--c)] focus:outline-none" />
+        <p id="demo-erro-nome" hidden class="mt-1 text-sm font-semibold text-red-700">Informe o seu nome.</p>
+      </div>
+      <div>
+        <label for="demo-telefone" class="font-bold text-slate-900">WhatsApp</label>
+        <input id="demo-telefone" name="telefone" inputmode="tel" placeholder="(16) 99999-9999" autocomplete="off" data-mascara-telefone class="d-cartao mt-1.5 block w-full border border-slate-300 px-4 py-2.5 text-slate-900 focus:border-[var(--c)] focus:outline-none" />
+      </div>
+      <div>
+        <label for="demo-mensagem" class="font-bold text-slate-900">Mensagem</label>
+        <textarea id="demo-mensagem" name="mensagem" rows="3" required aria-describedby="demo-erro-mensagem" class="d-cartao mt-1.5 block w-full border border-slate-300 px-4 py-2.5 text-slate-900 focus:border-[var(--c)] focus:outline-none"></textarea>
+        <p id="demo-erro-mensagem" hidden class="mt-1 text-sm font-semibold text-red-700">Escreva a sua mensagem.</p>
+      </div>
+      <button type="submit" class="d-botao justify-self-start bg-[var(--c-escuro)] px-6 py-3 font-bold text-white">Enviar mensagem</button>
+      <p data-demo-sucesso hidden role="status" class="d-cartao bg-emerald-50 px-4 py-3 font-semibold text-emerald-800">
+        Tudo certo! Nesta demonstração nada é enviado.
+      </p>
+    </form>
+  </section>
+</template>
+
+<template data-demo="agendamento">
+  <section class="px-6 py-10 sm:px-10" data-agenda>
+    <h2 class="d-titulo text-2xl font-extrabold text-slate-900">Agende seu horário</h2>
+    <p class="mt-1 text-sm text-slate-600">Demonstração conceitual: o pedido segue pelo WhatsApp para confirmação.</p>
+
+    <p class="mt-6 font-bold text-slate-900" id="agenda-servico">1. Serviço</p>
+    <div class="mt-2 flex flex-wrap gap-2" role="group" aria-labelledby="agenda-servico">
+      <button type="button" data-opcao="servico" aria-pressed="false" class="d-botao border border-slate-300 px-4 py-2 text-sm font-bold text-slate-700 aria-pressed:border-[var(--c)] aria-pressed:bg-[var(--c-escuro)] aria-pressed:text-white">Corte</button>
+      <button type="button" data-opcao="servico" aria-pressed="false" class="d-botao border border-slate-300 px-4 py-2 text-sm font-bold text-slate-700 aria-pressed:border-[var(--c)] aria-pressed:bg-[var(--c-escuro)] aria-pressed:text-white">Escova</button>
+      <button type="button" data-opcao="servico" aria-pressed="false" class="d-botao border border-slate-300 px-4 py-2 text-sm font-bold text-slate-700 aria-pressed:border-[var(--c)] aria-pressed:bg-[var(--c-escuro)] aria-pressed:text-white">Manicure</button>
+    </div>
+
+    <p class="mt-5 font-bold text-slate-900" id="agenda-dia">2. Dia</p>
+    <div class="mt-2 flex flex-wrap gap-2" role="group" aria-labelledby="agenda-dia" data-dias></div>
+
+    <p class="mt-5 font-bold text-slate-900" id="agenda-hora">3. Horário</p>
+    <div class="mt-2 flex flex-wrap gap-2" role="group" aria-labelledby="agenda-hora">
+      <button type="button" data-opcao="hora" aria-pressed="false" class="d-botao border border-slate-300 px-4 py-2 text-sm font-bold text-slate-700 aria-pressed:border-[var(--c)] aria-pressed:bg-[var(--c-escuro)] aria-pressed:text-white">9:00</button>
+      <button type="button" data-opcao="hora" aria-pressed="false" class="d-botao border border-slate-300 px-4 py-2 text-sm font-bold text-slate-700 aria-pressed:border-[var(--c)] aria-pressed:bg-[var(--c-escuro)] aria-pressed:text-white">10:30</button>
+      <button type="button" data-opcao="hora" aria-pressed="false" class="d-botao border border-slate-300 px-4 py-2 text-sm font-bold text-slate-700 aria-pressed:border-[var(--c)] aria-pressed:bg-[var(--c-escuro)] aria-pressed:text-white">14:00</button>
+      <button type="button" disabled aria-label="15:30, indisponível" class="d-botao border border-slate-200 px-4 py-2 text-sm font-bold text-slate-400 line-through">15:30</button>
+      <button type="button" data-opcao="hora" aria-pressed="false" class="d-botao border border-slate-300 px-4 py-2 text-sm font-bold text-slate-700 aria-pressed:border-[var(--c)] aria-pressed:bg-[var(--c-escuro)] aria-pressed:text-white">17:00</button>
+    </div>
+
+    <div class="d-cartao mt-6 flex flex-wrap items-center justify-between gap-4 bg-slate-50 p-4">
+      <p data-agenda-resumo class="text-slate-700" aria-live="polite">Escolha serviço, dia e horário.</p>
+      <button type="button" data-agenda-pedir disabled class="d-botao bg-[var(--c-escuro)] px-5 py-2.5 font-bold text-white disabled:opacity-40">Pedir horário</button>
+    </div>
+    <p data-agenda-ok hidden role="status" class="d-cartao mt-3 bg-emerald-50 px-4 py-3 font-semibold text-emerald-800">
+      No site real, este pedido abriria o WhatsApp com os dados do horário.
+    </p>
+  </section>
+</template>
+
+<template data-demo="contagem">
+  <section class="bg-[color-mix(in_srgb,var(--c)_80%,black)] px-6 py-12 text-center text-white sm:px-10" data-contagem>
+    <p class="text-sm font-bold tracking-widest uppercase opacity-85">Oferta de lançamento</p>
+    <h2 class="d-titulo mt-2 text-3xl font-extrabold">Cesta de café da manhã com 15% de desconto</h2>
+    <p class="mt-2 opacity-85">Termina em:</p>
+    <div class="mt-6 flex justify-center gap-2 sm:gap-4" role="timer" aria-label="Tempo restante da oferta">
+      <div class="d-cartao w-[4.5rem] bg-white/15 py-3 sm:w-24"><span data-unidade="dias" class="block text-3xl font-extrabold tabular-nums sm:text-4xl">00</span><span class="text-xs font-bold uppercase opacity-85">dias</span></div>
+      <div class="d-cartao w-[4.5rem] bg-white/15 py-3 sm:w-24"><span data-unidade="horas" class="block text-3xl font-extrabold tabular-nums sm:text-4xl">00</span><span class="text-xs font-bold uppercase opacity-85">horas</span></div>
+      <div class="d-cartao w-[4.5rem] bg-white/15 py-3 sm:w-24"><span data-unidade="min" class="block text-3xl font-extrabold tabular-nums sm:text-4xl">00</span><span class="text-xs font-bold uppercase opacity-85">min</span></div>
+      <div class="d-cartao w-[4.5rem] bg-white/15 py-3 sm:w-24"><span data-unidade="seg" class="block text-3xl font-extrabold tabular-nums sm:text-4xl">00</span><span class="text-xs font-bold uppercase opacity-85">seg</span></div>
+    </div>
+    <a href="#" data-sem-acao class="d-botao mt-8 inline-block bg-white px-6 py-3 font-bold text-[color-mix(in_srgb,var(--c)_80%,black)]">Garantir a minha</a>
+    <p class="mt-4 text-xs opacity-80">No site real, a contagem só é usada quando o prazo é verdadeiro.</p>
+  </section>
+</template>

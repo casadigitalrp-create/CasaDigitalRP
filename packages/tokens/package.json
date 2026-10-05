@@ -1,0 +1,12 @@
+{
+  "name": "@cdrp/tokens",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Design tokens da Casa Digital RP (tema Tailwind 4 + CSS variables)",
+  "exports": {
+    "./theme.css": "./theme.css"
+  },
+  "files": [
+    "theme.css"
+  ]
+}

@@ -1,0 +1,47 @@
+---
+import Base from "../layouts/Base.astro";
+
+// Escopo, seção 4.5: a 404 leva de volta para Início, Serviços, Vitrine e Contato.
+const caminhos = [
+  { href: "/", titulo: "Início", texto: "Conheça a CasaDigitalRP" },
+  { href: "/servicos/", titulo: "Serviços", texto: "Criação, créditos e evolução de sites" },
+  { href: "/vitrine/", titulo: "Vitrine", texto: "Monte o site do seu negócio" },
+  { href: "/contato/", titulo: "Contato", texto: "Fale com a gente" },
+];
+---
+
+<Base title="Página não encontrada" noindex>
+  <section class="relative overflow-hidden bg-marinho text-white">
+    <div class="absolute -top-32 -right-32 h-[30rem] w-[30rem] rounded-full bg-azul-medio/25 blur-3xl" aria-hidden="true"></div>
+    <div class="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+      <p class="text-[7rem] leading-none font-extrabold tracking-tighter sm:text-[10rem]" aria-hidden="true">
+        4<span class="text-azul">0</span>4
+      </p>
+      <div class="mt-4 h-1 w-24 rounded-full bg-dourado" aria-hidden="true"></div>
+      <p class="mt-8 text-sm font-bold tracking-[0.18em] text-azul uppercase">Erro 404</p>
+      <h1 class="mt-3 text-4xl leading-tight font-extrabold tracking-tight sm:text-5xl">Página não encontrada</h1>
+      <p class="mt-4 max-w-xl text-lg leading-relaxed text-white/80">
+        O endereço pode ter mudado ou não existe mais. Escolha um caminho para continuar:
+      </p>
+
+      <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          caminhos.map((c) => (
+            <li>
+              <a
+                href={c.href}
+                class="group flex h-full flex-col rounded-2xl border border-white/10 bg-white/[0.05] p-5 transition hover:-translate-y-0.5 hover:border-azul/60 hover:bg-white/[0.08]"
+              >
+                <span class="flex items-center justify-between text-lg font-extrabold">
+                  {c.titulo}
+                  <span aria-hidden="true" class="text-azul transition-transform group-hover:translate-x-1">→</span>
+                </span>
+                <span class="mt-1 text-[15px] text-white/70">{c.texto}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://casadigitalrp.com.br/sitemap-index.xml

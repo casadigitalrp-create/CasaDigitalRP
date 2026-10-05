@@ -1,0 +1,19 @@
+{
+  "name": "casadigitalrp",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.19.0",
+  "engines": {
+    "node": ">=24.15"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @cdrp/site dev",
+    "build": "pnpm --filter @cdrp/site build",
+    "check": "pnpm --filter @cdrp/site check",
+    "lint": "biome check apps/site/src packages"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.15",
+    "typescript": "^6.0.3"
+  }
+}

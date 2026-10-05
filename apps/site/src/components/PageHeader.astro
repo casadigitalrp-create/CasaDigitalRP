@@ -1,0 +1,22 @@
+---
+// Topo das páginas internas (identidade V3). O conteúdo extra, como atalhos, entra pelo slot.
+interface Props {
+  eyebrow: string;
+  title: string;
+  text?: string;
+}
+
+const { eyebrow, title, text } = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-marinho text-white">
+  <div class="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-azul-medio/25 blur-3xl" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+    <p class="text-sm font-bold tracking-[0.18em] text-azul uppercase">{eyebrow}</p>
+    <h1 class="mt-4 max-w-3xl text-4xl leading-tight font-extrabold tracking-tight text-balance sm:text-5xl">
+      {title}
+    </h1>
+    {text && <p class="mt-5 max-w-2xl text-lg leading-relaxed text-white/80">{text}</p>}
+    <slot />
+  </div>
+</section>

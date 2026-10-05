@@ -1,0 +1,57 @@
+---
+const etapas = [
+  {
+    titulo: "Conversa",
+    texto:
+      "Você conta sobre o seu negócio, o seu público e o que espera do site. Pode ser pelo WhatsApp.",
+  },
+  {
+    titulo: "Planejamento",
+    texto:
+      "Definimos juntos as páginas, os componentes e o conteúdo. Você aprova a proposta antes de começarmos.",
+  },
+  {
+    titulo: "Desenvolvimento",
+    texto: "Montamos o site e você acompanha por uma prévia, com rodadas de ajuste combinadas.",
+  },
+  {
+    titulo: "Publicação",
+    texto: "Colocamos o site no ar no seu endereço e você recebe tudo documentado.",
+  },
+];
+---
+
+<section aria-labelledby="processo-titulo" class="bg-white text-marinho">
+  <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+    <div class="max-w-2xl">
+      <p class="text-sm font-bold tracking-[0.18em] text-azul-texto uppercase">Como trabalhamos</p>
+      <h2 id="processo-titulo" class="mt-3 text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">
+        Do primeiro contato ao site no ar
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-marinho/75">
+        Um processo simples, em quatro etapas, com você aprovando cada passo.
+      </p>
+    </div>
+
+    <div class="relative mt-14">
+      <div
+        class="absolute top-7 right-[calc(25%-2.25rem)] left-7 hidden h-px bg-gradient-to-r from-dourado via-dourado/70 to-dourado lg:block"
+        aria-hidden="true"
+      >
+      </div>
+      <ol class="relative grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+      {
+        etapas.map((etapa, i) => (
+          <li class="relative">
+            <span class="relative grid h-14 w-14 place-items-center rounded-full bg-marinho text-xl font-extrabold text-azul ring-4 ring-white">
+              {i + 1}
+            </span>
+            <h3 class="mt-5 text-xl font-extrabold">{etapa.titulo}</h3>
+            <p class="mt-2 leading-relaxed text-marinho/75">{etapa.texto}</p>
+          </li>
+        ))
+      }
+      </ol>
+    </div>
+  </div>
+</section>

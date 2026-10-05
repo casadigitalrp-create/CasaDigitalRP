@@ -1,0 +1,50 @@
+---
+import { Picture } from "astro:assets";
+import fundo from "../assets/fundo-institucional.png";
+import { ctaPrincipal, whatsappUrl } from "../data/site";
+
+interface Props {
+  title?: string;
+  text?: string;
+}
+
+const {
+  title = "Vamos criar o site do seu negócio?",
+  text = "Monte sua solicitação na vitrine em poucos minutos ou fale direto com a gente pelo WhatsApp.",
+} = Astro.props;
+---
+
+<section class="relative isolate overflow-hidden bg-marinho text-white">
+  <Picture
+    src={fundo}
+    alt=""
+    formats={["avif", "webp"]}
+    widths={[768, 1280, 1920]}
+    sizes="100vw"
+    class="absolute inset-0 -z-10 h-full w-full object-cover object-right-bottom opacity-80"
+  />
+  <div class="mx-auto max-w-3xl px-4 py-20 text-center sm:px-6 sm:py-28">
+    <h2 class="text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-5xl">{title}</h2>
+    <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/80">{text}</p>
+    <div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+      <a
+        href={ctaPrincipal.href}
+        class="rounded-full bg-azul px-7 py-3.5 text-lg font-bold text-marinho shadow-[0_0_32px_-6px] shadow-azul/60 transition-colors hover:bg-white"
+      >
+        {ctaPrincipal.label}
+      </a>
+      {
+        whatsappUrl && (
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-full border border-white/25 px-7 py-3.5 text-lg font-bold text-white transition-colors hover:border-azul hover:text-azul"
+          >
+            Falar no WhatsApp<span class="sr-only"> (abre em nova aba)</span>
+          </a>
+        )
+      }
+    </div>
+  </div>
+</section>

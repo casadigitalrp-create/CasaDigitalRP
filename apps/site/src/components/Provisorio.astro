@@ -1,0 +1,18 @@
+---
+// Marca visível de conteúdo ainda não confirmado pela empresa (exigência do escopo, seção 13).
+// Antes de publicar, todo uso deste componente precisa ter sido removido.
+interface Props {
+  tom?: "claro" | "escuro";
+  rotulo?: string;
+}
+const { tom = "claro", rotulo = "Texto provisório" } = Astro.props;
+---
+
+{" "}<span
+  class:list={[
+    "ml-1 inline-block rounded-full border border-dashed px-2 py-0.5 align-middle text-xs font-bold tracking-wide uppercase",
+    tom === "claro" ? "border-amber-600 bg-amber-50 text-amber-800" : "border-dourado text-dourado",
+  ]}
+>
+  {rotulo}
+</span>

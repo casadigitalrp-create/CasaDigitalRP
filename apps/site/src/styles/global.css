@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@import "@cdrp/tokens/theme.css";
+
+/* O site usa Nunito, a fonte da identidade V3. As demos continuam com a fonte delas. */
+@theme {
+  --font-sans: var(--font-nunito, ui-sans-serif, system-ui, sans-serif);
+  --font-display: var(--font-nunito, ui-sans-serif, system-ui, sans-serif);
+}
+
+body {
+  @apply bg-paper text-ink font-sans antialiased;
+}
+
+/* Na camada base, para que classes utilitárias (ex.: focus:outline-none) possam ajustar casos pontuais. */
+@layer base {
+  /* Cor do contorno fixa: sem isso, transition-colors anima o foco a partir da cor do texto. */
+  *,
+  ::before,
+  ::after {
+    outline-color: var(--color-azul-medio);
+  }
+
+  :focus-visible {
+    /* Azul intermediário: contraste de 3,5:1 no branco e 5,4:1 no azul-marinho (WCAG 1.4.11). */
+    outline: 3px solid var(--color-azul-medio);
+    outline-offset: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    /* biome-ignore lint/complexity/noImportantStyles: precisa vencer qualquer animação para respeitar a preferência de movimento reduzido */
+    animation-duration: 0.01ms !important;
+    /* biome-ignore lint/complexity/noImportantStyles: idem */
+    transition-duration: 0.01ms !important;
+    /* biome-ignore lint/complexity/noImportantStyles: idem */
+    scroll-behavior: auto !important;
+  }
+}

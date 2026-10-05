@@ -1,0 +1,44 @@
+---
+// JSON-LD de Organization e WebSite (escopo, seção 9.3), só com dados confirmados.
+// O CNPJ (taxID) fica de fora até ser conferido; LocalBusiness exige endereço completo.
+import { site } from "../data/site";
+
+const raiz = new URL("/", Astro.site).href;
+const dados = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${raiz}#organizacao`,
+      name: site.name,
+      url: raiz,
+      logo: new URL("/icon-512x512.png", Astro.site).href,
+      slogan: site.slogan,
+      email: site.email,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Ribeirão Preto",
+        addressRegion: "SP",
+        addressCountry: "BR",
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer service",
+        telephone: `+${site.whatsapp}`,
+        email: site.email,
+        availableLanguage: "pt-BR",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${raiz}#site`,
+      url: raiz,
+      name: site.name,
+      inLanguage: "pt-BR",
+      publisher: { "@id": `${raiz}#organizacao` },
+    },
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(dados)} />

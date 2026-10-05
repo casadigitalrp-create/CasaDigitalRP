@@ -1,0 +1,575 @@
+---
+import PageHeader from "../components/PageHeader.astro";
+import Demos from "../components/vitrine/Demos.astro";
+import { componentes } from "../data/componentes";
+import { modelos } from "../data/modelos";
+import { site } from "../data/site";
+import Base from "../layouts/Base.astro";
+
+const estilos = [
+  { id: "moderno", nome: "Moderno", texto: "Cantos arredondados e visual atual" },
+  { id: "classico", nome: "Clássico", texto: "Títulos elegantes e linhas retas" },
+  { id: "descontraido", nome: "Descontraído", texto: "Formas suaves e mais leveza" },
+  { id: "minimalista", nome: "Minimalista", texto: "Poucos elementos e muito espaço" },
+];
+
+const cores = [
+  { valor: "#2F91C9", nome: "Azul" },
+  { valor: "#0F9D58", nome: "Verde" },
+  { valor: "#D93025", nome: "Vermelho" },
+  { valor: "#7C3AED", nome: "Roxo" },
+  { valor: "#EA580C", nome: "Laranja" },
+  { valor: "#DB2777", nome: "Rosa" },
+  { valor: "#334155", nome: "Grafite" },
+];
+
+// Dados para o script da página (modelos e nomes), sem duplicar nada no cliente.
+const dados = {
+  whatsapp: site.whatsapp,
+  email: site.email,
+  modelos: Object.fromEntries(
+    modelos.map((m) => [m.slug, { titulo: m.titulo, componentes: m.componentes }]),
+  ),
+  componentes: Object.fromEntries(componentes.map((c) => [c.id, c.nome])),
+  estilos: Object.fromEntries(estilos.map((e) => [e.id, e.nome])),
+};
+
+const etapa =
+  "grid h-9 w-9 shrink-0 place-items-center rounded-full bg-marinho text-base font-extrabold text-azul";
+const legenda =
+  "flex items-center gap-3 text-2xl font-extrabold tracking-tight text-marinho sm:text-3xl";
+const campo =
+  "mt-2 block w-full rounded-xl border border-marinho/20 bg-white px-4 py-3 text-marinho placeholder:text-marinho/40 focus:border-azul-medio focus:outline-none focus-visible:outline-3 focus-visible:outline-azul-medio";
+---
+
+<Base
+  title="Vitrine de soluções"
+  description="Monte o site do seu negócio: escolha um modelo, teste os componentes e envie sua solicitação de proposta pelo WhatsApp ou e-mail."
+>
+  <PageHeader
+    eyebrow="Vitrine de soluções"
+    title="Monte o site do seu negócio"
+    text="Escolha um modelo, teste os componentes funcionando e envie sua solicitação. A proposta vem depois, feita para o que você escolheu."
+  >
+    <ol class="mt-8 flex flex-wrap gap-3 text-[15px] font-semibold">
+      {
+        ["Escolha o modelo", "Selecione os componentes", "Indique o estilo", "Envie a solicitação"].map((t, i) => (
+          <li class="rounded-full border border-white/15 bg-white/5 px-4 py-2">
+            <span class="text-azul">{i + 1}</span> {t}
+          </li>
+        ))
+      }
+    </ol>
+  </PageHeader>
+
+  <div class="bg-[#f4f9fd] pb-28 text-marinho lg:pb-0">
+    <form id="vitrine" method="post" class="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1fr_20rem] lg:py-16" novalidate>
+      <div class="space-y-14">
+        <!-- 1. Modelo -->
+        <fieldset id="etapa-modelo" class="scroll-mt-28">
+          <legend class={legenda}><span class={etapa}>1</span> Escolha um modelo</legend>
+          <p class="mt-3 text-marinho/70">Ao escolher, marcamos os componentes mais usados. Você ajusta depois.</p>
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            {
+              modelos.map((m) => (
+                <label class="relative flex cursor-pointer gap-4 rounded-2xl border-2 border-transparent bg-white p-5 shadow-sm ring-1 ring-marinho/10 transition has-[:checked]:border-azul-medio has-[:checked]:ring-0 has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-azul-medio hover:ring-azul-medio/40">
+                  <input type="radio" name="modelo" value={m.slug} class="peer sr-only" />
+                  <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-marinho text-azul">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d={m.icone} />
+                    </svg>
+                  </span>
+                  <span>
+                    <span class="block text-lg font-extrabold">{m.titulo}</span>
+                    <span class="mt-1 block text-[15px] leading-snug text-marinho/70">{m.resumo}</span>
+                  </span>
+                  <span class="absolute top-4 right-4 hidden h-6 w-6 place-items-center rounded-full bg-azul-medio text-white peer-checked:grid" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+                  </span>
+                </label>
+              ))
+            }
+          </div>
+          <p id="aviso-modelo" class="mt-4 hidden rounded-xl bg-azul/15 px-4 py-3 text-[15px]" role="status"></p>
+        </fieldset>
+
+        <!-- 2. Componentes -->
+        <fieldset id="etapa-componentes" class="scroll-mt-28">
+          <legend class={legenda}><span class={etapa}>2</span> Selecione os componentes</legend>
+          <p class="mt-3 text-marinho/70">
+            Marque o que o seu site precisa. Use <strong class="font-bold text-marinho">Ver demonstração</strong> para testar.
+          </p>
+          <ul class="mt-6 grid gap-4 sm:grid-cols-2">
+            {
+              componentes.map((c) => (
+                <li class="flex flex-col rounded-2xl border-2 border-transparent bg-white p-5 shadow-sm ring-1 ring-marinho/10 transition has-[:checked]:border-azul-medio has-[:checked]:ring-0">
+                  <label class="flex cursor-pointer items-start gap-3">
+                    <input
+                      type="checkbox"
+                      name="componentes"
+                      value={c.id}
+                      class="mt-1 h-5 w-5 shrink-0 cursor-pointer rounded accent-azul-medio"
+                    />
+                    <span>
+                      <span class="block font-extrabold">{c.nome}</span>
+                      <span class="mt-1 block text-[15px] leading-snug text-marinho/70">{c.descricao}</span>
+                      {c.observacao && <span class="mt-2 block text-sm font-semibold text-azul-texto">{c.observacao}</span>}
+                    </span>
+                  </label>
+                  {c.demo && (
+                    <button
+                      type="button"
+                      data-abrir-demo={c.id}
+                      class="mt-4 ml-8 inline-flex items-center gap-1.5 self-start rounded-full border border-azul-medio/40 px-3.5 py-1.5 text-sm font-bold text-azul-texto transition-colors hover:bg-azul-medio hover:text-white"
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" /></svg>
+                      Ver demonstração<span class="sr-only">: {c.nome}</span>
+                    </button>
+                  )}
+                </li>
+              ))
+            }
+          </ul>
+        </fieldset>
+
+        <!-- 3. Estilo e cor -->
+        <fieldset id="etapa-estilo" class="scroll-mt-28">
+          <legend class={legenda}><span class={etapa}>3</span> Indique o estilo</legend>
+          <p class="mt-3 text-marinho/70">É uma referência para a proposta. As demonstrações já usam a sua escolha.</p>
+
+          <p class="mt-6 font-bold" id="rotulo-estilo">Estilo</p>
+          <div class="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" role="radiogroup" aria-labelledby="rotulo-estilo">
+            <label class="cursor-pointer rounded-xl border-2 border-transparent bg-white p-4 ring-1 ring-marinho/10 has-[:checked]:border-azul-medio has-[:checked]:ring-0 has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-azul-medio">
+              <input type="radio" name="estilo" value="" class="sr-only" checked />
+              <span class="block font-extrabold">Ainda não sei</span>
+              <span class="mt-0.5 block text-sm text-marinho/70">Decidimos juntos depois</span>
+            </label>
+            {
+              estilos.map((e) => (
+                <label class="cursor-pointer rounded-xl border-2 border-transparent bg-white p-4 ring-1 ring-marinho/10 has-[:checked]:border-azul-medio has-[:checked]:ring-0 has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-azul-medio">
+                  <input type="radio" name="estilo" value={e.id} class="sr-only" />
+                  <span class="block font-extrabold">{e.nome}</span>
+                  <span class="mt-0.5 block text-sm text-marinho/70">{e.texto}</span>
+                </label>
+              ))
+            }
+          </div>
+
+          <p class="mt-8 font-bold" id="rotulo-cor">Cor principal de referência</p>
+          <div class="mt-3 flex flex-wrap items-center gap-3" role="radiogroup" aria-labelledby="rotulo-cor">
+            <label class="cursor-pointer rounded-full border-2 border-transparent bg-white px-4 py-2 text-sm font-bold ring-1 ring-marinho/15 has-[:checked]:border-azul-medio has-[:checked]:ring-0 has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-azul-medio">
+              <input type="radio" name="cor" value="" class="sr-only" checked />
+              Sem preferência
+            </label>
+            {
+              cores.map((c) => (
+                <label class="grid h-11 w-11 cursor-pointer place-items-center rounded-full ring-2 ring-transparent ring-offset-2 ring-offset-[#f4f9fd] has-[:checked]:ring-marinho has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-azul-medio" style={`background:${c.valor}`} title={c.nome}>
+                  <input type="radio" name="cor" value={c.valor} class="sr-only" />
+                  <span class="sr-only">{c.nome}</span>
+                </label>
+              ))
+            }
+            <label class="flex cursor-pointer items-center gap-2 rounded-full border-2 border-transparent bg-white py-1.5 pr-4 pl-1.5 text-sm font-bold ring-1 ring-marinho/15 has-[:checked]:border-azul-medio has-[:checked]:ring-0 has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-azul-medio">
+              <input type="radio" name="cor" value="outra" class="sr-only" />
+              <input type="color" id="cor-outra" value="#2F91C9" aria-label="Escolher outra cor" class="h-8 w-8 cursor-pointer rounded-full border-0 bg-transparent p-0" />
+              Outra cor
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- 4. Dados -->
+        <fieldset id="etapa-dados" class="scroll-mt-28">
+          <legend class={legenda}><span class={etapa}>4</span> Conte sobre você</legend>
+          <p class="mt-3 text-marinho/70">
+            Só o nome é obrigatório. Estes dados não ficam salvos no site: vão apenas na mensagem que
+            você mesmo enviar.
+          </p>
+          <div class="mt-6 grid gap-5 sm:grid-cols-2">
+            <div class="sm:col-span-2">
+              <label for="nome" class="font-bold">Seu nome <span class="text-azul-texto">(obrigatório)</span></label>
+              <input id="nome" name="nome" type="text" autocomplete="name" required aria-describedby="erro-nome" class={campo} />
+              <p id="erro-nome" class="mt-2 hidden text-[15px] font-semibold text-red-700"></p>
+            </div>
+            <div>
+              <label for="negocio" class="font-bold">Nome do negócio</label>
+              <input id="negocio" name="negocio" type="text" autocomplete="organization" class={campo} />
+            </div>
+            <div>
+              <label for="segmento" class="font-bold">Segmento</label>
+              <input id="segmento" name="segmento" type="text" placeholder="Ex.: padaria, clínica, salão" class={campo} />
+            </div>
+            <div class="sm:col-span-2">
+              <label for="site-atual" class="font-bold">Site atual, se tiver</label>
+              <input id="site-atual" name="siteAtual" type="url" inputmode="url" placeholder="https://" class={campo} />
+            </div>
+            <div class="sm:col-span-2">
+              <label for="observacoes" class="font-bold">Observações</label>
+              <textarea id="observacoes" name="observacoes" rows="4" placeholder="Conte o que for importante: prazo desejado, referências, dúvidas..." class={campo}></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- 5. Revisão e envio -->
+        <section id="revisar" aria-labelledby="revisar-titulo" class="scroll-mt-28 rounded-3xl bg-marinho p-6 text-white sm:p-10">
+          <h2 id="revisar-titulo" class="flex items-center gap-3 text-2xl font-extrabold tracking-tight sm:text-3xl">
+            <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-azul text-base font-extrabold text-marinho">5</span>
+            Revise e envie
+          </h2>
+          <dl class="mt-6 grid gap-x-8 gap-y-4 text-[15px] sm:grid-cols-[10rem_1fr]" id="resumo-completo"></dl>
+          <p id="erro-envio" class="mt-6 hidden rounded-xl bg-red-100 px-4 py-3 font-semibold text-red-800" role="alert"></p>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <button type="button" data-enviar="whatsapp" class="rounded-full bg-[#25D366] px-6 py-3.5 text-lg font-bold text-marinho transition hover:brightness-110">
+              Enviar pelo WhatsApp
+            </button>
+            <button type="button" data-enviar="email" class="rounded-full bg-azul px-6 py-3.5 text-lg font-bold text-marinho transition-colors hover:bg-white">
+              Enviar por e-mail
+            </button>
+            <button type="button" data-enviar="copiar" class="rounded-full border border-white/30 px-6 py-3.5 text-lg font-bold transition-colors hover:border-azul hover:text-azul">
+              Copiar resumo
+            </button>
+          </div>
+          <p id="status-envio" class="mt-5 hidden rounded-xl bg-white/10 px-4 py-3 text-[15px]" role="status"></p>
+          <p class="mt-6 text-sm leading-relaxed text-white/70">
+            Os botões abrem o seu WhatsApp ou o seu aplicativo de e-mail com a mensagem pronta. O envio
+            só acontece quando você confirmar por lá. Veja a nossa{" "}
+            <a href="/politica-de-privacidade/" class="font-bold text-azul underline underline-offset-4">Política de Privacidade</a>.
+          </p>
+        </section>
+      </div>
+
+      <!-- Resumo fixo (desktop) -->
+      <aside class="hidden lg:block" aria-label="Resumo da solicitação">
+        <div class="sticky top-28 rounded-2xl bg-white p-6 shadow-lg ring-1 ring-marinho/10">
+          <p class="text-sm font-bold tracking-[0.18em] text-azul-texto uppercase">Sua solicitação</p>
+          <dl class="mt-4 space-y-4 text-[15px]" id="resumo-lateral"></dl>
+          <a href="#revisar" class="mt-6 block rounded-full bg-marinho px-5 py-3 text-center font-bold text-white transition-colors hover:bg-azul-medio">
+            Revisar e enviar
+          </a>
+        </div>
+      </aside>
+    </form>
+
+    <!-- Barra de resumo (celular) -->
+    <div id="barra-resumo" class="fixed inset-x-0 bottom-0 z-30 border-t border-dourado/60 bg-marinho/95 px-4 py-3 text-white backdrop-blur transition-transform duration-200 data-[oculta]:translate-y-full lg:hidden">
+      <div class="mx-auto flex max-w-6xl items-center justify-between gap-4">
+        <p class="text-[15px] leading-tight" id="resumo-barra" aria-live="polite">Nenhum componente</p>
+        <a href="#revisar" class="shrink-0 rounded-full bg-azul px-5 py-2.5 font-bold text-marinho">Revisar</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Janela de demonstração -->
+  <dialog
+    id="janela-demo"
+    aria-labelledby="demo-titulo"
+    class="m-auto max-h-[92vh] w-[min(64rem,calc(100vw-1.5rem))] overflow-hidden rounded-2xl bg-white p-0 text-marinho shadow-2xl backdrop:bg-marinho/80 backdrop:backdrop-blur-sm"
+  >
+    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-marinho/10 bg-white px-5 py-3">
+      <div>
+        <p id="demo-titulo" class="text-lg font-extrabold"></p>
+        <p class="text-sm text-marinho/60">Demonstração com conteúdo de exemplo</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="hidden gap-1 rounded-full bg-marinho/5 p-1 sm:flex" role="group" aria-label="Tamanho da tela">
+          <button type="button" data-largura="375" class="rounded-full px-3 py-1.5 text-sm font-bold aria-pressed:bg-marinho aria-pressed:text-white" aria-pressed="false">Celular</button>
+          <button type="button" data-largura="768" class="rounded-full px-3 py-1.5 text-sm font-bold aria-pressed:bg-marinho aria-pressed:text-white" aria-pressed="false">Tablet</button>
+          <button type="button" data-largura="" class="rounded-full px-3 py-1.5 text-sm font-bold aria-pressed:bg-marinho aria-pressed:text-white" aria-pressed="true">Computador</button>
+        </div>
+        <button type="button" data-marcar-demo class="rounded-full bg-azul-medio px-4 py-2 text-sm font-bold text-white"></button>
+        <button type="button" data-fechar-demo class="grid h-10 w-10 place-items-center rounded-full hover:bg-marinho/5" aria-label="Fechar demonstração">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="max-h-[calc(92vh-5rem)] overflow-auto bg-slate-100 p-3 sm:p-6">
+      <div id="demo-quadro" class="demo relative mx-auto overflow-hidden bg-white shadow-sm transition-[max-width] duration-300"></div>
+    </div>
+  </dialog>
+
+  <Demos />
+
+  <script type="application/json" id="vitrine-dados" set:html={JSON.stringify(dados)} />
+</Base>
+
+<style is:global>
+  /* Estilos aplicados às demonstrações conforme a escolha do visitante. */
+  .demo {
+    --c: #2f91c9;
+    /* Versão escurecida da cor escolhida para textos e fundos com texto branco: com as 7 cores
+       prontas o contraste fica acima de 5:1 (WCAG AA pede 4,5:1). */
+    --c-escuro: color-mix(in srgb, var(--c) 80%, black);
+    --r: 0.9rem;
+  }
+  .demo .d-botao {
+    border-radius: 9999px;
+  }
+  .demo .d-cartao {
+    border-radius: var(--r);
+  }
+  .demo[data-estilo="classico"] {
+    --r: 0.2rem;
+  }
+  .demo[data-estilo="classico"] .d-titulo {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+  }
+  .demo[data-estilo="classico"] .d-botao {
+    border-radius: 0.2rem;
+  }
+  .demo[data-estilo="descontraido"] {
+    --r: 1.6rem;
+  }
+  .demo[data-estilo="descontraido"] .d-titulo {
+    letter-spacing: -0.01em;
+  }
+  .demo[data-estilo="minimalista"] {
+    --r: 0;
+  }
+  .demo[data-estilo="minimalista"] .d-titulo {
+    font-weight: 600;
+  }
+  .demo[data-estilo="minimalista"] .d-botao {
+    border-radius: 0;
+  }
+</style>
+
+<script>
+  import { fecharLightbox, iniciarDemo, ligarDemos } from "../lib/demos";
+  import { copiarTexto } from "../lib/mensagem";
+  import { linkEmail, linkWhatsapp, textoDaSolicitacao, type Solicitacao } from "../lib/solicitacao";
+
+  interface Dados {
+    whatsapp: string;
+    email: string;
+    modelos: Record<string, { titulo: string; componentes: string[] }>;
+    componentes: Record<string, string>;
+    estilos: Record<string, string>;
+  }
+
+  const dados: Dados = JSON.parse(document.getElementById("vitrine-dados")!.textContent!);
+  const form = document.getElementById("vitrine") as HTMLFormElement;
+  const corOutra = document.getElementById("cor-outra") as HTMLInputElement;
+  const $ = <T extends Element>(sel: string) => document.querySelector<T>(sel);
+
+  // ---------- Estado lido do formulário ----------
+  const valor = (nome: string) => (form.elements.namedItem(nome) as HTMLInputElement | null)?.value ?? "";
+  const radio = (nome: string) => form.querySelector<HTMLInputElement>(`input[name="${nome}"]:checked`)?.value ?? "";
+  const marcados = () =>
+    [...form.querySelectorAll<HTMLInputElement>('input[name="componentes"]:checked')].map((i) => i.value);
+  const corEscolhida = () => {
+    const c = radio("cor");
+    return c === "outra" ? corOutra.value.toUpperCase() : c;
+  };
+
+  function solicitacao(): Solicitacao {
+    const modelo = radio("modelo");
+    const estilo = radio("estilo");
+    return {
+      modelo: modelo ? dados.modelos[modelo]?.titulo : undefined,
+      componentes: marcados().map((id) => dados.componentes[id] ?? id),
+      estilo: estilo ? dados.estilos[estilo] : undefined,
+      cor: corEscolhida() || undefined,
+      nome: valor("nome"),
+      negocio: valor("negocio"),
+      segmento: valor("segmento"),
+      siteAtual: valor("siteAtual"),
+      observacoes: valor("observacoes"),
+    };
+  }
+
+  // ---------- Resumos ----------
+  const esc = (t: string) => t.replace(/[&<>"]/g, (ch) => `&#${ch.charCodeAt(0)};`);
+  const pendente = (t: string) => `<span class="opacity-60">${t}</span>`;
+  const amostra = (cor: string) =>
+    `<span class="mr-2 inline-block h-4 w-4 rounded-full align-[-2px] ring-1 ring-black/10" style="background:${esc(cor)}"></span>${esc(cor)}`;
+
+  function atualizarResumos() {
+    const s = solicitacao();
+    const itens: [string, string][] = [
+      ["Modelo", s.modelo ? esc(s.modelo) : pendente("Nenhum ainda")],
+      [
+        "Componentes",
+        s.componentes.length ? esc(s.componentes.join(", ")) : pendente("Nenhum selecionado"),
+      ],
+      ["Estilo", s.estilo ? esc(s.estilo) : pendente("Ainda não sei")],
+      ["Cor", s.cor ? amostra(s.cor) : pendente("Sem preferência")],
+    ];
+    const completos: [string, string][] = [
+      ...itens,
+      ["Nome", s.nome.trim() ? esc(s.nome) : pendente("Preencha na etapa 4")],
+      ["Negócio", [s.negocio, s.segmento].filter((v) => v?.trim()).map((v) => esc(v!)).join(" – ") || pendente("Não informado")],
+    ];
+    if (s.siteAtual?.trim()) completos.push(["Site atual", esc(s.siteAtual)]);
+    if (s.observacoes?.trim()) completos.push(["Observações", esc(s.observacoes)]);
+
+    $("#resumo-lateral")!.innerHTML = itens
+      .map(([k, v]) => `<div><dt class="font-bold text-marinho">${k}</dt><dd class="mt-0.5 text-marinho/75">${v}</dd></div>`)
+      .join("");
+    $("#resumo-completo")!.innerHTML = completos
+      .map(([k, v]) => `<dt class="font-bold text-azul">${k}</dt><dd class="text-white/85 whitespace-pre-line">${v}</dd>`)
+      .join("");
+    const n = s.componentes.length;
+    $("#resumo-barra")!.innerHTML = `${s.modelo ? `<strong>${esc(s.modelo)}</strong><br>` : ""}${n ? `${n} componente${n > 1 ? "s" : ""}` : "Nenhum componente"}`;
+  }
+
+  // ---------- Modelo: marca os componentes sugeridos ----------
+  function aplicarModelo(slug: string, avisar: boolean) {
+    const modelo = dados.modelos[slug];
+    if (!modelo) return;
+    form.querySelectorAll<HTMLInputElement>('input[name="componentes"]').forEach((i) => {
+      i.checked = modelo.componentes.includes(i.value);
+    });
+    if (avisar) {
+      const aviso = $("#aviso-modelo")!;
+      aviso.textContent = `Marcamos os componentes sugeridos para ${modelo.titulo}. Ajuste à vontade na etapa 2.`;
+      aviso.classList.remove("hidden");
+    }
+  }
+
+  form.addEventListener("change", (e) => {
+    const alvo = e.target as HTMLInputElement;
+    if (alvo.name === "modelo") aplicarModelo(alvo.value, true);
+    if (alvo === corOutra) form.querySelector<HTMLInputElement>('input[name="cor"][value="outra"]')!.checked = true;
+    atualizarResumos();
+  });
+  form.addEventListener("input", atualizarResumos);
+  // O envio é sempre pelos botões de WhatsApp, e-mail ou cópia; nunca um envio nativo do formulário.
+  form.addEventListener("submit", (e) => e.preventDefault());
+  corOutra.addEventListener("input", () => {
+    form.querySelector<HTMLInputElement>('input[name="cor"][value="outra"]')!.checked = true;
+    atualizarResumos();
+  });
+
+  // Modelo vindo dos cards da Início (/vitrine/?modelo=slug).
+  const doLink = new URLSearchParams(location.search).get("modelo");
+  if (doLink && dados.modelos[doLink]) {
+    form.querySelector<HTMLInputElement>(`input[name="modelo"][value="${doLink}"]`)!.checked = true;
+    aplicarModelo(doLink, true);
+  }
+  atualizarResumos();
+
+  // ---------- Envio ----------
+  const erroEnvio = $("#erro-envio")!;
+  const erroNome = $("#erro-nome")!;
+  const statusEnvio = $("#status-envio")!;
+  const nome = $<HTMLInputElement>("#nome")!;
+
+  function validar(): boolean {
+    const s = solicitacao();
+    erroEnvio.classList.add("hidden");
+    erroNome.classList.add("hidden");
+    nome.removeAttribute("aria-invalid");
+    if (!s.modelo && s.componentes.length === 0) {
+      erroEnvio.textContent = "Escolha um modelo ou pelo menos um componente antes de enviar.";
+      erroEnvio.classList.remove("hidden");
+      $("#etapa-modelo")!.scrollIntoView({ behavior: "smooth" });
+      form.querySelector<HTMLInputElement>('input[name="modelo"]')!.focus({ preventScroll: true });
+      return false;
+    }
+    if (!s.nome.trim()) {
+      erroNome.textContent = "Informe o seu nome para identificarmos a solicitação.";
+      erroNome.classList.remove("hidden");
+      nome.setAttribute("aria-invalid", "true");
+      nome.focus();
+      return false;
+    }
+    return true;
+  }
+
+  function avisar(texto: string) {
+    statusEnvio.textContent = texto;
+    statusEnvio.classList.remove("hidden");
+  }
+
+  document.querySelectorAll<HTMLButtonElement>("[data-enviar]").forEach((botao) => {
+    botao.addEventListener("click", async () => {
+      if (!validar()) return;
+      const s = solicitacao();
+      const canal = botao.dataset.enviar;
+      if (canal === "whatsapp") {
+        window.open(linkWhatsapp(dados.whatsapp, s), "_blank", "noopener");
+        avisar("Abrimos o WhatsApp com a sua mensagem. Confira e toque em enviar por lá para concluir.");
+      } else if (canal === "email") {
+        location.href = linkEmail(dados.email, s);
+        avisar("Abrimos o seu aplicativo de e-mail com a mensagem. Confira e envie por lá para concluir.");
+      } else {
+        const ok = await copiarTexto(textoDaSolicitacao(s, "email"));
+        avisar(
+          ok
+            ? `Resumo copiado. Cole onde preferir ou envie para ${dados.email}.`
+            : "Não foi possível copiar automaticamente. Use os botões de WhatsApp ou e-mail.",
+        );
+      }
+    });
+  });
+
+  // ---------- Barra do celular: some quando a revisão ou o rodapé estão na tela ----------
+  const barra = $<HTMLElement>("#barra-resumo")!;
+  const visiveis = new Set<Element>();
+  const observador = new IntersectionObserver((entradas) => {
+    entradas.forEach((e) => (e.isIntersecting ? visiveis.add(e.target) : visiveis.delete(e.target)));
+    barra.toggleAttribute("data-oculta", visiveis.size > 0);
+  });
+  document.querySelectorAll("#revisar, body > footer").forEach((alvo) => observador.observe(alvo));
+
+  // ---------- Demonstrações ----------
+  const janela = $<HTMLDialogElement>("#janela-demo")!;
+  const quadro = $<HTMLElement>("#demo-quadro")!;
+  const marcarDemo = $<HTMLButtonElement>("[data-marcar-demo]")!;
+  let demoAtual = "";
+  let quemAbriu: HTMLElement | null = null;
+  let limparDemo = () => {};
+
+  const checkboxDe = (id: string) => form.querySelector<HTMLInputElement>(`input[name="componentes"][value="${id}"]`)!;
+  const rotuloMarcar = () => {
+    const marcado = checkboxDe(demoAtual).checked;
+    marcarDemo.textContent = marcado ? "Remover do site" : "Adicionar ao site";
+    marcarDemo.setAttribute("aria-pressed", String(marcado));
+  };
+
+  function abrirDemo(id: string, origem: HTMLElement) {
+    const tpl = document.querySelector<HTMLTemplateElement>(`template[data-demo="${id}"]`);
+    if (!tpl) return;
+    demoAtual = id;
+    quemAbriu = origem;
+    quadro.replaceChildren(tpl.content.cloneNode(true));
+    quadro.style.setProperty("--c", corEscolhida() || "#2F91C9");
+    quadro.dataset.estilo = radio("estilo") || "moderno";
+    limparDemo();
+    limparDemo = iniciarDemo(quadro);
+    $("#demo-titulo")!.textContent = dados.componentes[id] ?? id;
+    rotuloMarcar();
+    janela.showModal();
+  }
+
+  document.querySelectorAll<HTMLButtonElement>("[data-abrir-demo]").forEach((b) =>
+    b.addEventListener("click", () => abrirDemo(b.dataset.abrirDemo!, b)),
+  );
+  $("[data-fechar-demo]")!.addEventListener("click", () => janela.close());
+  janela.addEventListener("click", (e) => {
+    if (e.target === janela) janela.close();
+  });
+  janela.addEventListener("close", () => {
+    // O evento chega depois do fechamento; se outra demo já foi aberta, não interromper a nova.
+    if (janela.open) return;
+    limparDemo();
+    quemAbriu?.focus();
+  });
+  // Esc com a imagem da galeria ampliada fecha só a imagem, não a janela.
+  janela.addEventListener("cancel", (e) => {
+    if (fecharLightbox(quadro)) e.preventDefault();
+  });
+  marcarDemo.addEventListener("click", () => {
+    const cb = checkboxDe(demoAtual);
+    cb.checked = !cb.checked;
+    rotuloMarcar();
+    atualizarResumos();
+  });
+  document.querySelectorAll<HTMLButtonElement>("[data-largura]").forEach((b) =>
+    b.addEventListener("click", () => {
+      quadro.style.maxWidth = b.dataset.largura ? `${b.dataset.largura}px` : "";
+      document.querySelectorAll("[data-largura]").forEach((o) => o.setAttribute("aria-pressed", String(o === b)));
+    }),
+  );
+  ligarDemos(quadro);
+</script>

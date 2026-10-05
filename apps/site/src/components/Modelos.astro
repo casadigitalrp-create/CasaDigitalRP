@@ -1,0 +1,117 @@
+---
+import { nomeDoComponente } from "../data/componentes";
+import { modelos } from "../data/modelos";
+import PreviewModelo from "./PreviewModelo.astro";
+
+interface Props {
+  id?: string;
+  eyebrow?: string;
+  titulo?: string;
+  texto?: string;
+  rodape?: boolean;
+}
+const {
+  id = "modelos",
+  eyebrow = "Modelos de site",
+  titulo = "Veja como o seu próximo site pode ser",
+  texto = "Explore quatro pontos de partida. O visual, o conteúdo e os componentes serão personalizados para o seu negócio.",
+  rodape = true,
+} = Astro.props;
+const tituloId = `${id}-titulo`;
+const trilhaId = `${id}-trilha`;
+---
+<section id={id} aria-labelledby={tituloId} class="modelos scroll-mt-20 bg-[#f4f9fd] text-marinho">
+  <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+    <div class="max-w-2xl">
+      <p class="text-sm font-bold tracking-[0.18em] text-azul-texto uppercase">{eyebrow}</p>
+      <h2 id={tituloId} class="mt-3 text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">{titulo}</h2>
+      <p class="mt-4 text-lg leading-relaxed text-marinho/75">{texto}</p>
+    </div>
+    <div class="carousel mt-10" role="region" aria-roledescription="carrossel" aria-label="Modelos de sites">
+      <div class="controles mb-5 hidden flex-wrap items-center justify-between gap-4">
+        <div class="flex flex-wrap gap-2" aria-label="Escolher modelo">
+          {modelos.map((m, i) => <button type="button" data-index={i} aria-controls={trilhaId} aria-current={i === 0 ? "true" : undefined} class="seletor rounded-full border border-marinho/15 bg-white px-4 py-2.5 text-sm font-bold transition-colors hover:border-azul-texto">{m.titulo}</button>)}
+        </div>
+        <div class="flex gap-2">
+          <button type="button" data-anterior aria-label="Modelo anterior" aria-controls={trilhaId} class="seta grid h-11 w-11 place-items-center rounded-full border border-marinho/20 bg-white text-xl hover:bg-azul/20">←</button>
+          <button type="button" data-proximo aria-label="Próximo modelo" aria-controls={trilhaId} class="seta grid h-11 w-11 place-items-center rounded-full border border-marinho/20 bg-white text-xl hover:bg-azul/20">→</button>
+        </div>
+      </div>
+      <ul id={trilhaId} class="trilha" tabindex="0" aria-label="Prévias dos modelos. Use as setas do teclado ou deslize para navegar.">
+        {modelos.map((m, i) => <li class="slide" data-titulo={m.titulo} aria-label={`${i + 1} de ${modelos.length}: ${m.titulo}`} aria-roledescription="slide">
+          <div class="grid items-center gap-8 rounded-3xl border border-marinho/10 bg-white p-5 shadow-sm sm:p-8 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
+            <div class="min-w-0 rounded-2xl bg-[#edf4f9] p-3 sm:p-5"><PreviewModelo modelo={m.slug} /><p class="mt-4 text-center text-xs font-semibold text-marinho/70">Prévia demonstrativa. Seu site terá a identidade do seu negócio.</p></div>
+            <div class="min-w-0">
+              <span class="text-sm font-bold tracking-widest text-azul-texto uppercase">Modelo 0{i + 1}</span>
+              <h3 class="mt-3 text-2xl font-extrabold tracking-tight sm:text-3xl">{m.titulo}</h3>
+              <p class="mt-4 text-lg leading-relaxed text-marinho/75">{m.resumo}</p>
+              <p class="mt-4 text-sm leading-relaxed text-marinho/75"><strong class="text-marinho">Ideal para:</strong> {m.idealPara}</p>
+              <ul class="mt-5 flex flex-wrap gap-2" aria-label={`Componentes sugeridos para ${m.titulo}`}>
+                {m.componentes.map((c) => <li class="rounded-full bg-azul/15 px-3 py-1 text-sm font-semibold">{nomeDoComponente(c)}</li>)}
+              </ul>
+              <a href={`/vitrine/?modelo=${m.slug}`} class="mt-7 inline-flex items-center justify-center gap-3 rounded-full bg-marinho px-6 py-3.5 font-bold text-white transition-colors hover:bg-azul-texto">Montar este modelo<span class="sr-only">: {m.titulo}</span><span aria-hidden="true">→</span></a>
+              <p class="mt-3 text-sm text-marinho/65">Escolha os componentes. Receba uma proposta personalizada.</p>
+            </div>
+          </div>
+        </li>)}
+      </ul>
+      <p class="status mt-5 text-center text-sm font-semibold text-marinho/75" aria-live="polite" aria-atomic="true">Modelo 1 de 4 · {modelos[0]?.titulo}</p>
+      <p class="mt-2 text-center text-sm text-marinho/65">Use os botões ou deslize para ver os outros modelos.</p>
+    </div>
+    <slot />
+    {rodape && <p class="mt-10 text-center text-[17px] text-marinho/80">Já tem um site? Também cuidamos da evolução e da manutenção. <a href="/servicos/#evolucao" class="font-bold text-azul-texto underline underline-offset-4 hover:text-marinho">Conheça os serviços</a></p>}
+  </div>
+</section>
+<style>
+  .trilha { position:relative; display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:24px; padding:2px 2px 14px; scrollbar-width:thin; scrollbar-color:#1d6a97 #dce5ee; }
+  .slide { flex:0 0 100%; min-width:0; scroll-snap-align:start; scroll-snap-stop:always; }
+  .seletor[aria-current="true"] { background:#07111f; color:white; border-color:#07111f; }
+</style>
+<script>
+  document.querySelectorAll<HTMLElement>(".carousel").forEach((carousel) => {
+    const trilha = carousel.querySelector<HTMLElement>(".trilha");
+    const controles = carousel.querySelector<HTMLElement>(".controles");
+    const slides = [...carousel.querySelectorAll<HTMLElement>(".slide")];
+    const seletores = [...carousel.querySelectorAll<HTMLButtonElement>("[data-index]")];
+    const status = carousel.querySelector<HTMLElement>(".status");
+    const primeira = slides[0];
+    if (!trilha || !controles || !primeira) return;
+    controles.classList.replace("hidden", "flex");
+    let atual = 0;
+    let destinoPendente: number | null = null;
+    const atualizar = (indice: number) => {
+      atual = indice;
+      seletores.forEach((botao, i) => { if (i === atual) botao.setAttribute("aria-current", "true"); else botao.removeAttribute("aria-current"); });
+      slides.forEach((slide, i) => { slide.inert = i !== atual; });
+      if (status) status.textContent = `Modelo ${atual + 1} de ${slides.length} · ${slides[atual]?.dataset.titulo}`;
+    };
+    const navegar = (indice: number) => {
+      const destino = (indice + slides.length) % slides.length;
+      destinoPendente = destino;
+      atualizar(destino);
+      trilha.scrollTo({ left: (slides[destino] ?? primeira).offsetLeft - primeira.offsetLeft, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+    };
+    seletores.forEach((botao, i) => { botao.addEventListener("click", () => navegar(i)); });
+    carousel.querySelector("[data-anterior]")?.addEventListener("click", () => navegar(atual - 1));
+    carousel.querySelector("[data-proximo]")?.addEventListener("click", () => navegar(atual + 1));
+    trilha.addEventListener("keydown", (evento) => {
+      if (evento.key === "ArrowRight" || evento.key === "ArrowLeft") { evento.preventDefault(); navegar(atual + (evento.key === "ArrowRight" ? 1 : -1)); }
+    });
+    let quadro = 0;
+    trilha.addEventListener("scroll", () => {
+      cancelAnimationFrame(quadro);
+      quadro = requestAnimationFrame(() => {
+        const indice = slides.reduce((melhor, slide, i) => Math.abs(slide.offsetLeft - primeira.offsetLeft - trilha.scrollLeft) < Math.abs((slides[melhor] ?? primeira).offsetLeft - primeira.offsetLeft - trilha.scrollLeft) ? i : melhor, 0);
+        if (destinoPendente !== null) {
+          if (Math.abs((slides[destinoPendente] ?? primeira).offsetLeft - primeira.offsetLeft - trilha.scrollLeft) < 3) destinoPendente = null;
+          else return;
+        }
+        if (indice !== atual) atualizar(indice);
+      });
+    }, { passive: true });
+    trilha.addEventListener("pointerdown", () => { destinoPendente = null; });
+    trilha.addEventListener("wheel", () => { destinoPendente = null; }, { passive: true });
+    window.addEventListener("resize", () => { destinoPendente = null; trilha.scrollTo({ left: (slides[atual] ?? primeira).offsetLeft - primeira.offsetLeft, behavior:"instant" }); });
+    atualizar(0);
+  });
+</script>

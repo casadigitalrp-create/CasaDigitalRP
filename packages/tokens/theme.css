@@ -1,0 +1,29 @@
+/*
+ * Design tokens da Casa Digital RP.
+ * Compartilhados por todos os apps (site e demos) via Tailwind 4 `@theme`.
+ * As cores `brand-*` atendem as demos; o site usa as cores nomeadas da identidade V3.
+ */
+@theme {
+  --color-brand-50: oklch(0.97 0.02 250);
+  --color-brand-100: oklch(0.93 0.04 250);
+  --color-brand-500: oklch(0.6 0.17 250);
+  --color-brand-600: oklch(0.52 0.18 250);
+  --color-brand-900: oklch(0.28 0.08 250);
+
+  /* Identidade V3 (docs/marca). O dourado é só detalhe: nunca texto pequeno sobre branco. */
+  --color-marinho: #07111f;
+  --color-marinho-claro: #0e1d33;
+  --color-azul: #71c8f5;
+  --color-azul-medio: #2f91c9;
+  --color-dourado: #ffd36d;
+  /* Tom do azul da marca escurecido para texto pequeno sobre fundo claro (contraste AA ≈ 5,9:1). */
+  --color-azul-texto: #1d6a97;
+
+  --color-ink: oklch(0.2 0.02 260);
+  --color-paper: oklch(0.99 0 0);
+
+  --font-sans: var(--font-inter, ui-sans-serif, system-ui, sans-serif);
+  --font-display: var(--font-inter, ui-sans-serif, system-ui, sans-serif);
+
+  --radius-card: 1rem;
+}

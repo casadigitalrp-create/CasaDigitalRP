@@ -1,0 +1,77 @@
+---
+// Comparativo de JavaScript entre as versões do Café Aurora: barras horizontais (uma série, uma
+// cor), ordenadas da mais leve para a mais pesada. Os valores ficam sempre escritos ao lado da
+// barra, então a leitura nunca depende só da cor ou do tamanho.
+import { dataMedicao, stacks } from "../data/stacks";
+
+const medidas = [...stacks].sort((a, b) => a.medicao.jsKb - b.medicao.jsKb);
+const maiorJs = Math.max(...medidas.map((s) => s.medicao.jsKb));
+const largura = (kb: number) => `${(kb / maiorJs) * 100}%`;
+---
+
+<figure>
+  <!-- Telas médias e grandes: tabela com barras -->
+  <table class="hidden w-full text-left sm:table">
+    <caption class="sr-only">
+      JavaScript enviado ao navegador, desempenho e bloqueio da tela em cada versão do Café Aurora
+    </caption>
+    <thead>
+      <tr class="border-b border-marinho/15 text-sm text-marinho/70">
+        <th scope="col" class="py-3 pr-4 font-bold">Tecnologia</th>
+        <th scope="col" class="w-1/2 py-3 pr-4 font-bold">JavaScript enviado</th>
+        <th scope="col" class="py-3 pr-4 text-right font-bold">Desempenho</th>
+        <th scope="col" class="py-3 text-right font-bold">Bloqueio da tela</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        medidas.map((s) => (
+          <tr class="border-b border-marinho/10 transition-colors hover:bg-[#f4f9fd]">
+            <th scope="row" class="py-4 pr-4 font-extrabold">
+              {s.nome}
+              <span class="block text-sm font-normal text-marinho/70">{s.base}</span>
+            </th>
+            <td class="py-4 pr-4">
+              <div class="flex items-center gap-3">
+                <div class="h-3 flex-1" aria-hidden="true">
+                  <div class="h-3 rounded-r bg-azul-medio" style={`width: ${largura(s.medicao.jsKb)}`} />
+                </div>
+                <span class="w-16 shrink-0 text-right font-bold tabular-nums">{s.medicao.jsKb} KB</span>
+              </div>
+            </td>
+            <td class="py-4 pr-4 text-right whitespace-nowrap tabular-nums">{s.medicao.desempenho}</td>
+            <td class="py-4 text-right whitespace-nowrap text-marinho/70 tabular-nums">{s.medicao.bloqueio}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  <!-- Celular: os mesmos dados em cartões -->
+  <ul class="space-y-3 sm:hidden">
+    {
+      medidas.map((s) => (
+        <li class="rounded-xl border border-marinho/10 p-4">
+          <div class="flex items-baseline justify-between gap-4">
+            <p class="font-extrabold">{s.nome}</p>
+            <p class="font-bold tabular-nums">{s.medicao.jsKb} KB de JS</p>
+          </div>
+          <div class="mt-2 h-2" aria-hidden="true">
+            <div class="h-2 rounded-r bg-azul-medio" style={`width: ${largura(s.medicao.jsKb)}`} />
+          </div>
+          <p class="mt-2 text-sm text-marinho/70">
+            Desempenho <span class="whitespace-nowrap">{s.medicao.desempenho}</span> · bloqueio{" "}
+            <span class="whitespace-nowrap">{s.medicao.bloqueio}</span>
+          </p>
+        </li>
+      ))
+    }
+  </ul>
+
+  <figcaption class="mt-4 text-sm leading-relaxed text-marinho/70">
+    A mesma página do Café Aurora em cada tecnologia, medida com o Google Lighthouse (perfil
+    celular) em {dataMedicao}. Desempenho de 0 a 100; quanto menos JavaScript e bloqueio, mais rápido
+    o site responde. Todas as versões tiveram nota 100 em acessibilidade e boas práticas. Resultados de
+    laboratório variam conforme o aparelho e a rede.
+  </figcaption>
+</figure>

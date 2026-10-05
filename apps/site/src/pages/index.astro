@@ -1,0 +1,28 @@
+---
+import Creditos from "../components/Creditos.astro";
+import Cta from "../components/Cta.astro";
+import DadosEstruturados from "../components/DadosEstruturados.astro";
+import Faq from "../components/Faq.astro";
+import Hero from "../components/Hero.astro";
+import Modelos from "../components/Modelos.astro";
+import Processo from "../components/Processo.astro";
+import VideoConheca from "../components/VideoConheca.astro";
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Criação de sites em Ribeirão Preto" description="Sites profissionais em Ribeirão Preto: institucional, catálogo, campanha e serviços com agendamento. Monte seu projeto na vitrine da CasaDigitalRP e solicite uma proposta.">
+  <DadosEstruturados slot="head" />
+  <Hero />
+
+  <Modelos />
+
+  <VideoConheca />
+
+  <Processo />
+
+  <Creditos />
+
+  <Faq />
+
+  <Cta />
+</Base>

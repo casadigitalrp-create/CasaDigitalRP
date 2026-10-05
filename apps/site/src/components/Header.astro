@@ -1,0 +1,98 @@
+---
+import { ctaPrincipal, nav, site } from "../data/site";
+
+const path = Astro.url.pathname.endsWith("/") ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const isActive = (href: string) => path === href || path.startsWith(href);
+---
+
+<header class="sticky top-0 z-40 border-b border-dourado/60 bg-marinho/95 text-white backdrop-blur">
+  <div class="mx-auto flex h-20 max-w-6xl items-center justify-between gap-6 px-4 sm:px-6">
+    <a href="/" class="shrink-0 rounded-md" aria-label={`${site.name}, página inicial`}>
+      <img src="/marca/logo-cabecalho-escuro.svg" alt="" width="240" height="60" class="h-[60px] w-[240px]" />
+    </a>
+
+    <nav aria-label="Principal" class="hidden lg:block">
+      <ul class="flex items-center gap-7 text-[15px] font-semibold">
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isActive(item.href) ? "page" : undefined}
+                class="relative py-2 text-white/75 transition-colors hover:text-white aria-[current=page]:text-azul aria-[current=page]:after:absolute aria-[current=page]:after:inset-x-0 aria-[current=page]:after:-bottom-0.5 aria-[current=page]:after:h-0.5 aria-[current=page]:after:rounded-full aria-[current=page]:after:bg-azul"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <a
+      href={ctaPrincipal.href}
+      class="hidden rounded-full bg-azul px-5 py-2.5 text-[15px] font-bold text-marinho transition-colors hover:bg-white lg:inline-block"
+    >
+      {ctaPrincipal.label}
+    </a>
+
+    <button
+      id="menu-toggle"
+      type="button"
+      class="rounded-lg p-2 text-white lg:hidden"
+      aria-expanded="false"
+      aria-controls="menu-mobile"
+      aria-label="Abrir menu"
+    >
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path class="menu-aberto" d="M4 7h16M4 12h16M4 17h16"></path>
+        <path class="menu-fechado hidden" d="M6 6l12 12M18 6L6 18"></path>
+      </svg>
+    </button>
+  </div>
+
+  <nav id="menu-mobile" aria-label="Principal (celular)" class="hidden border-t border-white/10 lg:hidden">
+    <ul class="mx-auto flex max-w-6xl flex-col px-4 py-4 text-lg font-semibold sm:px-6">
+      {
+        nav.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              aria-current={isActive(item.href) ? "page" : undefined}
+              class="block py-3 text-white/85 aria-[current=page]:text-azul"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="pt-3">
+        <a
+          href={ctaPrincipal.href}
+          class="block rounded-full bg-azul px-5 py-3 text-center font-bold text-marinho"
+        >
+          {ctaPrincipal.label}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("menu-mobile");
+  const setOpen = (open: boolean) => {
+    toggle?.setAttribute("aria-expanded", String(open));
+    toggle?.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+    toggle?.querySelector(".menu-aberto")?.classList.toggle("hidden", open);
+    toggle?.querySelector(".menu-fechado")?.classList.toggle("hidden", !open);
+    menu?.classList.toggle("hidden", !open);
+  };
+  toggle?.addEventListener("click", () => setOpen(toggle.getAttribute("aria-expanded") !== "true"));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && toggle?.getAttribute("aria-expanded") === "true") {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+</script>

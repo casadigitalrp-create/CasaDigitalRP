@@ -57,3 +57,38 @@ O repositório usado pela Cloudflare é [casadigitalrp-create/CasaDigitalRP](htt
 A conexão funcionou após alinhar o repositório com a conta GitHub onde o aplicativo Cloudflare Workers and Pages está instalado. O repositório anterior em `Guga-Nascimento/CasaDigitalRP` foi preservado; o remoto `origin` deste projeto local agora aponta para a conta da empresa.
 
 Atualização verificada em 03/10/2026: tanto `https://casadigitalrp.pages.dev` quanto `https://casadigitalrp.com.br` responderam com HTTP 200. O domínio personalizado está ativo e servindo o site publicado pela Cloudflare.
+
+## Atualização V3 de 04/10/2026
+
+O novo código do site está em `apps/site`, com Astro estático, TypeScript e Tailwind.
+Os pacotes de marca e configuração ficam em `packages/`. Os arquivos HTML antigos e o
+script anterior foram preservados como histórico; não fazem parte da nova saída publicada.
+Não há Functions, Workers, banco de dados ou integrações pagas.
+
+Requisitos: Node 24.19.0 e pnpm 11.19.0, definidos nos arquivos do projeto.
+
+```powershell
+pnpm install --frozen-lockfile
+pnpm check
+pnpm lint
+pnpm build
+pnpm --filter @cdrp/site preview
+```
+
+A saída de produção é `apps/site/dist`. A Cloudflare deve usar a raiz do repositório,
+`pnpm install --frozen-lockfile && pnpm build` e essa saída. Variáveis de build:
+`NODE_VERSION=24.19.0`, `PNPM_VERSION=11.19.0`, `SKIP_DEPENDENCY_INSTALL=1`
+e `ASTRO_TELEMETRY_DISABLED=1`. Não executar `scripts/build.mjs` para a versão V3.
+
+O carrossel oferece quatro modelos demonstrativos e leva à vitrine com o modelo escolhido.
+O vídeo editado é versionado em `apps/site/public/video/conheca-casadigitalrp.mp4`.
+Os arquivos brutos ficam na pasta original de materiais e não são publicados.
+
+As páginas antigas `.html` redirecionam para as novas rotas. A política descreve os
+formulários locais, que preparam mensagens sem confirmar envio. O identificador fiscal
+inválido foi retirado, não corrigido por suposição. Revisão jurídica e legendas do vídeo
+continuam pendentes; isso não equivale a certificação jurídica ou acessibilidade completa.
+
+Para reverter a publicação, usar a implantação Pages anterior
+`320ba123-015e-4e9c-9290-ff097c8069cb`. O código anterior permanece no commit `1740a7b`.
+Reverter uma implantação não altera automaticamente as configurações de build.

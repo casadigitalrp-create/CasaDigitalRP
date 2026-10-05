@@ -1,0 +1,194 @@
+---
+import Creditos from "../components/Creditos.astro";
+import Cta from "../components/Cta.astro";
+import Modelos from "../components/Modelos.astro";
+import PageHeader from "../components/PageHeader.astro";
+import Processo from "../components/Processo.astro";
+import { whatsappCom } from "../data/site";
+import Base from "../layouts/Base.astro";
+
+const atalhos = [
+  { href: "#criacao", label: "Criação de sites" },
+  { href: "#creditos", label: "Créditos de atualização" },
+  { href: "#evolucao", label: "Evolução e manutenção" },
+];
+
+const emTodoSite = [
+  { titulo: "Pensado para o celular", texto: "E testado também em tablets e computadores." },
+  {
+    titulo: "Contato pelo WhatsApp",
+    texto: "Botões com mensagem pronta para o cliente falar com você.",
+  },
+  {
+    titulo: "Organizado para buscadores",
+    texto: "Títulos, descrições e estrutura que ajudam o Google a entender o site.",
+  },
+  {
+    titulo: "Você aprova cada etapa",
+    texto: "Proposta, prévia e ajustes combinados antes de publicar.",
+  },
+];
+
+const usosDosCreditos = [
+  "Trocar fotos e textos",
+  "Atualizar horários, endereço e contatos",
+  "Incluir uma novidade, promoção ou aviso",
+  "Fazer pequenos ajustes de layout",
+];
+
+const evolucoes = [
+  {
+    titulo: "Atualizar o conteúdo",
+    texto: "Textos, fotos, horários e informações de contato sempre em dia.",
+    icone: "M4 20h4L19 9l-4-4L4 16v4ZM13.5 6.5l4 4",
+  },
+  {
+    titulo: "Novas seções e páginas",
+    texto: "Incluir um serviço, uma galeria ou uma página de campanha.",
+    icone: "M12 5v14M5 12h14",
+  },
+  {
+    titulo: "Ajustes para o celular",
+    texto: "Corrigir partes que não aparecem bem em telas pequenas.",
+    icone: "M8 3h8a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1ZM11 18h2",
+  },
+  {
+    titulo: "Velocidade e organização",
+    texto: "Deixar o site mais rápido e mais bem organizado para buscadores.",
+    icone: "M13 3 4 14h7l-1 7 9-11h-7l1-7Z",
+  },
+];
+
+const whatsappAvaliacao = whatsappCom("Olá! Já tenho um site e gostaria de uma avaliação.");
+const icone = "grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-marinho text-azul";
+---
+
+<Base
+  title="Serviços"
+  description="Criação de sites institucionais, catálogos, páginas de campanha e sites de serviços, além de evolução, manutenção e créditos de atualização para manter o seu site em dia."
+>
+  <PageHeader
+    eyebrow="Serviços"
+    title="Do primeiro site às atualizações do dia a dia"
+    text="Criamos o site do seu negócio, mantemos tudo atualizado com créditos de atualização e cuidamos da evolução de sites que já existem."
+  >
+    <nav aria-label="Nesta página" class="mt-8">
+      <ul class="flex flex-wrap gap-3 text-[15px] font-semibold">
+        {
+          atalhos.map((a) => (
+            <li>
+              <a href={a.href} class="block rounded-full border border-white/15 bg-white/5 px-4 py-2 transition-colors hover:border-azul hover:text-azul">
+                {a.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </PageHeader>
+
+  <Modelos
+    id="criacao"
+    eyebrow="Criação de sites"
+    titulo="Um site feito para o tipo do seu negócio"
+    texto="Partimos de um dos quatro modelos e montamos o site com os componentes que você precisa. Sem preço de tabela: a proposta é feita para o que você escolher."
+    rodape={false}
+  >
+    <div class="mt-10 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-marinho/10 sm:p-8">
+      <h3 class="text-lg font-extrabold">Em todo site</h3>
+      <ul class="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          emTodoSite.map((item) => (
+            <li class="flex gap-3">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0 text-azul-medio" aria-hidden="true">
+                <path d="M5 12.5l4.5 4.5L19 7.5" />
+              </svg>
+              <span>
+                <span class="block font-bold">{item.titulo}</span>
+                <span class="mt-0.5 block text-[15px] leading-snug text-marinho/70">{item.texto}</span>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </Modelos>
+
+  <Processo />
+
+  <Creditos id="creditos" comLink={false}>
+    <div class="mt-12 rounded-2xl border border-azul/25 bg-white/[0.04] p-6 sm:p-8">
+      <h3 class="text-lg font-extrabold">Para que servem os créditos</h3>
+      <ul class="mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+        {
+          usosDosCreditos.map((uso) => (
+            <li class="flex items-center gap-3 text-white/85">
+              <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-dourado" aria-hidden="true"></span>
+              {uso}
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-6 border-t border-white/10 pt-5 text-[15px] text-white/70">
+        A quantidade de créditos é definida no seu contrato e pode ser complementada quando você precisar.
+      </p>
+    </div>
+  </Creditos>
+
+  <section id="evolucao" aria-labelledby="evolucao-titulo" class="scroll-mt-20 bg-[#f4f9fd] text-marinho">
+    <div class="mx-auto grid max-w-6xl gap-12 px-4 py-20 sm:px-6 sm:py-24 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+      <div>
+        <p class="text-sm font-bold tracking-[0.18em] text-azul-texto uppercase">Evolução e manutenção</p>
+        <h2 id="evolucao-titulo" class="mt-3 text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">
+          Já tem um site? A gente cuida dele
+        </h2>
+        <p class="mt-4 text-lg leading-relaxed text-marinho/75">
+          Avaliamos o site que você já tem e indicamos o melhor caminho: ajustar, evoluir ou, quando
+          for o caso, recomeçar.
+        </p>
+        <p class="mt-5 rounded-xl border-l-4 border-azul-medio bg-white px-4 py-3 text-[15px] leading-relaxed text-marinho/80">
+          Trabalhamos sobre sites existentes quando isso é tecnicamente viável. Quando não for,
+          explicamos o motivo e o que pode ser feito.
+        </p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          {
+            whatsappAvaliacao && (
+              <a
+                href={whatsappAvaliacao}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="rounded-full bg-marinho px-6 py-3 text-center font-bold text-white transition-colors hover:bg-azul-medio"
+              >
+                Pedir uma avaliação<span class="sr-only"> pelo WhatsApp (abre em nova aba)</span>
+              </a>
+            )
+          }
+          <a
+            href="/contato/"
+            class="rounded-full border border-marinho/20 px-6 py-3 text-center font-bold transition-colors hover:border-azul-medio hover:text-azul-texto"
+          >
+            Outras formas de contato
+          </a>
+        </div>
+      </div>
+
+      <ul class="grid gap-4 sm:grid-cols-2">
+        {
+          evolucoes.map((e) => (
+            <li class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-marinho/10">
+              <span class={icone}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d={e.icone} />
+                </svg>
+              </span>
+              <h3 class="mt-4 text-lg font-extrabold">{e.titulo}</h3>
+              <p class="mt-1.5 leading-relaxed text-marinho/70">{e.texto}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <Cta title="Vamos cuidar do site do seu negócio?" />
+</Base>

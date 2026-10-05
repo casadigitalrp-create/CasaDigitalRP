@@ -1,0 +1,10 @@
+# Redirecionamentos 301 lidos pelo Cloudflare Pages.
+# URLs do site anterior, conforme o sitemap publicado em casadigitalrp.com.br (levantamento de 04/10/2026).
+/servicos.html    /servicos/                  301
+/portfolio.html   /portfolio/                 301
+/sobre.html       /sobre/                     301
+/contato.html     /contato/                   301
+# Endereço antigo da política neste repositório.
+/privacidade      /politica-de-privacidade/   301
+/privacidade/     /politica-de-privacidade/   301
+/sitemap.xml      /sitemap-index.xml         301

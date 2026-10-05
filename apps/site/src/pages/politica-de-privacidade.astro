@@ -1,0 +1,189 @@
+---
+// Rascunho: revisar com advogado antes da publicação (ver docs/juridico/README.md).
+// Atualizar este texto sempre que o site passar a coletar novos dados (analytics, cookies, envio por servidor).
+import PageHeader from "../components/PageHeader.astro";
+import { site } from "../data/site";
+import Base from "../layouts/Base.astro";
+
+const atualizadoEm = "4 de outubro de 2026";
+
+const secoes = [
+  { id: "quem-somos", titulo: "Quem somos" },
+  { id: "dados", titulo: "Quais dados tratamos" },
+  { id: "formularios", titulo: "Como funcionam os formulários" },
+  { id: "cookies", titulo: "Cookies e serviços de terceiros" },
+  { id: "finalidades", titulo: "Para que usamos os dados" },
+  { id: "bases-legais", titulo: "Bases legais" },
+  { id: "compartilhamento", titulo: "Com quem compartilhamos" },
+  { id: "retencao", titulo: "Por quanto tempo guardamos" },
+  { id: "seguranca", titulo: "Segurança" },
+  { id: "direitos", titulo: "Seus direitos" },
+  { id: "alteracoes", titulo: "Alterações" },
+];
+
+const resumo = [
+  "Não usamos cookies, ferramentas de estatística nem publicidade.",
+  "Os formulários não enviam nada para o site: eles montam uma mensagem que você mesmo envia pelo WhatsApp ou por e-mail.",
+  "Nada do que você digita fica salvo no site ou no seu navegador.",
+  "Você pode pedir acesso, correção ou exclusão dos seus dados quando quiser.",
+];
+
+const email = `mailto:${site.email}`;
+---
+
+<Base
+  title="Política de Privacidade"
+  description={`Como a ${site.name} trata os dados pessoais de quem visita o site ou entra em contato, conforme a Lei Geral de Proteção de Dados (LGPD).`}
+>
+  <PageHeader
+    eyebrow="Privacidade"
+    title="Política de Privacidade"
+    text={`Como a ${site.name} trata os seus dados, conforme a Lei Geral de Proteção de Dados (Lei nº 13.709/2018).`}
+  />
+
+  <div class="bg-[#f4f9fd] text-marinho">
+    <div class="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[15rem_1fr] lg:py-20">
+      <nav aria-label="Seções da política" class="hidden lg:block">
+        <div class="sticky top-28">
+          <p class="text-sm font-bold tracking-[0.18em] text-azul-texto uppercase">Nesta página</p>
+          <ol class="mt-4 space-y-2 border-l-2 border-marinho/10 text-[15px]">
+            {
+              secoes.map((s, i) => (
+                <li>
+                  <a href={`#${s.id}`} class="-ml-0.5 block border-l-2 border-transparent py-0.5 pl-4 text-marinho/70 hover:border-azul-medio hover:text-marinho">
+                    {i + 1}. {s.titulo}
+                  </a>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </nav>
+
+      <article
+        class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-marinho/10 sm:p-10 [&_a]:font-semibold [&_a]:text-azul-texto [&_a]:underline [&_a]:underline-offset-4 [&_h2]:mt-12 [&_h2]:scroll-mt-28 [&_h2]:text-2xl [&_h2]:font-extrabold [&_h2]:tracking-tight [&_h2]:text-marinho [&_li]:mt-2 [&_p]:mt-4 [&_p]:leading-relaxed [&_ul]:mt-4 [&_ul]:list-disc [&_ul]:pl-6 text-marinho/80"
+      >
+        <p class="text-sm text-marinho/60">Última atualização: {atualizadoEm}</p>
+
+        <section aria-labelledby="resumo-titulo" class="mt-6 rounded-2xl bg-marinho p-6 text-white sm:p-8">
+          <h2 id="resumo-titulo" class="mt-0! text-xl! text-white!">Em poucas palavras</h2>
+          <ul class="list-none! pl-0!">
+            {
+              resumo.map((r) => (
+                <li class="flex gap-3 text-white/85">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0 text-dourado" aria-hidden="true">
+                    <path d="M5 12.5l4.5 4.5L19 7.5" />
+                  </svg>
+                  {r}
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <h2 id="quem-somos">1. Quem somos</h2>
+        <p>
+          Este é o site da {site.name}, com atuação em {site.city}. A {site.name} é responsável pelos dados pessoais tratados por
+          meio deste site. Para qualquer assunto sobre privacidade e dados pessoais, o canal é o
+          e-mail <a href={email}>{site.email}</a>.
+        </p>
+
+        <h2 id="dados">2. Quais dados tratamos</h2>
+        <ul>
+          <li>
+            <strong>Dados que você nos envia:</strong> quando você fala com a gente pelo WhatsApp, por
+            e-mail, pelo formulário de contato ou pela vitrine de soluções, recebemos as informações
+            que você decidir incluir na mensagem, como nome, nome e segmento do negócio, endereço do
+            site atual, preferências do projeto e o texto da mensagem. Também recebemos o seu número
+            de WhatsApp ou o seu endereço de e-mail, que identificam a conversa.
+          </li>
+          <li>
+            <strong>Dados técnicos de acesso:</strong> como em qualquer site, o provedor de hospedagem
+            registra dados técnicos das visitas, como endereço IP, tipo de navegador, data e hora,
+            para entregar as páginas e proteger o site contra abusos.
+          </li>
+        </ul>
+
+        <h2 id="formularios">3. Como funcionam os formulários</h2>
+        <p>
+          O formulário de contato e a vitrine de soluções funcionam inteiramente no seu navegador. Ao
+          clicar em enviar, abrimos o seu WhatsApp ou o seu aplicativo de e-mail com a mensagem pronta:
+          nada é transmitido para o nosso site. Os dados só chegam até nós se você confirmar o envio no
+          aplicativo escolhido. Nada do que você digita fica salvo no site ou no seu navegador.
+        </p>
+
+        <h2 id="cookies">4. Cookies e serviços de terceiros</h2>
+        <p>
+          Este site não usa cookies, ferramentas de estatística (analytics), pixels de publicidade nem
+          scripts de terceiros. As fontes, as imagens e o vídeo são servidos pelo próprio site. Se isso
+          mudar, esta política será atualizada antes.
+        </p>
+        <p>
+          Ao seguir um link para o WhatsApp ou para o seu aplicativo de e-mail, você passa a usar
+          esses serviços, que têm políticas de privacidade próprias.
+        </p>
+
+        <h2 id="finalidades">5. Para que usamos os dados</h2>
+        <ul>
+          <li>Responder ao seu contato e tirar dúvidas.</li>
+          <li>Preparar propostas a partir do que você solicitou.</li>
+          <li>Executar o contrato, caso você se torne cliente.</li>
+          <li>Manter o site seguro e funcionando.</li>
+        </ul>
+        <p>Não vendemos nem alugamos os seus dados para ninguém.</p>
+
+        <h2 id="bases-legais">6. Bases legais</h2>
+        <p>
+          Tratamos os dados com base no seu consentimento, informado no formulário de contato; na
+          execução de procedimentos preliminares a um contrato solicitado por você, como o preparo de
+          uma proposta; no cumprimento de obrigações legais, quando houver contratação; e no nosso
+          legítimo interesse em manter o site seguro (art. 7º da LGPD).
+        </p>
+
+        <h2 id="compartilhamento">7. Com quem compartilhamos</h2>
+        <p>
+          Os dados podem passar pelos serviços que usamos para operar, como o provedor de hospedagem
+          do site, o provedor de e-mail e o WhatsApp. Esses serviços tratam os dados para prestar o
+          serviço contratado e alguns deles podem processá-los em servidores fora do Brasil. Também
+          podemos compartilhar dados quando a lei ou uma autoridade competente exigir.
+        </p>
+
+        <h2 id="retencao">8. Por quanto tempo guardamos</h2>
+        <p>
+          Guardamos as conversas e as propostas pelo tempo necessário para atender você e, se houver
+          contrato, pelo prazo exigido pela legislação fiscal e civil. Depois disso, os dados são
+          excluídos ou anonimizados.
+        </p>
+
+        <h2 id="seguranca">9. Segurança</h2>
+        <p>
+          O site é acessado por conexão segura (HTTPS) e não guarda formulários em servidor. Pedimos
+          apenas os dados necessários e restringimos o acesso às mensagens recebidas a quem precisa
+          delas para atender você.
+        </p>
+
+        <h2 id="direitos">10. Seus direitos</h2>
+        <p>Pela LGPD, você pode pedir a qualquer momento:</p>
+        <ul>
+          <li>Confirmação de que tratamos os seus dados e acesso a eles.</li>
+          <li>Correção de dados incompletos, inexatos ou desatualizados.</li>
+          <li>Anonimização, bloqueio ou eliminação de dados desnecessários ou excessivos.</li>
+          <li>Portabilidade dos dados a outro fornecedor.</li>
+          <li>Informação sobre com quem compartilhamos os dados.</li>
+          <li>Revogação do consentimento e eliminação dos dados tratados com base nele.</li>
+        </ul>
+        <p>
+          Para exercer qualquer desses direitos, escreva para <a href={email}>{site.email}</a>. Você
+          também pode apresentar reclamação à{" "}
+          <a href="https://www.gov.br/anpd/pt-br" target="_blank" rel="noopener noreferrer">Autoridade Nacional de Proteção de Dados (ANPD)<span class="sr-only"> (abre em nova aba)</span></a>.
+        </p>
+
+        <h2 id="alteracoes">11. Alterações</h2>
+        <p>
+          Esta política pode mudar quando o site ganhar novos recursos. A data no início do texto
+          sempre indica a versão em vigor.
+        </p>
+      </article>
+    </div>
+  </div>
+</Base>

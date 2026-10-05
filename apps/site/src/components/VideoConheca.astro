@@ -1,0 +1,87 @@
+---
+import { getImage } from "astro:assets";
+import fundo from "../assets/fundo-institucional.png";
+import { site } from "../data/site";
+
+// Edição enviada pela empresa. MP4 H.264/AAC com faststart, sem autoplay.
+const video = "/video/conheca-casadigitalrp.mp4";
+// Capa provisória (fundo institucional); a imagem P02 do lote de prompts a substitui.
+const capa = await getImage({ src: fundo, width: 1280, format: "webp" });
+---
+
+<section aria-labelledby="conheca-titulo" class="relative overflow-hidden bg-marinho text-white">
+  <div class="mx-auto max-w-5xl px-4 py-20 sm:px-6 sm:py-24">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-sm font-bold tracking-[0.18em] text-azul uppercase">Conheça</p>
+      <h2 id="conheca-titulo" class="mt-3 text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">
+        A {site.name}, {site.slogan}
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-white/75">
+        Uma apresentação rápida de quem somos e de como cuidamos da presença digital do seu negócio.
+      </p>
+    </div>
+
+    <div class="video-conheca relative mx-auto mt-12 aspect-video overflow-hidden rounded-2xl border border-azul/25 bg-marinho-claro shadow-2xl shadow-black/50">
+      <video
+        class="h-full w-full object-contain"
+        src={video}
+        poster={capa.src}
+        preload="none"
+        playsinline
+        controls
+        aria-label={`Vídeo de apresentação da ${site.name}`}
+      >
+      </video>
+
+      <button
+        type="button"
+        class="capa absolute inset-0 hidden flex-col items-center justify-center gap-6 bg-gradient-to-t from-marinho/80 via-marinho/30 to-marinho/10"
+        aria-label="Assistir ao vídeo de apresentação"
+      >
+        <img src="/marca/logo-cabecalho-escuro.svg" alt="" width="320" height="80" class="w-60 sm:w-80" loading="lazy" />
+        <span class="grid h-20 w-20 place-items-center rounded-full bg-azul text-marinho shadow-[0_0_40px_-4px] shadow-azul/70 transition-transform hover:scale-105">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="ml-1">
+            <path d="M7 4.5v15l13-7.5z" />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <p class="video-status mt-4 text-center text-sm text-white/80" role="status"></p>
+    <p class="mt-3 text-center text-sm text-white/75">Vídeo com áudio, reproduzido somente quando você quiser. <a href={video} class="font-bold text-azul underline underline-offset-4">Abrir vídeo diretamente</a></p>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".video-conheca").forEach((caixa) => {
+    const video = caixa.querySelector("video");
+    const capa = caixa.querySelector<HTMLButtonElement>(".capa");
+    if (!video || !capa) return;
+    // Com JavaScript, a capa da marca substitui a barra nativa até o primeiro play.
+    video.controls = false;
+    capa.classList.replace("hidden", "flex");
+    const status = caixa.parentElement?.querySelector<HTMLElement>(".video-status");
+    const mostrarErro = () => {
+      video.controls = true;
+      capa.classList.replace("flex", "hidden");
+      if (status) status.textContent = "Não foi possível reproduzir aqui. Tente novamente nos controles ou abra o vídeo diretamente.";
+    };
+    video.addEventListener("error", mostrarErro);
+    video.addEventListener("playing", () => {
+      capa.classList.replace("flex", "hidden");
+      if (status) status.textContent = "";
+    });
+    capa.addEventListener("click", async () => {
+      video.controls = true;
+      capa.disabled = true;
+      if (status) status.textContent = "Carregando vídeo…";
+      try {
+        await video.play();
+        video.focus();
+      } catch {
+        mostrarErro();
+      } finally {
+        capa.disabled = false;
+      }
+    });
+  });
+</script>

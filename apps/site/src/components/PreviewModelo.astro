@@ -1,0 +1,72 @@
+---
+interface Props {
+  modelo: string;
+}
+const { modelo } = Astro.props;
+const nomes: Record<string, string> = {
+  institucional: "Seu negócio",
+  catalogo: "Seu catálogo",
+  campanha: "Sua campanha",
+  agendamento: "Seus serviços",
+};
+---
+<div class="preview" data-modelo={modelo} aria-hidden="true">
+  <div class="browser"><span></span><span></span><span></span><div>seunegocio.com.br</div></div>
+  <div class="canvas">
+    <div class="nav"><strong>{nomes[modelo]}</strong><span>Sobre · Contato</span></div>
+    {modelo === "institucional" && <>
+      <div class="intro"><span class="tag">Soluções para o seu dia a dia</span><h4>Uma boa primeira<br />impressão começa aqui.</h4><p>Apresente quem você é e como pode ajudar.</p><span class="cta">Conheça nossos serviços ↗</span></div>
+      <div class="tiles"><div><b>01</b><strong>Seu diferencial</strong></div><div><b>02</b><strong>Seus serviços</strong></div><div><b>03</b><strong>Contato fácil</strong></div></div>
+    </>}
+    {modelo === "catalogo" && <>
+      <div class="intro"><span class="tag">Feito para ser visto</span><h4>Seu trabalho.<br />Em cada detalhe.</h4><p>Produtos e projetos organizados em um só lugar.</p></div>
+      <div class="gallery"><div><span class="shape circle"></span><strong>Projeto em destaque</strong></div><div><span class="shape arch"></span><strong>Coleção especial</strong></div><div><span class="shape square"></span><strong>Novidades</strong></div></div>
+    </>}
+    {modelo === "campanha" && <>
+      <div class="intro campaign"><span class="tag">Uma página. Um objetivo.</span><h4>Sua próxima novidade<br />merece destaque.</h4><p>Transforme o interesse em uma conversa.</p><span class="cta">Quero saber mais →</span></div>
+      <div class="campaign-footer"><span>Uma oferta clara</span><span>Benefícios em destaque</span><span>Contato direto</span></div>
+    </>}
+    {modelo === "agendamento" && <>
+      <div class="intro"><span class="tag">Cuidado em cada atendimento</span><h4>Mais fácil conhecer.<br />Mais simples agendar.</h4><p>Serviços e pedidos de horário pelo WhatsApp.</p></div>
+      <div class="schedule"><div><strong>Escolha um serviço</strong><span>Atendimento · Consultoria</span><span class="cta">Solicitar horário ↗</span></div><div class="calendar"><strong>Seu próximo atendimento</strong><div>{["Seg", "Ter", "Qua", "Qui", "Sex", "09h", "10h", "11h", "14h", "15h"].map((dia, i) => <span class:list={{ selected: i === 7 }}>{dia}</span>)}</div><small>Disponibilidade a confirmar</small></div></div>
+    </>}
+    <div class="bottom"><span>Modelo ilustrativo · conteúdo de exemplo</span><span class="contact">Contato ↗</span></div>
+  </div>
+</div>
+<style>
+  .preview { overflow:hidden; border:1px solid #07111f20; border-radius:16px; background:white; box-shadow:0 18px 50px -25px #07111f70; color:#07111f; }
+  .browser { display:flex; align-items:center; gap:6px; padding:12px 14px; background:#edf2f6; border-bottom:1px solid #07111f10; }
+  .browser > span { width:7px; height:7px; border-radius:50%; background:#75869a; }
+  .browser > span:last-of-type { background:#2f91c9; }
+  .browser > div { margin-left:12px; padding:3px 10px; border-radius:5px; background:white; color:#526375; font-size:10px; flex:1; }
+  .canvas { padding:20px; }
+  .nav { display:flex; justify-content:space-between; align-items:center; gap:10px; font-size:12px; }
+  .nav > span { font-size:9px; color:#526375; }
+  .intro { margin-top:20px; border-radius:10px; padding:24px 20px; background:#eaf6fc; }
+  .tag { font-size:9px; letter-spacing:.08em; text-transform:uppercase; font-weight:800; color:#1d6a97; }
+  h4 { margin:10px 0 8px; font-size:clamp(18px,2.4vw,28px); line-height:1.15; font-weight:850; letter-spacing:-.03em; }
+  p { font-size:10px; line-height:1.6; color:#526375; }
+  .cta { display:inline-block; margin-top:14px; padding:9px 12px; border-radius:6px; background:#07111f; color:white; font-size:10px; font-weight:800; }
+  .tiles { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:14px; }
+  .tiles > div { display:flex; flex-direction:column; gap:8px; padding:14px 10px; border:1px solid #dce5ee; border-radius:8px; font-size:9px; }
+  .tiles b { color:#1d6a97; font-size:14px; }
+  .gallery { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:14px; }
+  .gallery > div { display:flex; flex-direction:column; gap:8px; font-size:8px; }
+  .shape { display:grid; height:84px; place-items:center; background:#edf2f6; border-radius:8px; }
+  .shape::after { content:""; width:42px; height:46px; background:linear-gradient(135deg,#71c8f5,#1d6a97); box-shadow:7px 7px 0 #07111f12; }
+  .circle::after { border-radius:50%; } .arch::after { border-radius:24px 24px 0 0; background:linear-gradient(135deg,#ffd36d,#bb7c21); } .square::after { transform:rotate(-12deg); }
+  [data-modelo="catalogo"] .intro { background:#f7f3e9; }
+  .campaign { text-align:center; background:#07111f; color:white; padding:32px 12px; }
+  .campaign .tag { color:#ffd36d; } .campaign p { color:#ffffffbb; } .campaign .cta { background:#71c8f5; color:#07111f; }
+  .campaign-footer { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:16px; font-size:9px; font-weight:700; }
+  .campaign-footer span { padding:7px; background:#edf2f6; border-radius:5px; }
+  .schedule { display:grid; grid-template-columns:1fr 1.2fr; gap:10px; margin-top:14px; }
+  .schedule > div { padding:12px; border:1px solid #dce5ee; border-radius:8px; font-size:10px; }
+  .schedule > div:first-child { display:flex; flex-direction:column; align-items:start; gap:6px; } .schedule > div > span:not(.cta) { color:#526375; font-size:9px; }
+  .calendar > div { display:grid; grid-template-columns:repeat(5,1fr); gap:4px; margin:10px 0; }
+  .calendar span { padding:5px 0; text-align:center; font-size:8px; background:#edf2f6; border-radius:4px; }
+  .calendar .selected { background:#07111f; color:white; } .calendar small { font-size:8px; color:#526375; }
+  .bottom { display:flex; justify-content:space-between; gap:8px; align-items:center; margin-top:20px; padding-top:12px; border-top:1px solid #edf2f6; font-size:8px; color:#526375; }
+  .contact { padding:5px 8px; border-radius:20px; background:#07111f; color:white; white-space:nowrap; }
+  @media (max-width:400px) { .canvas { padding:14px; } .intro { padding:20px 14px; } .schedule { grid-template-columns:1fr; } }
+</style>

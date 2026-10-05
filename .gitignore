@@ -141,3 +141,10 @@ Thumbs.db
 # Editor
 .vscode/
 .idea/
+
+# Site Astro V3 e caches de compilação
+.astro/
+.turbo/
+.wrangler/
+apps/site/public/video/*
+!apps/site/public/video/conheca-casadigitalrp.mp4
