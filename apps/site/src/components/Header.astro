@@ -36,6 +36,8 @@ const isActive = (href: string) => path === href || path.startsWith(href);
       {ctaPrincipal.label}
     </a>
 
+    <button id="tema-toggle" type="button" class="rounded-full border border-white/40 px-3 py-2 text-sm font-bold text-white hover:bg-white/10" aria-label="Ativar tema escuro" aria-pressed="false">☾ Tema</button>
+
     <button
       id="menu-toggle"
       type="button"
@@ -79,6 +81,19 @@ const isActive = (href: string) => path === href || path.startsWith(href);
 </header>
 
 <script>
+  const tema = document.getElementById("tema-toggle") as HTMLButtonElement;
+  const aplicarTema = (escuro: boolean) => {
+    document.documentElement.dataset.theme = escuro ? "dark" : "light";
+    tema.setAttribute("aria-pressed", String(escuro));
+    tema.setAttribute("aria-label", escuro ? "Ativar tema claro" : "Ativar tema escuro");
+    tema.textContent = escuro ? "☀ Tema" : "☾ Tema";
+  };
+  aplicarTema(localStorage.getItem("cdrp-tema") === "dark");
+  tema.addEventListener("click", () => {
+    const escuro = document.documentElement.dataset.theme !== "dark";
+    localStorage.setItem("cdrp-tema", escuro ? "dark" : "light");
+    aplicarTema(escuro);
+  });
   const toggle = document.getElementById("menu-toggle");
   const menu = document.getElementById("menu-mobile");
   const setOpen = (open: boolean) => {

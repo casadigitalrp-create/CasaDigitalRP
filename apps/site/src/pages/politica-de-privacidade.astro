@@ -5,7 +5,7 @@ import PageHeader from "../components/PageHeader.astro";
 import { site } from "../data/site";
 import Base from "../layouts/Base.astro";
 
-const atualizadoEm = "4 de outubro de 2026";
+const atualizadoEm = "11 de outubro de 2026";
 
 const secoes = [
   { id: "quem-somos", titulo: "Quem somos" },
@@ -23,8 +23,8 @@ const secoes = [
 
 const resumo = [
   "Não usamos cookies, ferramentas de estatística nem publicidade.",
-  "Os formulários não enviam nada para o site: eles montam uma mensagem que você mesmo envia pelo WhatsApp ou por e-mail.",
-  "Nada do que você digita fica salvo no site ou no seu navegador.",
+  "O formulário de Contato envia os dados ao n8n para registrar e atender a solicitação.",
+  "A seleção do Catálogo fica na sessão do navegador até ser enviada ou a sessão terminar.",
   "Você pode pedir acesso, correção ou exclusão dos seus dados quando quiser.",
 ];
 
@@ -106,17 +106,21 @@ const email = `mailto:${site.email}`;
 
         <h2 id="formularios">3. Como funcionam os formulários</h2>
         <p>
-          O formulário de contato e a vitrine de soluções funcionam inteiramente no seu navegador. Ao
-          clicar em enviar, abrimos o seu WhatsApp ou o seu aplicativo de e-mail com a mensagem pronta:
-          nada é transmitido para o nosso site. Os dados só chegam até nós se você confirmar o envio no
-          aplicativo escolhido. Nada do que você digita fica salvo no site ou no seu navegador.
+          A seleção do Catálogo fica temporariamente na sessão do seu navegador para preencher o
+          formulário de Contato. Ao enviar o formulário com seu consentimento, os dados seguem para
+          o webhook do n8n. O fluxo valida a solicitação, pode registrá-la no Google Sheets,
+          preparar uma resposta com Google Gemini e enviar mensagens pelo Gmail. Uma confirmação
+          na tela indica apenas que o n8n recebeu o pedido; o processamento posterior pode falhar.
+          A Vitrine tem demonstrações que não enviam dados. Os links de WhatsApp abrem uma mensagem
+          para você conferir e enviar no próprio aplicativo.
         </p>
 
         <h2 id="cookies">4. Cookies e serviços de terceiros</h2>
         <p>
           Este site não usa cookies, ferramentas de estatística (analytics), pixels de publicidade nem
-          scripts de terceiros. As fontes, as imagens e o vídeo são servidos pelo próprio site. Se isso
-          mudar, esta política será atualizada antes.
+          scripts de publicidade. As fontes, as imagens e o vídeo são servidos pelo próprio site.
+          O Catálogo usa armazenamento de sessão do navegador para preservar as escolhas durante a navegação.
+          A preferência de tema claro ou escuro fica no armazenamento local do navegador.
         </p>
         <p>
           Ao seguir um link para o WhatsApp ou para o seu aplicativo de e-mail, você passa a usar
@@ -142,10 +146,10 @@ const email = `mailto:${site.email}`;
 
         <h2 id="compartilhamento">7. Com quem compartilhamos</h2>
         <p>
-          Os dados podem passar pelos serviços que usamos para operar, como o provedor de hospedagem
-          do site, o provedor de e-mail e o WhatsApp. Esses serviços tratam os dados para prestar o
-          serviço contratado e alguns deles podem processá-los em servidores fora do Brasil. Também
-          podemos compartilhar dados quando a lei ou uma autoridade competente exigir.
+          Os dados podem ser processados pelo site da CasaDigitalRP, n8n, Google Sheets, Gmail e
+          Google Gemini para registrar e responder à solicitação. O WhatsApp recebe dados apenas
+          quando você escolhe abrir e enviar uma conversa. Os provedores podem processar dados
+          fora do Brasil. Também podemos compartilhar dados quando a lei exigir.
         </p>
 
         <h2 id="retencao">8. Por quanto tempo guardamos</h2>
@@ -157,9 +161,9 @@ const email = `mailto:${site.email}`;
 
         <h2 id="seguranca">9. Segurança</h2>
         <p>
-          O site é acessado por conexão segura (HTTPS) e não guarda formulários em servidor. Pedimos
-          apenas os dados necessários e restringimos o acesso às mensagens recebidas a quem precisa
-          delas para atender você.
+          O site é acessado por conexão segura (HTTPS). O formulário é enviado ao n8n, e os dados
+          podem ficar registrados na planilha e nas mensagens de e-mail. Pedimos os dados necessários
+          ao atendimento e restringimos o acesso a quem precisa deles para responder.
         </p>
 
         <h2 id="direitos">10. Seus direitos</h2>

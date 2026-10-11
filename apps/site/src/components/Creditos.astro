@@ -1,5 +1,5 @@
 ---
-// Usado na Início (com link para Serviços) e em Serviços (âncora #creditos, sem o link e com detalhes no slot).
+// Apresentação de possibilidades de evolução, sem prometer condições comerciais ainda não definidas.
 interface Props {
   id?: string;
   comLink?: boolean;
@@ -9,23 +9,23 @@ const { id, comLink = true } = Astro.props;
 
 const regras = [
   {
-    titulo: "Quantidade combinada",
-    texto: "Você define quantos créditos precisa já na contratação do site.",
+    titulo: "Escopo combinado",
+    texto: "Cada proposta define quais atualizações estão incluídas no projeto.",
     icone: "M5 7h14M5 12h14M5 17h9",
   },
   {
-    titulo: "Não expiram",
-    texto: "Os créditos não têm prazo de validade. Use quando o seu negócio precisar.",
+    titulo: "Demandas organizadas",
+    texto: "Reunimos as mudanças desejadas para avaliar esforço e prioridade.",
     icone: "M12 7v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z",
   },
   {
-    titulo: "Compra adicional",
-    texto: "Precisou de mais? É possível adquirir créditos extras a qualquer momento.",
+    titulo: "Evolução planejada",
+    texto: "Novos recursos podem ser avaliados após a publicação do site.",
     icone: "M12 5v14M5 12h14",
   },
   {
-    titulo: "Garantia à parte",
-    texto: "Correção de defeito coberta pela garantia não consome os seus créditos.",
+    titulo: "Análise técnica",
+    texto: "Prazos e condições de cada solicitação dependem da análise técnica.",
     icone: "M12 3 5 6v5c0 4.5 3 8.3 7 10 4-1.7 7-5.5 7-10V6l-7-3ZM9 12l2 2 4-4",
   },
 ];
@@ -42,19 +42,19 @@ const regras = [
       <div>
         <p class="text-sm font-bold tracking-[0.18em] text-azul uppercase">Depois do site no ar</p>
         <h2 id="creditos-titulo" class="mt-3 text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">
-          Seu site sempre atualizado, com créditos de atualização
+          Seu site pode evoluir com o seu negócio
         </h2>
         <p class="mt-4 text-lg leading-relaxed text-white/75">
-          Trocar uma foto, ajustar um texto, incluir uma novidade: em vez de orçar cada pequena
-          mudança, você conta com créditos para manter o site em dia.
+          Trocar uma foto, ajustar um texto ou incluir uma novidade são possibilidades para manter
+          a presença digital alinhada ao seu negócio. Avaliamos cada demanda na proposta.
         </p>
         {
           comLink && (
             <a
-              href="/servicos/#creditos"
+              href="/catalogo/"
               class="mt-8 inline-flex items-center gap-1.5 font-bold text-azul underline decoration-azul/40 underline-offset-4 hover:text-white"
             >
-              Entenda como funcionam <span aria-hidden="true">→</span>
+              Veja as opções no catálogo <span aria-hidden="true">→</span>
             </a>
           )
         }

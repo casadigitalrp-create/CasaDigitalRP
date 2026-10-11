@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-label="Arcos abstratos azuis e dourados">
+  <defs><radialGradient id="g" cx="84%" cy="82%" r="90%"><stop stop-color="#17436a"/><stop offset="1" stop-color="#07111f"/></radialGradient><linearGradient id="l" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#164f84" stop-opacity="0"/><stop offset=".65" stop-color="#67c8f5"/><stop offset="1" stop-color="#f1b554"/></linearGradient></defs>
+  <path fill="url(#g)" d="M0 0h1920v1080H0z"/>
+  <g fill="none" stroke-linecap="round"><path d="M-200 1070C270 890 540 1020 870 700S1290 260 2000 70" stroke="url(#l)" stroke-width="3"/><path d="M-180 1050C380 720 680 1040 1120 650S1540 300 2010 190" stroke="#2d8fd0" stroke-opacity=".72" stroke-width="2"/><path d="M-90 810C540 1100 740 920 1010 820S1620 540 1990 190" stroke="#f5bb61" stroke-opacity=".8" stroke-width="2"/><path d="M2000 750C1450 300 1240 1040 700 710S180 700-80 940" stroke="#62bdec" stroke-opacity=".35" stroke-width="2"/></g>
+</svg>

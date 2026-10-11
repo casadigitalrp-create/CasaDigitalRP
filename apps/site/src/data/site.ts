@@ -14,15 +14,14 @@ export const site = {
 };
 
 export const nav = [
-  { href: "/servicos/", label: "Serviços" },
+  { href: "/", label: "Início" },
   { href: "/vitrine/", label: "Vitrine" },
-  { href: "/portfolio/", label: "Portfólio" },
-  { href: "/sobre/", label: "Sobre" },
+  { href: "/catalogo/", label: "Catálogo" },
   { href: "/contato/", label: "Contato" },
 ];
 
-/** Chamada principal do site: leva à vitrine, onde o visitante monta a solicitação. */
-export const ctaPrincipal = { href: "/vitrine/", label: "Solicitar proposta" };
+/** Chamada principal: formulário integrado ao n8n. */
+export const ctaPrincipal = { href: "/contato/#form-titulo", label: "Orçamento" };
 
 /** Link do WhatsApp da empresa já com a mensagem inicial preenchida. */
 export const whatsappCom = (mensagem: string) =>

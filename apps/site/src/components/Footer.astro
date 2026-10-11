@@ -21,7 +21,6 @@ const year = new Date().getFullYear();
     <nav aria-label="Rodapé">
       <p class="text-sm font-bold tracking-wide text-white uppercase">Navegação</p>
       <ul class="mt-4 space-y-2.5 text-[15px]">
-        <li><a href="/" class="hover:text-white">Início</a></li>
         {nav.map((item) => (
           <li><a href={item.href} class="hover:text-white">{item.label}</a></li>
         ))}

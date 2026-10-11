@@ -10,7 +10,7 @@ const garantias = [
 ];
 ---
 
-<section class="relative isolate overflow-hidden bg-marinho text-white">
+<section class="relative isolate overflow-hidden bg-marinho text-white" data-hero>
   <Picture
     src={fundo}
     alt=""
@@ -19,8 +19,13 @@ const garantias = [
     sizes="100vw"
     loading="eager"
     fetchpriority="high"
-    class="absolute inset-0 -z-10 h-full w-full object-cover object-right-bottom"
+    class="hero-fundo absolute inset-0 -z-10 h-full w-full object-cover object-right-bottom"
+    data-fundo="0"
+    data-ativo="true"
   />
+  <img src="/fundos/onda-integracao.svg" alt="" width="1920" height="1080" loading="lazy" class="hero-fundo absolute inset-0 -z-10 h-full w-full object-cover" data-fundo="1" aria-hidden="true" />
+  <img src="/fundos/onda-campanha.svg" alt="" width="1920" height="1080" loading="lazy" class="hero-fundo absolute inset-0 -z-10 h-full w-full object-cover" data-fundo="2" aria-hidden="true" />
+  <img src="/fundos/onda-servicos.svg" alt="" width="1920" height="1080" loading="lazy" class="hero-fundo absolute inset-0 -z-10 h-full w-full object-cover" data-fundo="3" aria-hidden="true" />
   <div
     class="absolute inset-0 -z-10 bg-gradient-to-r from-marinho via-marinho/80 to-transparent"
     aria-hidden="true"
@@ -117,3 +122,18 @@ const garantias = [
     </div>
   </div>
 </section>
+<style>
+  .hero-fundo { opacity: 0; transition: opacity 600ms ease; }
+  .hero-fundo[data-ativo="true"] { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { .hero-fundo { transition: none; } }
+</style>
+<script>
+  window.addEventListener("casadigitalrp:modelo", (evento) => {
+    const indice = (evento as CustomEvent<{ indice: number }>).detail?.indice;
+    if (!Number.isInteger(indice)) return;
+    document.querySelectorAll<HTMLElement>("[data-hero] [data-fundo]").forEach((fundo) => {
+      if (Number(fundo.dataset.fundo) === indice) fundo.dataset.ativo = "true";
+      else fundo.removeAttribute("data-ativo");
+    });
+  });
+</script>

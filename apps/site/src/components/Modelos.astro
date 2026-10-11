@@ -59,7 +59,7 @@ const trilhaId = `${id}-trilha`;
       <p class="mt-2 text-center text-sm text-marinho/65">Use os botões ou deslize para ver os outros modelos.</p>
     </div>
     <slot />
-    {rodape && <p class="mt-10 text-center text-[17px] text-marinho/80">Já tem um site? Também cuidamos da evolução e da manutenção. <a href="/servicos/#evolucao" class="font-bold text-azul-texto underline underline-offset-4 hover:text-marinho">Conheça os serviços</a></p>}
+    {rodape && <p class="mt-10 text-center text-[17px] text-marinho/80">Já tem um site? Também avaliamos evolução e manutenção. <a href="/catalogo/" class="font-bold text-azul-texto underline underline-offset-4 hover:text-marinho">Conheça o Catálogo</a></p>}
   </div>
 </section>
 <style>
@@ -84,6 +84,7 @@ const trilhaId = `${id}-trilha`;
       seletores.forEach((botao, i) => { if (i === atual) botao.setAttribute("aria-current", "true"); else botao.removeAttribute("aria-current"); });
       slides.forEach((slide, i) => { slide.inert = i !== atual; });
       if (status) status.textContent = `Modelo ${atual + 1} de ${slides.length} · ${slides[atual]?.dataset.titulo}`;
+      window.dispatchEvent(new CustomEvent("casadigitalrp:modelo", { detail: { indice: atual } }));
     };
     const navegar = (indice: number) => {
       const destino = (indice + slides.length) % slides.length;

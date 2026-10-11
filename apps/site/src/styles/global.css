@@ -11,6 +11,28 @@ body {
   @apply bg-paper text-ink font-sans antialiased;
 }
 
+html[data-theme="dark"] main {
+  background: #07111f;
+  color: #f4f9fd;
+}
+
+html[data-theme="dark"] main [class*="bg-[#f4f9fd]"] {
+  background-color: #0b2034;
+}
+
+html[data-theme="dark"] main .bg-white {
+  background-color: #173149;
+}
+
+html[data-theme="dark"] main .text-marinho,
+html[data-theme="dark"] main [class*="text-marinho/"] {
+  color: #f4f9fd;
+}
+
+html[data-theme="dark"] main .text-azul-texto {
+  color: #7ccdf5;
+}
+
 /* Na camada base, para que classes utilitárias (ex.: focus:outline-none) possam ajustar casos pontuais. */
 @layer base {
   /* Cor do contorno fixa: sem isso, transition-colors anima o foco a partir da cor do texto. */

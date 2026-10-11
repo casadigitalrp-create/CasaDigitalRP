@@ -3,6 +3,7 @@ import { Font } from "astro:assets";
 import "../styles/global.css";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import WhatsAppFixo from "../components/WhatsAppFixo.astro";
 import { site } from "../data/site";
 
 interface Props {
@@ -58,5 +59,6 @@ const ogImage = new URL("/og-casadigitalrp.png", Astro.site);
       <slot />
     </main>
     <Footer />
+    <WhatsAppFixo />
   </body>
 </html>
