@@ -7,8 +7,8 @@ export const site = {
   description:
     "A CasaDigitalRP cria sites institucionais, catálogos e páginas de campanha para pequenos negócios e profissionais, com contato direto pelo WhatsApp.",
   email: "casadigitalrp@gmail.com",
-  whatsapp: "5516991904702",
-  whatsappLabel: "(16) 99190-4702",
+  whatsapp: "5516993756290",
+  whatsappLabel: "(16) 99375-6290",
   city: "Ribeirão Preto – SP",
   // Não publicar identificação fiscal até sua conferência documental.
 };
