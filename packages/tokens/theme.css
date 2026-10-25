@@ -1,7 +1,7 @@
 /*
  * Design tokens da Casa Digital RP.
  * Compartilhados por todos os apps (site e demos) via Tailwind 4 `@theme`.
- * As cores `brand-*` atendem as demos; o site usa as cores nomeadas da identidade V3.
+ * As cores `brand-*` atendem as demos; o site usa as cores da identidade V4 (marca/01-fundamentos/paleta).
  */
 @theme {
   --color-brand-50: oklch(0.97 0.02 250);
@@ -10,17 +10,44 @@
   --color-brand-600: oklch(0.52 0.18 250);
   --color-brand-900: oklch(0.28 0.08 250);
 
-  /* Identidade V3 (docs/marca). O dourado é só detalhe: nunca texto pequeno sobre branco. */
-  --color-marinho: #07111f;
-  --color-marinho-claro: #0e1d33;
-  --color-azul: #71c8f5;
-  --color-azul-medio: #2f91c9;
-  --color-dourado: #ffd36d;
-  /* Tom do azul da marca escurecido para texto pequeno sobre fundo claro (contraste AA ≈ 5,9:1). */
-  --color-azul-texto: #1d6a97;
+  /*
+   * Identidade V4, tema claro (H7). O tema escuro (H8) redefine estas variáveis em
+   * html[data-theme="dark"] no global.css do site.
+   * Botões laranja levam texto grafite: branco sobre laranja não passa no contraste AA.
+   */
+  --color-fundo: #fff8f2;
+  --color-superficie: #ffffff;
+  --color-texto: #1a1a1a;
+  --color-suave: #5c4a3f;
+  --color-borda: #f0e2d6;
+  /* Laranja de botões, ícones e destaques; nunca texto pequeno sobre fundo claro (3,5:1). */
+  --color-marca: #e8551e;
+  /* Laranja para links e texto pequeno (5,3:1 no fundo claro). */
+  --color-marca-texto: #b8400f;
+  --color-destaque: #ffd9c2;
+  /* Seções escuras fixas, iguais nos dois temas. */
+  --color-grafite: #1a1a1a;
+  --color-grafite-claro: #242424;
+  --color-chama: #ff4d00;
+  --color-faisca: #ffe3a3;
+  /* Texto sobre as seções grafite: principal, suave e laranja de link (6,1:1). */
+  --color-nevoa: #f5f5f5;
+  --color-areia: #b8b0a8;
+  --color-brasa: #ff6a26;
 
-  --color-ink: oklch(0.2 0.02 260);
-  --color-paper: oklch(0.99 0 0);
+  /*
+   * Nomes da identidade V3 mantidos como apelidos da V4, para as páginas ainda não
+   * reescritas (Vitrine e demos) herdarem a nova paleta sem mudar o markup.
+   */
+  --color-marinho: #1a1a1a;
+  --color-marinho-claro: #242424;
+  --color-azul: #ff6a26;
+  --color-azul-medio: #e8551e;
+  --color-dourado: #ff8a4c;
+  --color-azul-texto: #b8400f;
+
+  --color-ink: #1a1a1a;
+  --color-paper: #fff8f2;
 
   --font-sans: var(--font-inter, ui-sans-serif, system-ui, sans-serif);
   --font-display: var(--font-inter, ui-sans-serif, system-ui, sans-serif);

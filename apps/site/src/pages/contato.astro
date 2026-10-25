@@ -5,16 +5,16 @@ import { site, whatsappUrl } from "../data/site";
 import Base from "../layouts/Base.astro";
 
 const campo =
-  "mt-2 block w-full rounded-xl border border-marinho/25 bg-white px-4 py-3 text-marinho focus:border-azul-medio focus:outline-3 focus:outline-azul-medio";
+  "mt-2 block w-full rounded-xl border border-borda bg-superficie px-4 py-3 text-texto focus:border-marca focus:outline-3 focus:outline-marca";
 ---
 
 <Base title="Contato" description="Descreva seu projeto à CasaDigitalRP. Recebemos a solicitação pelo n8n e fazemos uma análise técnica antes da proposta.">
   <PageHeader eyebrow="Contato" title="Conte o que você precisa" text="O formulário é o caminho principal para pedir uma análise. Você também pode conversar pelo WhatsApp." />
-  <section class="bg-[#f4f9fd] px-4 py-14 text-marinho sm:px-6 lg:py-20">
+  <section class="bg-fundo px-4 py-14 text-texto sm:px-6 lg:py-20">
     <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.5fr_1fr]">
-      <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-marinho/10 sm:p-9">
+      <div class="rounded-3xl bg-superficie p-6 shadow-sm ring-1 ring-borda sm:p-9">
         <h2 id="form-titulo" class="scroll-mt-28 text-2xl font-extrabold">Solicitar análise</h2>
-        <p class="mt-2 text-marinho/70">Recebemos seus dados para responder ao pedido. Prazo e investimento dependem de análise técnica.</p>
+        <p class="mt-2 text-suave">Recebemos seus dados para responder ao pedido. Prazo e investimento dependem de análise técnica.</p>
         <form id="form-orcamento" class="mt-8 grid gap-5" novalidate>
           <div class="grid gap-5 sm:grid-cols-2">
             <label class="font-bold">Nome *<input name="nome" autocomplete="name" required maxlength="120" class={campo} /></label>
@@ -25,17 +25,17 @@ const campo =
             <label class="font-bold">Telefone ou WhatsApp (opcional)<input name="telefone" type="tel" autocomplete="tel" maxlength="40" class={campo} /></label>
           </div>
           <label class="font-bold">Solução principal *<select name="solucao" required class={campo}><option value="">Escolha uma solução</option>{solucoes.map((nome) => <option value={nome}>{nome}</option>)}</select></label>
-          <div><p class="font-bold">Componentes escolhidos</p><p id="resumo-componentes" class="mt-2 rounded-xl bg-[#f4f9fd] p-4 text-marinho/75">Nenhum selecionado.</p><a href="/catalogo/" class="mt-2 inline-block font-bold text-azul-texto underline underline-offset-4">Abrir Catálogo</a></div>
+          <div><p class="font-bold">Componentes escolhidos</p><p id="resumo-componentes" class="mt-2 rounded-xl bg-fundo p-4 text-suave">Nenhum selecionado.</p><a href="/catalogo/" class="mt-2 inline-block font-bold text-marca-texto underline underline-offset-4">Ver automações</a></div>
           <label class="font-bold">Descreva sua necessidade *<textarea name="descricao" rows="6" maxlength="2000" minlength="10" required class={campo} placeholder="Conte o objetivo, o que já existe e os desafios que devemos analisar."></textarea></label>
           <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true"><label>Deixe este campo vazio<input name="website" tabindex="-1" autocomplete="off" /></label></div>
-          <label class="flex items-start gap-3 text-sm leading-relaxed"><input name="consentimento" type="checkbox" required class="mt-1 h-5 w-5 shrink-0 accent-azul-medio" /><span>Li a <a href="/politica-de-privacidade/" target="_blank" rel="noopener noreferrer" class="font-bold text-azul-texto underline">Política de Privacidade</a> e concordo com o tratamento dos dados para responder a esta solicitação. <strong>Obrigatório.</strong></span></label>
+          <label class="flex items-start gap-3 text-sm leading-relaxed"><input name="consentimento" type="checkbox" required class="mt-1 h-5 w-5 shrink-0 accent-marca" /><span>Li a <a href="/politica-de-privacidade/" target="_blank" rel="noopener noreferrer" class="font-bold text-marca-texto underline">Política de Privacidade</a> e concordo com o tratamento dos dados para responder a esta solicitação. <strong>Obrigatório.</strong></span></label>
           <p id="status-envio" role="status" aria-live="polite" class="hidden rounded-xl px-4 py-3 text-sm font-bold"></p>
-          <div class="flex flex-wrap gap-3"><button id="enviar-pedido" type="submit" class="rounded-full bg-marinho px-7 py-3 font-bold text-white hover:bg-azul-medio disabled:cursor-wait disabled:opacity-60">Enviar solicitação</button>{whatsappUrl && <a id="contato-whatsapp" href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="rounded-full border border-marinho/25 px-7 py-3 font-bold hover:border-azul-medio">Conversar pelo WhatsApp</a>}</div>
+          <div class="flex flex-wrap gap-3"><button id="enviar-pedido" type="submit" class="rounded-full bg-marca px-7 py-3 font-bold text-grafite hover:bg-chama disabled:cursor-wait disabled:opacity-60">Enviar solicitação</button>{whatsappUrl && <a id="contato-whatsapp" href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="rounded-full border border-borda px-7 py-3 font-bold hover:border-marca">Conversar pelo WhatsApp</a>}</div>
         </form>
       </div>
       <aside class="space-y-6">
-        <div class="rounded-3xl bg-marinho p-7 text-white"><h2 class="text-xl font-extrabold">O que acontece depois</h2><ol class="mt-5 list-inside list-decimal space-y-3 text-white/80"><li>Registramos a solicitação.</li><li>Analisamos a necessidade e as escolhas.</li><li>Entramos em contato para aprofundar o projeto.</li></ol><p class="mt-5 text-sm text-white/70">A confirmação na tela indica recebimento pelo n8n. Ela não confirma o envio dos e-mails posteriores.</p></div>
-        <div class="rounded-3xl bg-white p-7 shadow-sm ring-1 ring-marinho/10"><h2 class="text-xl font-extrabold">Canais diretos</h2><p class="mt-4">{site.email}</p><p class="mt-2">WhatsApp: {site.whatsappLabel}</p><p class="mt-2 text-sm text-marinho/70">{site.city}</p></div>
+        <div class="rounded-3xl bg-grafite p-7 text-white"><h2 class="text-xl font-extrabold">O que acontece depois</h2><ol class="mt-5 list-inside list-decimal space-y-3 text-white/80"><li>Registramos a solicitação.</li><li>Analisamos a necessidade e as escolhas.</li><li>Entramos em contato para aprofundar o projeto.</li></ol><p class="mt-5 text-sm text-white/70">A confirmação na tela indica recebimento pelo n8n. Ela não confirma o envio dos e-mails posteriores.</p></div>
+        <div class="rounded-3xl bg-superficie p-7 shadow-sm ring-1 ring-borda"><h2 class="text-xl font-extrabold">Canais diretos</h2><p class="mt-4">{site.email}</p><p class="mt-2">WhatsApp: {site.whatsappLabel}</p><p class="mt-2 text-sm text-suave">{site.city}</p></div>
       </aside>
     </div>
   </section>
@@ -54,10 +54,10 @@ const campo =
   const solucao = form.elements.namedItem("solucao") as HTMLSelectElement;
   if (selecao.solucao && [...solucao.options].some((opcao) => opcao.value === selecao.solucao)) solucao.value = selecao.solucao;
   const itens = [...selecao.componentes, ...selecao.recursos, ...selecao.integracoes];
-  document.getElementById("resumo-componentes")!.textContent = itens.length ? itens.join(" · ") : "Nenhum componente selecionado. Você pode escolher no Catálogo.";
+  document.getElementById("resumo-componentes")!.textContent = itens.length ? itens.join(" · ") : "Nada escolhido ainda. Você pode montar o seu fluxo em Automações.";
   const whatsapp = document.getElementById("contato-whatsapp") as HTMLAnchorElement | null;
   if (whatsapp && itens.length) whatsapp.href = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(`Olá! Escolhi ${solucao.value}. Componentes e recursos: ${itens.join(", ")}.`)}`;
-  function avisar(texto: string, erro = false) { status.textContent = texto; status.className = `rounded-xl px-4 py-3 text-sm font-bold ${erro ? "bg-red-50 text-red-800" : "bg-azul/15 text-marinho"}`; }
+  function avisar(texto: string, erro = false) { status.textContent = texto; status.className = `rounded-xl px-4 py-3 text-sm font-bold ${erro ? "bg-red-50 text-red-800" : "bg-destaque text-texto"}`; }
   form.addEventListener("submit", async (evento) => {
     evento.preventDefault();
     const dados = new FormData(form);

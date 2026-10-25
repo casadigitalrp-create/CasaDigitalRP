@@ -1,0 +1,140 @@
+---
+// Prévia viva da página Sites: o mesmo site de exemplo dentro de um notebook e de um celular,
+// trocando de negócio. Todos os negócios são fictícios e identificados como exemplo.
+const exemplos = [
+  {
+    id: "padaria",
+    rotulo: "Padaria",
+    nome: "Padaria Doce Bairro",
+    cor: "#9a3412",
+    clara: "#fff7ed",
+    titulo: "Pão quentinho todo dia, feito no bairro",
+    texto: "Encomende pelo WhatsApp e retire sem fila.",
+    botao: "Pedir pelo WhatsApp",
+    servicos: ["Pães artesanais", "Encomendas para festas", "Café da manhã"],
+  },
+  {
+    id: "clinica",
+    rotulo: "Clínica",
+    nome: "Clínica Bem Cuidar",
+    cor: "#0f766e",
+    clara: "#f0fdfa",
+    titulo: "Cuidado de perto, agenda sem espera",
+    texto: "Marque a sua consulta em poucos toques e receba o lembrete no dia anterior.",
+    botao: "Agendar consulta",
+    servicos: ["Clínico geral", "Fisioterapia", "Exames de rotina"],
+  },
+  {
+    id: "escritorio",
+    rotulo: "Escritório",
+    nome: "Conta Certa Contabilidade",
+    cor: "#1e3a8a",
+    clara: "#eff6ff",
+    titulo: "Sua contabilidade em dia, sem papelada",
+    texto: "Envie os documentos pelo site e acompanhe tudo sem sair do escritório.",
+    botao: "Falar com um contador",
+    servicos: ["Abertura de empresa", "Folha de pagamento", "Imposto de renda"],
+  },
+];
+---
+
+<section aria-labelledby="previa-titulo" class="bg-superficie">
+  <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-2xl">
+        <p class="text-sm font-bold tracking-[0.18em] text-marca-texto uppercase">Veja como fica</p>
+        <h2 id="previa-titulo" class="mt-3 text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">
+          Um site de verdade, no celular e no computador
+        </h2>
+        <p class="mt-4 text-lg leading-relaxed text-suave">Troque o tipo de negócio e veja o mesmo modelo ganhar outra cara.</p>
+      </div>
+      <div class="flex flex-wrap gap-2" role="group" aria-label="Escolha um exemplo">
+        {
+          exemplos.map((e, i) => (
+            <button
+              type="button"
+              data-exemplo={e.id}
+              aria-pressed={i === 0 ? "true" : "false"}
+              class="rounded-full border border-borda px-5 py-2.5 font-bold transition-colors hover:border-marca aria-pressed:border-marca aria-pressed:bg-marca aria-pressed:text-grafite"
+            >
+              {e.rotulo}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="relative mt-12 flex items-end justify-center gap-6">
+      {
+        exemplos.map((e, i) => (
+          <div data-previa={e.id} class:list={["w-full items-end justify-center gap-6", i === 0 ? "flex" : "hidden"]} style={`--c:${e.cor};--cl:${e.clara}`}>
+            <figure class="hidden w-full max-w-3xl md:block" aria-label={`Exemplo fictício: site da ${e.nome} no computador`}>
+              <div class="overflow-hidden rounded-2xl border-[10px] border-grafite bg-white shadow-2xl shadow-black/15">
+                <div class="flex items-center gap-1.5 bg-[#f1f1f1] px-3 py-2" aria-hidden="true">
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" /><span class="h-2.5 w-2.5 rounded-full bg-[#febc2e]" /><span class="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+                  <span class="ml-3 flex-1 rounded-md bg-white px-3 py-0.5 text-[11px] text-[#666]">seunegocio.com.br</span>
+                </div>
+                <div class="text-[#1a1a1a]">
+                  <div class="flex items-center justify-between px-6 py-3">
+                    <span class="font-extrabold" style="color:var(--c)">{e.nome}</span>
+                    <span class="flex gap-4 text-xs text-[#555]"><span>Início</span><span>Serviços</span><span>Contato</span></span>
+                  </div>
+                  <div class="grid grid-cols-[1.3fr_1fr] items-center gap-6 px-6 py-8" style="background:var(--cl)">
+                    <div>
+                      <p class="text-2xl leading-tight font-extrabold">{e.titulo}</p>
+                      <p class="mt-2 text-sm text-[#555]">{e.texto}</p>
+                      <span class="mt-4 inline-block rounded-full px-4 py-2 text-xs font-bold text-white" style="background:var(--c)">{e.botao}</span>
+                    </div>
+                    <div class="h-28 rounded-xl opacity-90" style="background:linear-gradient(135deg,var(--c),var(--cl))" aria-hidden="true" />
+                  </div>
+                  <div class="grid grid-cols-3 gap-3 px-6 py-6">
+                    {e.servicos.map((s) => (
+                      <div class="rounded-lg border border-[#eee] p-3 text-xs font-bold">
+                        <span class="mb-2 block h-1.5 w-8 rounded-full" style="background:var(--c)" />
+                        {s}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </figure>
+            <figure class="w-56 shrink-0" aria-label={`Exemplo fictício: site da ${e.nome} no celular`}>
+              <div class="overflow-hidden rounded-[2rem] border-[8px] border-grafite bg-white shadow-2xl shadow-black/20">
+                <div class="mx-auto mt-1.5 h-1.5 w-14 rounded-full bg-grafite" aria-hidden="true" />
+                <div class="text-[#1a1a1a]">
+                  <p class="px-4 py-3 text-sm font-extrabold" style="color:var(--c)">{e.nome}</p>
+                  <div class="px-4 py-5" style="background:var(--cl)">
+                    <p class="text-lg leading-tight font-extrabold">{e.titulo}</p>
+                    <span class="mt-3 inline-block rounded-full px-3 py-1.5 text-[11px] font-bold text-white" style="background:var(--c)">{e.botao}</span>
+                  </div>
+                  <ul class="space-y-2 px-4 py-4">
+                    {e.servicos.map((s) => <li class="rounded-lg border border-[#eee] px-3 py-2 text-[11px] font-bold">{s}</li>)}
+                  </ul>
+                  <div class="flex justify-end px-4 pb-4" aria-hidden="true">
+                    <span class="grid h-9 w-9 place-items-center rounded-full bg-[#168b49] text-white"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 12.05 0Z" /></svg></span>
+                  </div>
+                </div>
+              </div>
+            </figure>
+          </div>
+        ))
+      }
+    </div>
+    <p class="mt-6 text-center text-sm text-suave">Negócios fictícios, criados só para exemplo.</p>
+  </div>
+</section>
+
+<script>
+  const botoes = document.querySelectorAll<HTMLButtonElement>("[data-exemplo]");
+  const previas = document.querySelectorAll<HTMLElement>("[data-previa]");
+  for (const botao of botoes) {
+    botao.addEventListener("click", () => {
+      for (const b of botoes) b.setAttribute("aria-pressed", String(b === botao));
+      for (const p of previas) {
+        const ativa = p.dataset.previa === botao.dataset.exemplo;
+        p.classList.toggle("hidden", !ativa);
+        p.classList.toggle("flex", ativa);
+      }
+    });
+  }
+</script>

@@ -1,52 +1,54 @@
 ---
 import { ctaPrincipal, nav, site, whatsappUrl } from "../data/site";
+import LinhasFluindo from "./LinhasFluindo.astro";
 
 const year = new Date().getFullYear();
 ---
 
-<footer class="relative overflow-hidden bg-marinho text-white/75">
-  <div class="h-px bg-gradient-to-r from-transparent via-dourado/70 to-transparent"></div>
-  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
+<footer class="relative overflow-hidden bg-grafite text-areia">
+  <LinhasFluindo class="absolute inset-0 h-full w-full opacity-60" />
+  <div class="relative mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
     <div>
-      <img src="/marca/logo-cabecalho-escuro.svg" alt={site.name} width="240" height="60" loading="lazy" />
+      <img src="/marca/logo-cabecalho-escuro.svg" alt={site.name} width="200" height="50" loading="lazy" />
       <p class="mt-4 max-w-xs text-[15px] leading-relaxed">{site.tagline}</p>
+      <p class="mt-2 text-[15px] font-bold text-faisca">{site.name}, {site.slogan}</p>
       <a
         href={ctaPrincipal.href}
-        class="mt-6 inline-block rounded-full border border-azul/60 px-5 py-2.5 text-[15px] font-bold text-azul transition-colors hover:bg-azul hover:text-marinho"
+        class="mt-6 inline-block rounded-full border border-chama/70 px-5 py-2.5 text-[15px] font-bold text-brasa transition-colors hover:bg-chama hover:text-grafite"
       >
         {ctaPrincipal.label}
       </a>
     </div>
 
     <nav aria-label="Rodapé">
-      <p class="text-sm font-bold tracking-wide text-white uppercase">Navegação</p>
+      <p class="text-sm font-bold tracking-wide text-nevoa uppercase">Navegação</p>
       <ul class="mt-4 space-y-2.5 text-[15px]">
         {nav.map((item) => (
-          <li><a href={item.href} class="hover:text-white">{item.label}</a></li>
+          <li><a href={item.href} class="hover:text-nevoa">{item.label}</a></li>
         ))}
       </ul>
     </nav>
 
     <div>
-      <p class="text-sm font-bold tracking-wide text-white uppercase">Contato</p>
+      <p class="text-sm font-bold tracking-wide text-nevoa uppercase">Contato</p>
       <ul class="mt-4 space-y-2.5 text-[15px]">
         {whatsappUrl && (
           <li>
-            <a href={whatsappUrl} class="hover:text-white" rel="noopener noreferrer" target="_blank">
+            <a href={whatsappUrl} class="hover:text-nevoa" rel="noopener noreferrer" target="_blank">
               WhatsApp {site.whatsappLabel}<span class="sr-only"> (abre em nova aba)</span>
             </a>
           </li>
         )}
-        <li><a href={`mailto:${site.email}`} class="break-all hover:text-white">{site.email}</a></li>
-        <li>{site.city}</li>
+        <li><a href={`mailto:${site.email}`} class="break-all hover:text-nevoa">{site.email}</a></li>
+        <li>{site.city} · atendimento remoto em todo o Brasil</li>
       </ul>
     </div>
   </div>
 
-  <div class="border-t border-white/10">
+  <div class="relative border-t border-white/10">
     <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-6 text-sm sm:px-6">
       <p>© {year} {site.name}. Todos os direitos reservados.</p>
-      <a href="/politica-de-privacidade/" class="hover:text-white">Política de Privacidade</a>
+      <a href="/politica-de-privacidade/" class="hover:text-nevoa">Política de Privacidade</a>
     </div>
   </div>
 </footer>

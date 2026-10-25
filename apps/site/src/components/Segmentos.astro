@@ -1,0 +1,138 @@
+---
+// Cards que viram: na frente, a tarefa que rouba tempo; no verso, a automação que resolve.
+import { Picture } from "astro:assets";
+import clinica from "../assets/segmentos/clinica.jpg";
+import escritorio from "../assets/segmentos/escritorio.jpg";
+import pequenoNegocio from "../assets/segmentos/pequeno-negocio.jpg";
+
+const segmentos = [
+  {
+    id: "clinica",
+    nome: "Clínicas",
+    foto: clinica,
+    alt: "Recepção de clínica com celular mostrando uma confirmação",
+    problema: "Paciente que esquece a consulta",
+    solucao:
+      "Um dia antes, ele recebe um lembrete no WhatsApp e confirma com um toque. A agenda se atualiza sozinha, e as faltas caem.",
+  },
+  {
+    id: "escritorio",
+    nome: "Escritórios",
+    foto: escritorio,
+    alt: "Notebook com planilha organizada e celular com notificação",
+    problema: "Contato de cliente perdido no meio das mensagens",
+    solucao:
+      "Cada contato do site ou do WhatsApp vira uma linha na planilha e um aviso para a equipe, na hora.",
+  },
+  {
+    id: "pequeno-negocio",
+    nome: "Pequenos negócios",
+    foto: pequenoNegocio,
+    alt: "Balcão com pedidos embalados e celular com lista de pedidos confirmados",
+    problema: "Pedido no papel, orçamento feito à mão",
+    solucao:
+      "O pedido chega, o orçamento sai pronto e o cliente recebe a confirmação. Nada se perde no caminho.",
+  },
+];
+---
+
+<section aria-labelledby="segmentos-titulo" class="bg-superficie">
+  <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+    <div class="max-w-2xl">
+      <p class="text-sm font-bold tracking-[0.18em] text-marca-texto uppercase">O que dá para automatizar</p>
+      <h2 id="segmentos-titulo" class="mt-3 text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">
+        Qual tarefa rouba o seu tempo?
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-suave">Toque no card e veja ela acontecendo sozinha.</p>
+    </div>
+    <ul class="mt-12 grid gap-6 md:grid-cols-3">
+      {
+        segmentos.map((s) => (
+          <li class="card-virar h-[27rem]" data-card>
+            <div class="card-miolo relative h-full">
+              <div class="card-face absolute inset-0 flex flex-col overflow-hidden rounded-3xl border border-borda bg-fundo" data-frente>
+                <Picture src={s.foto} alt={s.alt} formats={["avif", "webp"]} widths={[480, 800]} sizes="(min-width: 768px) 33vw, 100vw" class="h-52 w-full object-cover" />
+                <div class="flex flex-1 flex-col p-6">
+                  <p class="text-sm font-bold tracking-wide text-marca-texto uppercase">{s.nome}</p>
+                  <p class="mt-2 text-xl leading-snug font-extrabold">{s.problema}</p>
+                  <p class="mt-auto flex items-center gap-2 pt-4 text-sm font-bold text-suave">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-marca" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8M21 3v5h-5" /></svg>
+                    Toque para ver a solução
+                  </p>
+                </div>
+              </div>
+              <div class="card-face card-verso absolute inset-0 flex flex-col overflow-hidden rounded-3xl bg-grafite p-7 text-nevoa" id={`solucao-${s.id}`} data-verso>
+                <p class="text-sm font-bold tracking-wide text-brasa uppercase">A automação</p>
+                <p class="mt-4 text-xl leading-relaxed font-semibold">{s.solucao}</p>
+                <div class="mt-auto flex items-center gap-2" aria-hidden="true">
+                  <span class="h-3.5 w-3.5 rounded-full border-[3px] border-chama" />
+                  <span class="h-0.5 flex-1 bg-chama/50" />
+                  <span class="h-3.5 w-3.5 rounded-full bg-chama" />
+                  <span class="h-0.5 flex-1 bg-chama/50" />
+                  <span class="h-3.5 w-3.5 rounded-full border-[3px] border-chama" />
+                </div>
+                <p class="mt-4 text-sm text-areia">Toque de novo para voltar</p>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="absolute inset-0 z-10 cursor-pointer rounded-3xl"
+              aria-expanded="false"
+              aria-controls={`solucao-${s.id}`}
+              data-virar
+            >
+              <span class="sr-only">{s.nome}: {s.problema}. Ver a solução</span>
+            </button>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .card-virar {
+    position: relative;
+    perspective: 1200px;
+  }
+  .card-miolo {
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .card-virar:hover .card-miolo {
+    transform: translateY(-6px);
+  }
+  .card-virar[data-virado] .card-miolo {
+    transform: rotateY(180deg);
+  }
+  .card-face {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .card-verso {
+    transform: rotateY(180deg);
+  }
+</style>
+
+<script>
+  for (const card of document.querySelectorAll<HTMLElement>("[data-card]")) {
+    const botao = card.querySelector<HTMLButtonElement>("[data-virar]");
+    const frente = card.querySelector<HTMLElement>("[data-frente]");
+    const verso = card.querySelector<HTMLElement>("[data-verso]");
+    const rotulo = botao?.querySelector("span");
+    if (!botao || !frente || !verso || !rotulo) continue;
+    const textoFrente = rotulo.textContent ?? "";
+    const virar = (virado: boolean) => {
+      card.toggleAttribute("data-virado", virado);
+      botao.setAttribute("aria-expanded", String(virado));
+      frente.setAttribute("aria-hidden", String(virado));
+      verso.setAttribute("aria-hidden", String(!virado));
+      rotulo.textContent = virado ? "Voltar para a frente do card" : textoFrente;
+    };
+    virar(false);
+    botao.addEventListener("click", () => virar(!card.hasAttribute("data-virado")));
+    botao.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && card.hasAttribute("data-virado")) virar(false);
+    });
+  }
+</script>

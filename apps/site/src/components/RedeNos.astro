@@ -1,0 +1,160 @@
+---
+// Fundo animado da marca V4: nós (como os do logo) que se ligam quando ficam próximos,
+// lembrando um fluxo de automação. Decorativo: some para leitores de tela e fica parado
+// para quem pede menos movimento.
+interface Props {
+  class?: string;
+  /** Variável de cor da marca: "marca" acompanha o tema; "chama" é fixa, para seções grafite. */
+  cor?: "marca" | "chama";
+}
+
+const { class: classe = "", cor = "marca" } = Astro.props;
+---
+
+<canvas data-rede data-cor={cor} class={`pointer-events-none ${classe}`} aria-hidden="true"></canvas>
+
+<script>
+  interface No {
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+    anel: boolean;
+  }
+
+  const DISTANCIA = 130;
+  const ALCANCE_CURSOR = 170;
+
+  for (const canvas of document.querySelectorAll<HTMLCanvasElement>("canvas[data-rede]")) {
+    const ctx = canvas.getContext("2d");
+    const area = canvas.parentElement;
+    if (!ctx || !area) continue;
+
+    const movimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let nos: No[] = [];
+    let largura = 0;
+    let altura = 0;
+    let cor = "#e8551e";
+    let visivel = true;
+    let quadro = 0;
+    const cursor = { x: -9999, y: -9999 };
+
+    const lerCor = () => {
+      cor = getComputedStyle(document.documentElement).getPropertyValue(`--color-${canvas.dataset.cor ?? "marca"}`).trim() || cor;
+    };
+
+    const montar = () => {
+      const escala = Math.min(window.devicePixelRatio || 1, 2);
+      largura = area.clientWidth;
+      altura = area.clientHeight;
+      canvas.width = largura * escala;
+      canvas.height = altura * escala;
+      ctx.setTransform(escala, 0, 0, escala, 0, 0);
+      // Densidade pela área: menos nós no celular, para poupar bateria.
+      const total = Math.min(70, Math.round((largura * altura) / 16000));
+      nos = Array.from({ length: total }, (_, i) => ({
+        x: Math.random() * largura,
+        y: Math.random() * altura,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        anel: i % 4 === 0,
+      }));
+    };
+
+    const desenhar = () => {
+      ctx.clearRect(0, 0, largura, altura);
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = cor;
+      nos.forEach((a, i) => {
+        for (const b of nos.slice(i + 1)) {
+          const d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d < DISTANCIA) {
+            ctx.globalAlpha = 0.22 * (1 - d / DISTANCIA);
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+        // O cursor também vira um nó: o visitante "entra" no fluxo.
+        const dc = Math.hypot(a.x - cursor.x, a.y - cursor.y);
+        if (dc < ALCANCE_CURSOR) {
+          ctx.globalAlpha = 0.5 * (1 - dc / ALCANCE_CURSOR);
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(cursor.x, cursor.y);
+          ctx.stroke();
+        }
+      });
+      for (const no of nos) {
+        ctx.globalAlpha = 0.5;
+        ctx.beginPath();
+        ctx.arc(no.x, no.y, no.anel ? 4 : 2.5, 0, Math.PI * 2);
+        if (no.anel) {
+          ctx.strokeStyle = cor;
+          ctx.lineWidth = 1.6;
+          ctx.stroke();
+          ctx.lineWidth = 1;
+        } else {
+          ctx.fillStyle = cor;
+          ctx.fill();
+        }
+      }
+      ctx.globalAlpha = 1;
+    };
+
+    const mover = () => {
+      for (const no of nos) {
+        no.x += no.vx;
+        no.y += no.vy;
+        if (no.x < 0 || no.x > largura) no.vx *= -1;
+        if (no.y < 0 || no.y > altura) no.vy *= -1;
+      }
+    };
+
+    const animar = () => {
+      quadro = 0;
+      if (!visivel || document.hidden || movimentoReduzido.matches) return;
+      mover();
+      desenhar();
+      quadro = requestAnimationFrame(animar);
+    };
+
+    const retomar = () => {
+      if (!quadro) quadro = requestAnimationFrame(animar);
+    };
+
+    lerCor();
+    montar();
+    desenhar();
+    retomar();
+
+    new ResizeObserver(() => {
+      montar();
+      desenhar();
+    }).observe(area);
+    new IntersectionObserver(([entrada]) => {
+      visivel = entrada?.isIntersecting ?? true;
+      if (visivel) retomar();
+    }).observe(area);
+    // Troca de tema: o laranja muda entre H7 e H8.
+    new MutationObserver(() => {
+      lerCor();
+      desenhar();
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    document.addEventListener("visibilitychange", retomar);
+    movimentoReduzido.addEventListener("change", () => {
+      desenhar();
+      retomar();
+    });
+    area.addEventListener("pointermove", (e) => {
+      const r = area.getBoundingClientRect();
+      cursor.x = e.clientX - r.left;
+      cursor.y = e.clientY - r.top;
+    });
+    area.addEventListener("pointerleave", () => {
+      cursor.x = -9999;
+      cursor.y = -9999;
+    });
+  }
+</script>

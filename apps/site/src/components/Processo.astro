@@ -2,53 +2,48 @@
 const etapas = [
   {
     titulo: "Diagnóstico",
-    texto: "Analisamos processos, gargalos e tarefas que consomem tempo da operação.",
+    texto: "Uma conversa sobre a sua rotina para achar onde o tempo escapa.",
   },
   {
-    titulo: "Integração",
-    texto: "Conectamos sistemas, canais de atendimento e fontes de dados com segurança.",
+    titulo: "Desenho do fluxo",
+    texto:
+      "Você vê, em linguagem simples, o que vai acontecer sozinho e o que continua nas suas mãos.",
   },
   {
-    titulo: "Automação",
-    texto: "Criamos fluxos no n8n com validações, registros e tratamento de falhas.",
+    titulo: "Teste com você",
+    texto: "Montamos e testamos com casos reais. Só ligamos de vez quando você aprovar.",
   },
   {
-    titulo: "Evolução",
-    texto: "Acompanhamos os resultados e melhoramos continuamente cada automação.",
+    titulo: "Acompanhamento",
+    texto: "Se algo falhar, a gente ajusta. O seu negócio muda, e o fluxo acompanha.",
   },
 ];
 ---
 
-<section aria-labelledby="processo-titulo" class="bg-white text-marinho">
+<section aria-labelledby="processo-titulo" class="bg-fundo">
   <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
     <div class="max-w-2xl">
-      <p class="text-sm font-bold tracking-[0.18em] text-azul-texto uppercase">Nosso processo</p>
+      <p class="text-sm font-bold tracking-[0.18em] text-marca-texto uppercase">Como funciona</p>
       <h2 id="processo-titulo" class="mt-3 text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">
-        Como transformamos processos em resultados
+        Do caos ao automático em 4 passos
       </h2>
-      <p class="mt-4 text-lg leading-relaxed text-marinho/75">
-        Cada projeto começa pela compreensão da necessidade e segue com validação técnica.
-      </p>
+      <p class="mt-4 text-lg leading-relaxed text-suave">Você fala a língua do seu negócio. A tradução para tecnologia é com a gente.</p>
     </div>
 
     <div class="relative mt-14">
-      <div
-        class="absolute top-7 right-[calc(25%-2.25rem)] left-7 hidden h-px bg-gradient-to-r from-dourado via-dourado/70 to-dourado lg:block"
-        aria-hidden="true"
-      >
-      </div>
+      <div class="absolute top-7 right-[calc(25%-2.25rem)] left-7 hidden h-0.5 bg-marca/40 lg:block" aria-hidden="true"></div>
       <ol class="relative grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-      {
-        etapas.map((etapa, i) => (
-          <li class="relative">
-            <span class="relative grid h-14 w-14 place-items-center rounded-full bg-marinho text-xl font-extrabold text-azul ring-4 ring-white">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <h3 class="mt-5 text-xl font-extrabold">{etapa.titulo}</h3>
-            <p class="mt-2 leading-relaxed text-marinho/75">{etapa.texto}</p>
-          </li>
-        ))
-      }
+        {
+          etapas.map((etapa, i) => (
+            <li class="relative">
+              <span class="relative grid h-14 w-14 place-items-center rounded-full bg-grafite text-xl font-extrabold text-brasa ring-4 ring-fundo">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 class="mt-5 text-xl font-extrabold">{etapa.titulo}</h3>
+              <p class="mt-2 leading-relaxed text-suave">{etapa.texto}</p>
+            </li>
+          ))
+        }
       </ol>
     </div>
   </div>

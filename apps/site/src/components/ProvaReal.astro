@@ -1,0 +1,40 @@
+---
+// O próprio formulário de contato é uma automação em produção: mostrá-lo é a prova mais honesta.
+import LinhasFluindo from "./LinhasFluindo.astro";
+
+const passos = [
+  { nome: "Formulário do site", texto: "Você descreve o que precisa." },
+  { nome: "n8n", texto: "Valida e registra o pedido." },
+  { nome: "Planilha", texto: "O pedido fica organizado." },
+  { nome: "E-mail", texto: "A equipe é avisada na hora." },
+];
+---
+
+<section aria-labelledby="prova-titulo" class="relative overflow-hidden bg-grafite text-nevoa">
+  <LinhasFluindo class="absolute inset-0 h-full w-full opacity-70" />
+  <div class="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+    <div class="max-w-2xl">
+      <p class="text-sm font-bold tracking-[0.18em] text-brasa uppercase">Prova real</p>
+      <h2 id="prova-titulo" class="mt-3 text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">
+        Não é promessa: este site já trabalha sozinho
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-areia">
+        Quando você envia o formulário, um fluxo no n8n recebe, confere, registra na planilha e avisa a nossa equipe em segundos. É exatamente esse tipo de engrenagem que a gente monta para o seu negócio.
+      </p>
+    </div>
+    <ol class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        passos.map((p, i) => (
+          <li class="relative rounded-2xl border border-white/10 bg-grafite-claro p-6">
+            <span class={`block h-4 w-4 rounded-full ${i === 0 || i === passos.length - 1 ? "border-[3px] border-chama" : "bg-chama"}`} aria-hidden="true" />
+            <h3 class="mt-4 text-lg font-extrabold">{p.nome}</h3>
+            <p class="mt-1 text-areia">{p.texto}</p>
+          </li>
+        ))
+      }
+    </ol>
+    <a href="/contato/#form-titulo" class="mt-10 inline-flex items-center gap-1.5 font-bold text-brasa underline decoration-brasa/40 underline-offset-4 hover:text-nevoa">
+      Faça o teste: envie seu pedido <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>

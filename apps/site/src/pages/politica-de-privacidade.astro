@@ -41,16 +41,16 @@ const email = `mailto:${site.email}`;
     text={`Como a ${site.name} trata os seus dados, conforme a Lei Geral de Proteção de Dados (Lei nº 13.709/2018).`}
   />
 
-  <div class="bg-[#f4f9fd] text-marinho">
+  <div class="bg-fundo text-texto">
     <div class="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[15rem_1fr] lg:py-20">
       <nav aria-label="Seções da política" class="hidden lg:block">
         <div class="sticky top-28">
-          <p class="text-sm font-bold tracking-[0.18em] text-azul-texto uppercase">Nesta página</p>
-          <ol class="mt-4 space-y-2 border-l-2 border-marinho/10 text-[15px]">
+          <p class="text-sm font-bold tracking-[0.18em] text-marca-texto uppercase">Nesta página</p>
+          <ol class="mt-4 space-y-2 border-l-2 border-borda text-[15px]">
             {
               secoes.map((s, i) => (
                 <li>
-                  <a href={`#${s.id}`} class="-ml-0.5 block border-l-2 border-transparent py-0.5 pl-4 text-marinho/70 hover:border-azul-medio hover:text-marinho">
+                  <a href={`#${s.id}`} class="-ml-0.5 block border-l-2 border-transparent py-0.5 pl-4 text-suave hover:border-marca hover:text-texto">
                     {i + 1}. {s.titulo}
                   </a>
                 </li>
@@ -61,11 +61,11 @@ const email = `mailto:${site.email}`;
       </nav>
 
       <article
-        class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-marinho/10 sm:p-10 [&_a]:font-semibold [&_a]:text-azul-texto [&_a]:underline [&_a]:underline-offset-4 [&_h2]:mt-12 [&_h2]:scroll-mt-28 [&_h2]:text-2xl [&_h2]:font-extrabold [&_h2]:tracking-tight [&_h2]:text-marinho [&_li]:mt-2 [&_p]:mt-4 [&_p]:leading-relaxed [&_ul]:mt-4 [&_ul]:list-disc [&_ul]:pl-6 text-marinho/80"
+        class="rounded-3xl bg-superficie p-6 shadow-sm ring-1 ring-borda sm:p-10 [&_a]:font-semibold [&_a]:text-marca-texto [&_a]:underline [&_a]:underline-offset-4 [&_h2]:mt-12 [&_h2]:scroll-mt-28 [&_h2]:text-2xl [&_h2]:font-extrabold [&_h2]:tracking-tight [&_h2]:text-texto [&_li]:mt-2 [&_p]:mt-4 [&_p]:leading-relaxed [&_ul]:mt-4 [&_ul]:list-disc [&_ul]:pl-6 text-suave"
       >
-        <p class="text-sm text-marinho/60">Última atualização: {atualizadoEm}</p>
+        <p class="text-sm text-suave">Última atualização: {atualizadoEm}</p>
 
-        <section aria-labelledby="resumo-titulo" class="mt-6 rounded-2xl bg-marinho p-6 text-white sm:p-8">
+        <section aria-labelledby="resumo-titulo" class="mt-6 rounded-2xl bg-grafite p-6 text-white sm:p-8">
           <h2 id="resumo-titulo" class="mt-0! text-xl! text-white!">Em poucas palavras</h2>
           <ul class="list-none! pl-0!">
             {

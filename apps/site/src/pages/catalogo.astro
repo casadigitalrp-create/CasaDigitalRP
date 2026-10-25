@@ -1,106 +1,212 @@
 ---
+import Cta from "../components/Cta.astro";
 import PageHeader from "../components/PageHeader.astro";
-import { integracoes, recursos, solucoes } from "../data/catalogo";
-import { componentes } from "../data/componentes";
-import { site } from "../data/site";
+import { acoes, gatilhos, integracoes, receitas } from "../data/catalogo";
 import Base from "../layouts/Base.astro";
 
-const campo =
-  "rounded-2xl border border-marinho/15 bg-white p-4 shadow-sm has-[:checked]:border-azul-medio has-[:checked]:bg-azul/10 focus-within:outline-3 focus-within:outline-azul-medio";
+const chip =
+  "cursor-pointer rounded-full border border-chama/60 px-4 py-2 text-[15px] font-bold text-nevoa transition-colors hover:border-chama has-[:checked]:border-chama has-[:checked]:bg-chama has-[:checked]:text-grafite has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-chama";
 ---
 
-<Base title="Catálogo de soluções" description="Escolha uma solução, componentes, recursos e integrações para receber uma análise técnica da CasaDigitalRP. Sem preços públicos.">
-  <PageHeader eyebrow="Catálogo" title="Monte a sua solicitação" text="Escolha o que faz sentido para o seu projeto. Analisamos a combinação antes de apresentar proposta, prazo ou investimento." />
-  <section class="bg-[#f4f9fd] px-4 py-14 text-marinho sm:px-6 lg:py-20">
-    <form id="catalogo" class="mx-auto max-w-6xl space-y-12">
-      <fieldset>
-        <legend class="text-2xl font-extrabold">1. Solução principal</legend>
-        <p class="mt-2 text-marinho/70">Selecione uma opção. Podemos ajustar o escopo na conversa.</p>
-        <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {solucoes.map((nome) => <label class={campo}><input type="radio" name="solucao" value={nome} class="mr-2 accent-azul-medio" required />{nome}</label>)}
-        </div>
-      </fieldset>
+<Base title="Automações" description="Receitas prontas de automação com n8n e um simulador para montar o seu fluxo: WhatsApp, planilhas, e-mail, IA e integrações entre sistemas.">
+  <PageHeader
+    eyebrow="Automações"
+    title="O que o seu negócio pode fazer sozinho?"
+    text="Escolha uma receita pronta ou monte o seu próprio fluxo em poucos cliques. A gente cuida da parte técnica."
+  />
 
-      <fieldset>
-        <legend class="text-2xl font-extrabold">2. Componentes do site</legend>
-        <p class="mt-2 text-marinho/70">Escolha quantos quiser. A Vitrine mostra demonstrações de vários deles.</p>
-        <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {componentes.filter((item) => !["depoimentos", "parceiros"].includes(item.id)).map((item) =>
-            <label class={campo}><input type="checkbox" name="componentes" value={item.nome} class="mr-2 accent-azul-medio" /><strong>{item.nome}</strong><span class="mt-1 block text-sm text-marinho/70">{item.descricao}</span></label>
-          )}
-        </div>
-        <p class="mt-4 text-sm text-marinho/70">Depoimentos e marcas parceiras só podem ser publicados com conteúdo real e autorização.</p>
-      </fieldset>
-
-      <fieldset>
-        <legend class="text-2xl font-extrabold">3. Recursos adicionais</legend>
-        <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {recursos.map((nome) => <label class={campo}><input type="checkbox" name="recursos" value={nome} class="mr-2 accent-azul-medio" />{nome}</label>)}
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend class="text-2xl font-extrabold">4. Integrações necessárias</legend>
-        <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {integracoes.map((nome) => <label class={campo}><input type="checkbox" name="integracoes" value={nome} class="mr-2 accent-azul-medio" />{nome}</label>)}
-        </div>
-      </fieldset>
-
-      <div class="rounded-3xl bg-marinho p-6 text-white sm:p-8">
-        <h2 class="text-xl font-extrabold">Resumo da escolha</h2>
-        <p id="catalogo-resumo" class="mt-3 whitespace-pre-line text-white/85" aria-live="polite">Selecione uma solução para começar.</p>
-        <p id="catalogo-erro" class="mt-4 hidden font-bold text-amber-200" role="alert"></p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <button type="button" id="continuar-contato" class="rounded-full bg-azul px-6 py-3 font-bold text-marinho hover:bg-white">Continuar para Contato</button>
-          <a id="catalogo-whatsapp" href="#" target="_blank" rel="noopener noreferrer" class="rounded-full border border-white/50 px-6 py-3 font-bold text-white hover:bg-white/10">Enviar resumo pelo WhatsApp</a>
-        </div>
-        <p class="mt-4 text-sm text-white/65">Nenhum preço ou prazo é calculado aqui. A seleção fica nesta sessão do navegador para preencher Contato.</p>
+  <!-- 1. Receitas prontas -->
+  <section aria-labelledby="receitas-titulo" class="bg-fundo">
+    <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+      <div class="max-w-2xl">
+        <p class="text-sm font-bold tracking-[0.18em] text-marca-texto uppercase">Receitas prontas</p>
+        <h2 id="receitas-titulo" class="mt-3 text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">
+          Automações que já fazem diferença em pequenos negócios
+        </h2>
+        <p class="mt-4 text-lg leading-relaxed text-suave">Reconheceu a sua rotina em alguma delas? Um clique e ela vai junto para o seu pedido.</p>
       </div>
-    </form>
+      <ul class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          receitas.map((r) => (
+            <li class="receita group flex flex-col rounded-3xl border border-borda bg-superficie p-7 transition-transform hover:-translate-y-1.5 hover:border-marca">
+              <ol class="flex items-center gap-2 text-xs font-bold text-suave" aria-label={`Fluxo: ${r.fluxo.join(", ")}`}>
+                {r.fluxo.map((etapa, i) => (
+                  <li class="flex flex-1 items-center gap-2 last:flex-none">
+                    <span class="flex flex-col items-center gap-1.5">
+                      <span class={`block h-4 w-4 rounded-full ${i === 1 ? "bg-marca" : "border-[3px] border-marca bg-superficie"}`} aria-hidden="true" />
+                      <span class="whitespace-nowrap">{etapa}</span>
+                    </span>
+                    {i < 2 && (
+                      <span class="receita-linha relative -mt-5 h-0.5 flex-1 overflow-hidden rounded-full bg-borda" aria-hidden="true">
+                        <span class="absolute inset-0 origin-left scale-x-0 bg-marca transition-transform duration-500 group-hover:scale-x-100" />
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ol>
+              <h3 class="mt-6 text-xl font-extrabold">{r.titulo}</h3>
+              <p class="mt-2 flex-1 leading-relaxed text-suave">{r.texto}</p>
+              <button
+                type="button"
+                data-receita={JSON.stringify({ solucao: r.solucao, integracoes: r.integracoes })}
+                class="mt-6 self-start rounded-full border border-marca px-5 py-2.5 font-bold text-marca-texto transition-colors hover:bg-marca hover:text-grafite"
+              >
+                Quero esta automação
+              </button>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </section>
+
+  <!-- 2. Simulador -->
+  <section aria-labelledby="simulador-titulo" class="relative overflow-hidden bg-grafite text-nevoa">
+    <div class="mx-auto grid max-w-6xl gap-12 px-4 py-20 sm:px-6 sm:py-24 lg:grid-cols-[1fr_1fr] lg:items-start">
+      <form id="simulador" class="space-y-10">
+        <div>
+          <p class="text-sm font-bold tracking-[0.18em] text-brasa uppercase">Simulador</p>
+          <h2 id="simulador-titulo" class="mt-3 text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">
+            Monte o seu fluxo
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-areia">Escolha o que dispara a automação e o que deve acontecer. O fluxo se desenha ao lado.</p>
+        </div>
+        <fieldset>
+          <legend class="text-xl font-extrabold">Quando…</legend>
+          <div class="mt-4 flex flex-wrap gap-3">
+            {gatilhos.map((g, i) => <label class={chip}><input type="radio" name="gatilho" value={g.id} class="sr-only" checked={i === 0} />{g.rotulo}</label>)}
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend class="text-xl font-extrabold">Então…</legend>
+          <p class="mt-1 text-sm text-areia">Escolha quantas quiser.</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            {acoes.map((a, i) => <label class={chip}><input type="checkbox" name="acao" value={a.id} class="sr-only" checked={i === 0 || i === 3} />{a.rotulo}</label>)}
+          </div>
+        </fieldset>
+      </form>
+
+      <div class="rounded-3xl border border-white/10 bg-grafite-claro p-7 lg:sticky lg:top-28">
+        <p class="text-sm font-bold text-areia">O seu fluxo</p>
+        <ol id="fluxo" class="mt-6 space-y-4" aria-live="polite"></ol>
+        <p id="fluxo-frase" class="mt-6 leading-relaxed text-nevoa"></p>
+        <p id="fluxo-erro" class="mt-4 hidden font-bold text-faisca" role="alert">Escolha pelo menos uma ação em "Então…".</p>
+        <button id="quero-fluxo" type="button" class="mt-6 w-full rounded-full bg-chama px-7 py-3.5 text-lg font-bold text-grafite transition-colors hover:bg-faisca">
+          Quero este fluxo
+        </button>
+        <p class="mt-3 text-center text-sm text-areia">Ele vai junto para o formulário de contato.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Integrações -->
+  <section aria-labelledby="integracoes-titulo" class="bg-superficie">
+    <div class="mx-auto max-w-6xl px-4 py-16 text-center sm:px-6">
+      <h2 id="integracoes-titulo" class="text-2xl font-extrabold tracking-tight sm:text-3xl">Conversa com o que você já usa</h2>
+      <p class="mx-auto mt-3 max-w-xl text-suave">Você não precisa trocar de ferramenta. A automação liga o que já existe.</p>
+      <ul class="mt-8 flex flex-wrap justify-center gap-3">
+        {
+          integracoes.map((nome) => (
+            <li class="flex items-center gap-2 rounded-full border border-borda bg-fundo px-5 py-2.5 font-bold">
+              <span class="h-2.5 w-2.5 rounded-full bg-marca" aria-hidden="true" />
+              {nome === "API ou sistema existente" ? "O seu sistema" : nome === "Google Gemini" ? "Inteligência artificial" : nome}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <Cta title="Não achou a sua tarefa? Conta pra gente." text="Descreva a rotina que toma o seu tempo. Em uma conversa, mostramos o que dá para automatizar." />
+
+  <script type="application/json" id="simulador-dados" set:html={JSON.stringify({ gatilhos, acoes })} />
 </Base>
 
-<script define:vars={{ whatsapp: site.whatsapp }}>
-  const chave = "cdrp-catalogo-selecao-v1";
-  const form = document.getElementById("catalogo");
-  const selecionados = (nome) => [...form.querySelectorAll(`input[name="${nome}"]:checked`)].map((item) => item.value);
-  const ler = () => ({
-    solucao: selecionados("solucao")[0] || "",
-    componentes: selecionados("componentes"),
-    recursos: selecionados("recursos"),
-    integracoes: selecionados("integracoes"),
-  });
-  const resumo = (s) => [
-    `Solução: ${s.solucao || "Ainda não escolhida"}`,
-    `Componentes: ${s.componentes.join(", ") || "Nenhum"}`,
-    `Recursos: ${s.recursos.join(", ") || "Nenhum"}`,
-    `Integrações: ${s.integracoes.join(", ") || "Nenhuma"}`,
-  ].join("\n");
-  function atualizar() {
-    const s = ler();
-    document.getElementById("catalogo-resumo").textContent = resumo(s);
-    sessionStorage.setItem(chave, JSON.stringify(s));
-    document.getElementById("catalogo-whatsapp").href = `https://wa.me/${whatsapp}?text=${encodeURIComponent(`Olá! Escolhi estas opções no catálogo da CasaDigitalRP:\n${resumo(s)}`)}`;
+<script>
+  import { chaveSelecao, type SelecaoCatalogo } from "../data/catalogo";
+
+  interface Opcao {
+    id: string;
+    rotulo: string;
+    quando?: string;
+    no: string;
+    integracao: string;
   }
-  try {
-    const salvo = JSON.parse(sessionStorage.getItem(chave) || "null");
-    if (salvo && typeof salvo === "object") {
-      for (const input of form.querySelectorAll("input")) {
-        const valores = input.name === "solucao" ? [salvo.solucao] : salvo[input.name];
-        input.checked = Array.isArray(valores) && valores.includes(input.value);
-      }
-    }
-  } catch { /* Seleção antiga inválida: iniciar sem preenchimento. */ }
-  form.addEventListener("change", atualizar);
-  atualizar();
-  document.getElementById("continuar-contato").addEventListener("click", () => {
-    if (!ler().solucao) {
-      const erro = document.getElementById("catalogo-erro");
-      erro.textContent = "Escolha a solução principal antes de continuar.";
-      erro.classList.remove("hidden");
-      form.querySelector('input[name="solucao"]').focus();
-      return;
+  const { gatilhos, acoes } = JSON.parse(document.getElementById("simulador-dados")?.textContent ?? "{}") as {
+    gatilhos: Opcao[];
+    acoes: Opcao[];
+  };
+
+  // A escolha segue para o Contato pela mesma chave e no mesmo formato usados desde a V3.
+  const irParaContato = (selecao: SelecaoCatalogo) => {
+    try {
+      sessionStorage.setItem(chaveSelecao, JSON.stringify(selecao));
+    } catch {
+      /* Sem armazenamento: o visitante descreve a escolha no formulário. */
     }
     location.href = "/contato/#form-titulo";
+  };
+
+  for (const botao of document.querySelectorAll<HTMLButtonElement>("[data-receita]")) {
+    botao.addEventListener("click", () => {
+      const { solucao, integracoes } = JSON.parse(botao.dataset.receita ?? "{}") as { solucao: string; integracoes: string[] };
+      irParaContato({ solucao, componentes: [], recursos: [], integracoes });
+    });
+  }
+
+  const form = document.getElementById("simulador") as HTMLFormElement;
+  const fluxo = document.getElementById("fluxo") as HTMLOListElement;
+  const frase = document.getElementById("fluxo-frase") as HTMLParagraphElement;
+  const erro = document.getElementById("fluxo-erro") as HTMLParagraphElement;
+
+  const ler = () => {
+    const gatilho = gatilhos.find((g) => g.id === form.querySelector<HTMLInputElement>('input[name="gatilho"]:checked')?.value);
+    const escolhidas = [...form.querySelectorAll<HTMLInputElement>('input[name="acao"]:checked')]
+      .map((i) => acoes.find((a) => a.id === i.value))
+      .filter((a): a is Opcao => Boolean(a));
+    return { gatilho, escolhidas };
+  };
+
+  const no = (texto: string, tipo: "anel" | "cheio", atraso: number) => {
+    const li = document.createElement("li");
+    li.className = "flex items-center gap-4 opacity-0 transition-opacity duration-500";
+    li.style.transitionDelay = `${atraso}ms`;
+    const ponto = document.createElement("span");
+    ponto.className = `h-5 w-5 shrink-0 rounded-full ${tipo === "anel" ? "border-[3px] border-chama" : "bg-chama"}`;
+    const caixa = document.createElement("span");
+    caixa.className = "flex-1 rounded-xl border border-white/10 bg-grafite px-4 py-3 font-semibold";
+    caixa.textContent = texto;
+    li.append(ponto, caixa);
+    requestAnimationFrame(() => requestAnimationFrame(() => li.classList.remove("opacity-0")));
+    return li;
+  };
+
+  const desenhar = () => {
+    const { gatilho, escolhidas } = ler();
+    fluxo.replaceChildren();
+    if (!gatilho) return;
+    fluxo.append(no(gatilho.no, "anel", 0), no("n8n organiza e decide", "cheio", 120));
+    escolhidas.forEach((a, i) => fluxo.append(no(a.no, i === escolhidas.length - 1 ? "anel" : "cheio", 240 + i * 120)));
+    frase.textContent = escolhidas.length
+      ? `${gatilho.quando}, a automação vai ${escolhidas.map((a) => a.rotulo.toLowerCase()).join(", ").replace(/, ([^,]*)$/, " e $1")}.`
+      : "";
+    erro.classList.add("hidden");
+  };
+
+  form.addEventListener("change", desenhar);
+  desenhar();
+
+  document.getElementById("quero-fluxo")?.addEventListener("click", () => {
+    const { gatilho, escolhidas } = ler();
+    if (!gatilho || !escolhidas.length) {
+      erro.classList.remove("hidden");
+      return;
+    }
+    irParaContato({
+      solucao: "Automações personalizadas",
+      componentes: [`Quando: ${gatilho.rotulo}`, ...escolhidas.map((a) => `Então: ${a.rotulo}`)],
+      recursos: [],
+      integracoes: [...new Set(["n8n", gatilho.integracao, ...escolhidas.map((a) => a.integracao)])],
+    });
   });
 </script>
