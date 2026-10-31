@@ -49,6 +49,13 @@ Revisar e completar este padrão à medida que novas prévias forem feitas.
 - Identidade visual própria para cada cliente (cores, fontes, elementos), definida em `src/styles/global.css`.
 - Textos e contatos centralizados em `src/data/site.ts`; itens simulados comentados como tal.
 
+**Modelos**
+- Página única: para profissional liberal com poucos serviços (ex.: `everton-castro-previa`).
+- Multipáginas: para empresas com vários serviços e portfólio. Referência: `previas-profissionais/fontes/construtora-tn`
+  (Início, Sobre, Serviços + página de cada serviço, Obras/Portfólio com filtro + página de cada item, Dicas + artigos,
+  Orçamento, Trabalhe conosco, Política de privacidade, 404). Conteúdo em arquivos de `src/data/`, páginas geradas
+  a partir deles.
+
 **Seções que toda prévia tem**
 - Hero com a proposta principal e chamada para o WhatsApp.
 - Serviços ou áreas de atuação.
