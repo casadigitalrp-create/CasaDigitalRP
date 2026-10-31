@@ -24,6 +24,12 @@ qualquer credencial. Preços e prazos ficam na planilha interna.
 - Quando faltar informação do cliente, não inventar: usar conteúdo provisório **marcado como simulado** e listar a
   pendência no README do projeto.
 
+## Identidade visual da CasaDigitalRP
+
+Tudo que leva a marca da empresa (site, catálogo de modelos, propostas) usa a **identidade V4**: grafite `#1a1a1a`,
+laranja `#e8551e`/`#ff6a26` e fundo claro `#fff8f2`. Tokens em `packages/tokens/theme.css` e logos em
+`apps/site/public/marca/`. **Nunca usar o azul da marca antiga.** Botão laranja leva texto grafite (contraste AA).
+
 ## Tom de voz
 
 - **Com o cliente** (WhatsApp, e-mail, proposta): descontraído, próximo, com emoji 😄 sem exagero. Frases curtas, sem
