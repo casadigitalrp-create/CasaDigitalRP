@@ -88,6 +88,10 @@ Varia de cliente para cliente. O caminho mais comum é: primeiro contato → ent
 aprovação → versão final com domínio no nome do cliente → automações, se fizer sentido.
 Registrar aqui as etapas que se repetirem.
 
+## Tarefas em aberto
+
+Ver `docs/proxima-sessao.md` no início de cada sessão.
+
 ## Este manual
 
 Atualizar sempre que uma regra nova aparecer numa conversa. Uma regra só vale para as próximas sessões se estiver
